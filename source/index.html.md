@@ -1,14 +1,10 @@
 ---
-title: API Reference
+title: GSVote API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
+language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -17,84 +13,97 @@ includes:
 search: true
 ---
 
-# Introduction
+# Getting Started
 
-TEST
-
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+## Request instance
 
 ```javascript
-const kittn = require('kittn');
+import config from 'config'
 
-let api = kittn.authorize('meowmeowmeow');
+const endpoint =
+  process.env.NODE_ENV === 'production'
+    ? `https://${config.server.host}`
+    : `http://${config.server.host}:${config.server.port}`
+
+const request = axios.create({ baseURL: `${endpoint}/api` })
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+The request object is used to handle communications with the API.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+It should be stored in the Redux Store.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+## Chain requests
 
 ```javascript
-const kittn = require('kittn');
+import { APIErrorHandler } from './src/common/utils'
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+request
+  .get('url1')
+  .then(res => /* response of request on url1 */)
+  .then(() => request.get('url2'))
+  .then(res => /* response of request on url2 */)
+  .catch(APIErrorHandler)
+  .catch(err => /* error for url1 or url2*/)
+```
+
+## Batch requests
+
+```javascript
+import { APIErrorHandler, sync } from './src/common/utils'
+
+const array = [
+  '5c328f1a1d430b3d610a0833',
+  '5c328f1a1d430b3d610a08c4'
+]
+
+const task = function (id, index, callback) {
+  request
+    .get(`companies/${id}`)
+    .then(res => callback(null, res.data)) // This will store the response in the results
+    .catch(APIErrorHandler)
+    .catch(err => {
+      callback(null, err) // This will store the error in the results
+
+      /* OR */
+
+      callback(err) // This will stop the batch, the previous results will not be accessible
+    })
+}
+
+sync(array, task)
+  .then(results => /* array of responses */)
+  .catch(err => /* error */)
+```
+
+A batch is a series of request made from an array of data.
+
+<aside class="notice">
+Always use the <code>sync</code> method to make batch to the API.
+</aside>
+
+<aside class="notice">
+You can bind context to the <code>task</code> function: <code>task.bind(this)</code>.
+</aside>
+
+# Company
+
+## Fetch all companies
+
+```javascript
+import { APIErrorHandler } from './src/common/utils'
+
+request
+  .get(`companies`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof NoCompanies)
+      // No companies could be found
+
+    // Handle any other errors
+  })
 ```
 
 > The above command returns JSON structured like this:
@@ -102,140 +111,225 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "_id": "5c328f1a1d430b3d610a0833",
+    "name": "Name",
+    "infos": {
+      "siret": "00000000000000",
+      "headquarters": "Headquarters",
+      "logo": "https://i.imgur.com/kl6PnDj.png",
+      "theme": {}
+    },
+    "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "_id": "5c328f1a1d430b3d610a08c4",
+    "name": "Name",
+    "infos": {
+      "siret": "00000000000001",
+      "headquarters": "Headquarters",
+      "logo": "https://i.imgur.com/kl6PkRt.png",
+      "theme": {}
+    },
+    "projects": ["5c328f1a1d430b3d610a08c5", "5c328f1a1d430b3d610a08c6"]
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all companies.
 
-### HTTP Request
+### HTTP Route
 
-`GET http://example.com/api/kittens`
+`GET companies/`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+## Create a company
 
 ```javascript
-const kittn = require('kittn');
+import { APIErrorHandler } from './src/common/utils'
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+const data = {
+  name: "My Company",                         // Mandatory
+  infos: {
+    siret: "00000000000002",                  // Mandatory and Unique
+    headquarters: "Headquarters",             // Mandatory
+    logo: "https://i.imgur.com/kl6PnDj.png"   // Optional
+  }
+}
+
+request
+  .post(`companies/`, data)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof ValidationError)
+      // The company could not be created
+
+    // Handle any other errors
+  })
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "_id": "5c328f1a1d430b3d610a08a4",
+  "name": "My Company",
+  "infos": {
+    "siret": "00000000000002",
+    "headquarters": "Headquarters",
+    "logo": "https://i.imgur.com/kl6PnDj.png",
+    "theme": {}
+  },
+  "projects": []
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint creates company.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Be sure to check how to handle [ValidationError](#validationerror).
 
-### HTTP Request
+### HTTP Route
 
-`GET http://example.com/kittens/<ID>`
+`POST companies/`
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+## Fetch a company
 
 ```javascript
-const kittn = require('kittn');
+import { APIErrorHandler } from './src/common/utils'
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+const id = '5c328f1a1d430b3d610a0833'
+
+request
+  .get(`companies/${id}`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof CompanyNotFound)
+      // The company could be found
+
+    // Handle any other errors
+  })
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "_id": "5c328f1a1d430b3d610a0833",
+  "name": "Name",
+  "infos": {
+    "siret": "00000000000000",
+    "headquarters": "Headquarters",
+    "logo": "https://i.imgur.com/kl6PnDj.png",
+    "theme": {}
+  },
+  "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint retrieves a specific company.
 
-### HTTP Request
+### HTTP Route
 
-`DELETE http://example.com/kittens/<ID>`
+`GET companies/<ID>`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+| Parameter | Description                       |
+| --------- | --------------------------------- |
+| ID        | The ID of the company to retrieve |
 
+## Update a company
+
+```javascript
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c328f1a1d430b3d610a08a4'
+
+const data = {
+  name: "New Name",
+  infos: {
+    headquarters: "New Headquarters",
+    logo: "https://bit.ly./AfgTyH"
+  }
+}
+
+request
+  .put(`companies/${id}`, data)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof ValidationError)
+      // The company could not be created
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5c328f1a1d430b3d610a08a4",
+  "name": "New Name",
+  "infos": {
+    "siret": "00000000000002",
+    "headquarters": "New Headquarters",
+    "logo": "https://bit.ly./AfgTyH",
+    "theme": {}
+  },
+  "projects": []
+}
+```
+
+This endpoint updates a specific company.
+
+Be sure to check how to handle [ValidationError](#validationerror).
+
+### HTTP Route
+
+`PUT companies/<ID>`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| ID        | The ID of the company to update |
+
+## Delete a company
+
+```javascript
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c328f1a1d430b3d610a08a4'
+
+request
+  .delete(`companies/${id}`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof CompanyNotFound)
+      // The company could be found
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint updates a specific company.
+
+### HTTP Route
+
+`DELETE companies/<ID>`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| ID        | The ID of the company to delete |
