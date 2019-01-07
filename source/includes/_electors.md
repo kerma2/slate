@@ -352,13 +352,13 @@ request
 }
 ```
 
-<aside class="notice">
-Modifying an elector's status will automatically remove him from his current college and move him to the new one (if need be).
-</aside>
-
 This endpoint updates a specific elector.
 
 Be sure to check how to handle [ValidationError](#validationerror).
+
+<aside class="notice">
+Modifying an elector's status will automatically move him from his current college to the new one (if need be).
+</aside>
 
 ### HTTP Route
 
