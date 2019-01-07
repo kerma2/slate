@@ -5,13 +5,15 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - Documentation Powered by Kerma
 
 includes:
   - companies
   - projects
   - tasks
   - documents
+  - establishments
+  - colleges
   - errors
 
 search: true

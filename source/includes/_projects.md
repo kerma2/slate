@@ -3,7 +3,7 @@
 ## Fetch all projects
 
 ```javascript
-import { CompanyNotFound, NoProjets } from './src/common/errors'
+import { CompanyNotFound, NoProjects } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c32b185702a5b72b178b2e9'
@@ -158,7 +158,7 @@ This endpoint retrieves a specific project.
 ## Update a project
 
 ```javascript
-import { ValidationError } from './src/common/errors'
+import { ProjectNotFound, ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c32b186702a5b72b178b4a2'
@@ -172,6 +172,9 @@ request
   .then(res => console.log(res.data))
   .catch(APIErrorHandler)
   .catch(err => {
+    if (err instanceof ProjectNotFound)
+      // The project could be found
+
     if (err instanceof ValidationError)
       // The company could not be updated
 
