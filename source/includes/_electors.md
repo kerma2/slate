@@ -14,7 +14,7 @@ request
   .catch(APIErrorHandler)
   .catch(err => {
     if (err instanceof CollegeNotFound)
-      // The establishment could not be found
+      // The college could not be found
 
     // Handle any other errors
   })
@@ -270,7 +270,7 @@ request
       // The college could be found
 
     if (err instanceof UserNotFound)
-      // The college could be found
+      // The elector could be found
 
     // Handle any other errors
   })
@@ -335,7 +335,7 @@ request
       // The elector can not be updated anymore
 
     if (err instanceof ValidationError)
-      // The college could not be updated
+      // The elector could not be updated
 
     // Handle any other errors
   })
@@ -352,7 +352,7 @@ request
 }
 ```
 
-This endpoint updates a specific elector.
+This endpoint updates a specific elector within a specific college.
 
 Be sure to check how to handle [ValidationError](#validationerror).
 
