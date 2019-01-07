@@ -2985,13 +2985,13 @@ On error, the response object will holds whether or not each user has valid data
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<aside class="notice">
-Modifying an elector's status will automatically remove him from his current college and move him to the new one (if need be).
-</aside>
-
 <p>This endpoint updates a specific elector.</p>
 
 <p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+
+<aside class="notice">
+Modifying an elector's status will automatically move him from his current college to the new one (if need be).
+</aside>
 <h3 id='http-route-5'>HTTP Route</h3>
 <p><code>PUT colleges/&lt;COLLEGE_ID&gt;/electors/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
