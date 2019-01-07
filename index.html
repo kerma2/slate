@@ -316,6 +316,64 @@
               </ul>
           </li>
           <li>
+            <a href="#establishment" class="toc-h1 toc-link" data-title="Establishment">Establishment</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fetch-all-establishments" class="toc-h2 toc-link" data-title="Fetch all establishments">Fetch all establishments</a>
+                  </li>
+                  <li>
+                    <a href="#create-an-establishment" class="toc-h2 toc-link" data-title="Create an establishment">Create an establishment</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-an-establishment" class="toc-h2 toc-link" data-title="Fetch an establishment">Fetch an establishment</a>
+                  </li>
+                  <li>
+                    <a href="#update-an-establishment" class="toc-h2 toc-link" data-title="Update an establishment">Update an establishment</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-establishment" class="toc-h2 toc-link" data-title="Delete a establishment">Delete a establishment</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-all-statuses" class="toc-h2 toc-link" data-title="Fetch all statuses">Fetch all statuses</a>
+                  </li>
+                  <li>
+                    <a href="#create-statuses" class="toc-h2 toc-link" data-title="Create statuses">Create statuses</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-status" class="toc-h2 toc-link" data-title="Update a status">Update a status</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-status" class="toc-h2 toc-link" data-title="Delete a status">Delete a status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#college" class="toc-h1 toc-link" data-title="College">College</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fetch-all-colleges" class="toc-h2 toc-link" data-title="Fetch all colleges">Fetch all colleges</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-college" class="toc-h2 toc-link" data-title="Create a college">Create a college</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-a-college" class="toc-h2 toc-link" data-title="Fetch a college">Fetch a college</a>
+                  </li>
+                  <li>
+                    <a href="#update-an-college" class="toc-h2 toc-link" data-title="Update an college">Update an college</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-college" class="toc-h2 toc-link" data-title="Delete a college">Delete a college</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-status" class="toc-h2 toc-link" data-title="Add a status">Add a status</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-status" class="toc-h2 toc-link" data-title="Delete a status">Delete a status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
               <ul class="toc-list-h2">
                   <li>
@@ -325,7 +383,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li>Documentation Powered by Kerma</li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -605,7 +663,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the company to delete</td>
 </tr>
 </tbody></table>
-<h1 id='project'>Project</h1><h2 id='fetch-all-projects'>Fetch all projects</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">NoProjets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='project'>Project</h1><h2 id='fetch-all-projects'>Fetch all projects</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">NoProjects</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
@@ -754,7 +812,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the project to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-project'>Update a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h2 id='update-a-project'>Update a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
@@ -768,6 +826,9 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
       <span class="c1">// The company could not be updated</span>
 
@@ -1592,6 +1653,934 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <tr>
 <td>ID</td>
 <td>The ID of the document to delete</td>
+</tr>
+</tbody></table>
+<h1 id='establishment'>Establishment</h1><h2 id='fetch-all-establishments'>Fetch all establishments</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoEstablishments</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e48dde18253603bd06'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/establishments`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoEstablishments</span><span class="p">)</span>
+      <span class="c1">// No establishments could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e58dde18253603bd09"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e48dde18253603bd06"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32d8e48dde18253603bd07"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32d8e48dde18253603bd08"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Cadres"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all establishments within a specific project.</p>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET projects/&lt;ID&gt;/establishments/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the establishments are retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='create-an-establishment'>Create an establishment</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Name"</span><span class="p">,</span>   <span class="c1">// Mandatory</span>
+  <span class="na">statuses</span><span class="p">:</span> <span class="p">[</span>     <span class="c1">// Optional</span>
+    <span class="s2">"Custom Status"</span><span class="p">,</span>
+    <span class="s2">"Moar Status"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/establishments/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The establishment could not be created</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e58dde18253603bd09"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e48dde18253603bd06"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Cadres"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates an establishment within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>POST projects/&lt;ID&gt;/establishments/</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the establishment is created</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-an-establishment'>Fetch an establishment</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e58dde18253603bd09"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e48dde18253603bd06"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Cadres"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific establishment.</p>
+<h3 id='http-route-3'>HTTP Route</h3>
+<p><code>GET establishment/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-an-establishment'>Update an establishment</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"New Name"</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The establishment could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e58dde18253603bd09"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32d8e48dde18253603bd06"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Cadres"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific establishment.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-4'>HTTP Route</h3>
+<p><code>PUT establishments/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-establishment'>Delete a establishment</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific project.</p>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>DELETE establishments/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment to delete</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-all-statuses'>Fetch all statuses</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Cadres"</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all statuses within a specific establishment.</p>
+<h3 id='http-route-6'>HTTP Route</h3>
+<p><code>GET establishments/&lt;ID&gt;/statuses/</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishments in which the statuses are retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='create-statuses'>Create statuses</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span><span class="p">,</span> <span class="nx">EstablishmentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"Status 1"</span><span class="p">,</span>
+  <span class="s2">"Status 2"</span><span class="p">,</span>
+  <span class="s2">"Status 3"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The statuses could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"Status 1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Status 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Status 3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Cadres"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates statuses within a specific establishment.</p>
+<h3 id='http-route-7'>HTTP Route</h3>
+<p><code>POST establishments/&lt;ID&gt;/statuses/</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishments in which the statuses are created</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-status'>Update a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">'Status 1'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">'A Real Name'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses/</span><span class="p">${</span><span class="nx">status</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The status could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"A Real Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Status 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Status 3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Cadres"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific status within a specific establishment.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-8'>HTTP Route</h3>
+<p><code>PUT establishments/&lt;ID&gt;/statuses/&lt;STATUS&gt;</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment in which the status is updated</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>The STATUS to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-status'>Delete a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32d8e58dde18253603bd09'</span>
+<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">'Status 2'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses/</span><span class="p">${</span><span class="nx">status</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific status within a specific project.</p>
+
+<aside class="notice">
+Removing a status will automatically delete all electors linked to this status as well any reference within colleges
+</aside>
+<h3 id='http-route-9'>HTTP Route</h3>
+<p><code>DELETE establishments/&lt;ID&gt;/statuses/&lt;STATUS&gt;</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment in which the status is deleted</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>The STATUS to delete</td>
+</tr>
+</tbody></table>
+<ul>
+<li>GET establishments/colleges/names</li>
+<li>POST establishments/users</li>
+<li>POST establishments/users/cards</li>
+</ul>
+<h1 id='college'>College</h1><h2 id='fetch-all-colleges'>Fetch all colleges</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span><span class="p">,</span> <span class="nx">NoColleges</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/colleges`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoColleges</span><span class="p">)</span>
+      <span class="c1">// No colleges could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc425"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all colleges within a specific establishment.</p>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET establishments/&lt;ID&gt;/colleges/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the establishment in which the colleges are retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-college'>Create a college</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">EstablishmentNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Name"</span><span class="p">,</span>             <span class="c1">// Mandatory</span>
+  <span class="na">workforce</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>           <span class="c1">// Mandatory</span>
+  <span class="na">seats</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>                 <span class="c1">// Mandatory</span>
+  <span class="na">statuses</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span>    <span class="c1">// Optional</span>
+  <span class="na">rounds</span><span class="p">:</span> <span class="p">[</span>                 <span class="c1">// Mandatory (for both rounds)</span>
+    <span class="p">{</span>
+      <span class="na">dates</span><span class="p">:</span> <span class="p">{</span>                <span class="c1">// Mandatory</span>
+        <span class="na">start</span><span class="p">:</span> <span class="s2">"2019-05-01"</span><span class="p">,</span>
+        <span class="na">end</span><span class="p">:</span> <span class="s2">"2019-05-02"</span>
+      <span class="p">},</span>
+      <span class="na">titular</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>          <span class="c1">// Mandatory (define if college has titular elections)</span>
+      <span class="na">substitute</span><span class="p">:</span> <span class="kc">true</span>        <span class="c1">// Mandatory (define if college has substitute elections)</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">dates</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">start</span><span class="p">:</span> <span class="s2">"2019-05-17"</span><span class="p">,</span>
+        <span class="na">end</span><span class="p">:</span> <span class="s2">"2019-05-18"</span>
+      <span class="p">},</span>
+      <span class="na">titular</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">substitute</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`establishments/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/colleges/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">EstablishmentNotFound</span><span class="p">)</span>
+      <span class="c1">// The establishment could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The college could not be created</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-01T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-17T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-18T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a college within a specific establishment.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>POST establishments/&lt;ID&gt;/colleges/</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college in which the establishment is created</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-a-college'>Fetch a college</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc425"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific college.</p>
+<h3 id='http-route-3'>HTTP Route</h3>
+<p><code>GET college/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-an-college'>Update an college</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8ccac4'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'New Name'</span><span class="p">,</span>
+  <span class="na">workforce</span><span class="p">:</span> <span class="s1">'0.2'</span><span class="p">,</span>
+  <span class="na">seats</span><span class="p">:</span> <span class="s1">'4'</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The college could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-01T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-17T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-18T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific college.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-4'>HTTP Route</h3>
+<p><code>PUT colleges/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-college'>Delete a college</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8ccac4'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific college.</p>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>DELETE colleges/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college to delete</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-status'>Add a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span><span class="p">,</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
+<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Status 1"</span><span class="p">]</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses/</span><span class="p">${</span><span class="nx">status</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The statuses could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc425"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Status 1"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a specific status within a specific college.</p>
+
+<aside class="notice">
+Adding a status will automatically add to the college all electors linked to this status
+</aside>
+<h3 id='http-route-6'>HTTP Route</h3>
+<p><code>POST colleges/&lt;ID&gt;/statuses/&lt;STATUS&gt;</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the colleges in which the status is created</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>The STATUS to add</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-status'>Delete a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
+<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">'Status 1'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses/</span><span class="p">${</span><span class="nx">status</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific status within a specific college.</p>
+
+<aside class="notice">
+Removing a status will automatically delete from the college all electors linked to this status
+</aside>
+<h3 id='http-route-7'>HTTP Route</h3>
+<p><code>DELETE colleges/&lt;ID&gt;/statuses/&lt;STATUS&gt;</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college in which the status is deleted</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>The STATUS to delete</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1><h2 id='validationerror'>ValidationError</h2>
