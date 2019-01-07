@@ -9,6 +9,9 @@ toc_footers:
 
 includes:
   - companies
+  - projects
+  - tasks
+  - documents
   - errors
 
 search: true

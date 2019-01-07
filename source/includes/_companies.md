@@ -3,6 +3,7 @@
 ## Fetch all companies
 
 ```javascript
+import { NoCompanies } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 request
@@ -31,17 +32,6 @@ request
       "theme": {}
     },
     "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
-  },
-  {
-    "_id": "5c328f1a1d430b3d610a08c4",
-    "name": "Name",
-    "infos": {
-      "siret": "00000000000001",
-      "headquarters": "Headquarters",
-      "logo": "https://i.imgur.com/kl6PkRt.png",
-      "theme": {}
-    },
-    "projects": ["5c328f1a1d430b3d610a08c5", "5c328f1a1d430b3d610a08c6"]
   }
 ]
 ```
@@ -55,6 +45,7 @@ This endpoint retrieves all companies.
 ## Create a company
 
 ```javascript
+import { ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const data = {
@@ -105,6 +96,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 ## Fetch a company
 
 ```javascript
+import { CompanyNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c328f1a1d430b3d610a0833'
@@ -141,7 +133,7 @@ This endpoint retrieves a specific company.
 
 ### HTTP Route
 
-`GET companies/<ID>`
+`GET companies/<ID>/`
 
 ### URL Parameters
 
@@ -152,6 +144,7 @@ This endpoint retrieves a specific company.
 ## Update a company
 
 ```javascript
+import { ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c328f1a1d430b3d610a08a4'
@@ -170,7 +163,7 @@ request
   .catch(APIErrorHandler)
   .catch(err => {
     if (err instanceof ValidationError)
-      // The company could not be created
+      // The company could not be updated
 
     // Handle any other errors
   })
@@ -198,7 +191,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 
 ### HTTP Route
 
-`PUT companies/<ID>`
+`PUT companies/<ID>/`
 
 ### URL Parameters
 
@@ -209,6 +202,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 ## Delete a company
 
 ```javascript
+import { CompanyNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c328f1a1d430b3d610a08a4'
@@ -233,11 +227,11 @@ request
 }
 ```
 
-This endpoint updates a specific company.
+This endpoint deletes a specific company.
 
 ### HTTP Route
 
-`DELETE companies/<ID>`
+`DELETE companies/<ID>/`
 
 ### URL Parameters
 
