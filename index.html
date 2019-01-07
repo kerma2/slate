@@ -253,13 +253,73 @@
               </ul>
           </li>
           <li>
+            <a href="#project" class="toc-h1 toc-link" data-title="Project">Project</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fetch-all-projects" class="toc-h2 toc-link" data-title="Fetch all projects">Fetch all projects</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-project" class="toc-h2 toc-link" data-title="Create a project">Create a project</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-a-project" class="toc-h2 toc-link" data-title="Fetch a project">Fetch a project</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-project" class="toc-h2 toc-link" data-title="Update a project">Update a project</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-project" class="toc-h2 toc-link" data-title="Delete a project">Delete a project</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#task" class="toc-h1 toc-link" data-title="Task">Task</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fetch-all-tasks" class="toc-h2 toc-link" data-title="Fetch all tasks">Fetch all tasks</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-important-tasks" class="toc-h2 toc-link" data-title="Fetch important tasks">Fetch important tasks</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-task" class="toc-h2 toc-link" data-title="Create a task">Create a task</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-a-task" class="toc-h2 toc-link" data-title="Fetch a task">Fetch a task</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-task" class="toc-h2 toc-link" data-title="Update a task">Update a task</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-task" class="toc-h2 toc-link" data-title="Delete a task">Delete a task</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#document" class="toc-h1 toc-link" data-title="Document">Document</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fetch-all-documents" class="toc-h2 toc-link" data-title="Fetch all documents">Fetch all documents</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-document" class="toc-h2 toc-link" data-title="Create a document">Create a document</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-a-document" class="toc-h2 toc-link" data-title="Fetch a document">Fetch a document</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-document" class="toc-h2 toc-link" data-title="Update a document">Update a document</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-document" class="toc-h2 toc-link" data-title="Delete a document">Delete a document</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#validationerror" class="toc-h2 toc-link" data-title="ValidationError">ValidationError</a>
-                  </li>
-                  <li>
-                    <a href="#http-error-codes" class="toc-h2 toc-link" data-title="HTTP Error Codes">HTTP Error Codes</a>
                   </li>
               </ul>
           </li>
@@ -328,7 +388,8 @@ Always use the <code>sync</code> method to make batch to the API.
 <aside class="notice">
 You can bind context to the <code>task</code> function: <code>task.bind(this)</code>.
 </aside>
-<h1 id='company'>Company</h1><h2 id='fetch-all-companies'>Fetch all companies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h1 id='company'>Company</h1><h2 id='fetch-all-companies'>Fetch all companies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">NoCompanies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`companies`</span><span class="p">)</span>
@@ -355,24 +416,14 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
       </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c328f1a1d430b3d610a0834"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a0835"</span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a08c4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"siret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000000001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"headquarters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Headquarters"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PkRt.png"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c328f1a1d430b3d610a08c5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a08c6"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all companies.</p>
 <h3 id='http-route'>HTTP Route</h3>
 <p><code>GET companies/</code></p>
-<h2 id='create-a-company'>Create a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h2 id='create-a-company'>Create a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"My Company"</span><span class="p">,</span>                         <span class="c1">// Mandatory</span>
@@ -414,7 +465,8 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
 <h3 id='http-route-2'>HTTP Route</h3>
 <p><code>POST companies/</code></p>
-<h2 id='fetch-a-company'>Fetch a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h2 id='fetch-a-company'>Fetch a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c328f1a1d430b3d610a0833'</span>
 
@@ -446,7 +498,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 </span></code></pre>
 <p>This endpoint retrieves a specific company.</p>
 <h3 id='http-route-3'>HTTP Route</h3>
-<p><code>GET companies/&lt;ID&gt;</code></p>
+<p><code>GET companies/&lt;ID&gt;/</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -459,7 +511,8 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the company to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-company'>Update a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h2 id='update-a-company'>Update a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c328f1a1d430b3d610a08a4'</span>
 
@@ -477,7 +530,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
-      <span class="c1">// The company could not be created</span>
+      <span class="c1">// The company could not be updated</span>
 
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
@@ -501,7 +554,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 
 <p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
 <h3 id='http-route-4'>HTTP Route</h3>
-<p><code>PUT companies/&lt;ID&gt;</code></p>
+<p><code>PUT companies/&lt;ID&gt;/</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -514,7 +567,8 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the company to update</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-company'>Delete a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h2 id='delete-a-company'>Delete a company</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c328f1a1d430b3d610a08a4'</span>
 
@@ -536,9 +590,9 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint updates a specific company.</p>
+<p>This endpoint deletes a specific company.</p>
 <h3 id='http-route-5'>HTTP Route</h3>
-<p><code>DELETE companies/&lt;ID&gt;</code></p>
+<p><code>DELETE companies/&lt;ID&gt;/</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -551,62 +605,997 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the company to delete</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1><h2 id='validationerror'>ValidationError</h2>
-<p>TODO</p>
-<h2 id='http-error-codes'>HTTP Error Codes</h2>
-<p>The Kittn API uses the following error codes:</p>
+<h1 id='project'>Project</h1><h2 id='fetch-all-projects'>Fetch all projects</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">NoProjets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`companies/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/projects`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CompanyNotFound</span><span class="p">)</span>
+      <span class="c1">// The company could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoProjects</span><span class="p">)</span>
+      <span class="c1">// No projects could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b2ea"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all projects within a specific company.</p>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET companies/&lt;ID&gt;/projects/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>ID</td>
+<td>The ID of the company in which the projects are retrieved</td>
 </tr>
 </tbody></table>
+<h2 id='create-a-project'>Create a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">shared</span><span class="p">:</span> <span class="kc">true</span>  <span class="c1">// Optional</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`companies/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/projects/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CompanyNotFound</span><span class="p">)</span>
+      <span class="c1">// The company could not be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The project could not be created</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates project within a specific company.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>POST companies/&lt;ID&gt;/projects/</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the company in which the project is created</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-a-project'>Fetch a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific project.</p>
+<h3 id='http-route-3'>HTTP Route</h3>
+<p><code>GET project/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-project'>Update a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">shared</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The company could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-4'>HTTP Route</h3>
+<p><code>PUT projects/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-project'>Delete a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific company.</p>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>DELETE projects/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project to delete</td>
+</tr>
+</tbody></table>
+<h1 id='task'>Task</h1><h2 id='fetch-all-tasks'>Fetch all tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoTasks</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/tasks`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoTasks</span><span class="p">)</span>
+      <span class="c1">// No tasks could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description of the task."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be7"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028bea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all tasks within a specific project.</p>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET projects/&lt;ID&gt;/tasks/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the tasks are retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-important-tasks'>Fetch important tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoTasks</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="kr">const</span> <span class="nx">nb</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/tasks/list/</span><span class="p">${</span><span class="nx">nb</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoTasks</span><span class="p">)</span>
+      <span class="c1">// No tasks could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ac8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The task ends very soon."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ac9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The task ends soon, but not so much."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-10T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the most important tasks within a specific project ordered by dates ascending.</p>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>GET projects/&lt;ID&gt;/tasks/list/&lt;NB&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the tasks are retrieved</td>
+</tr>
+<tr>
+<td>NB</td>
+<td>The number of tasks to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-task'>Create a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'Name'</span><span class="p">,</span>                         <span class="c1">// Mandatory</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'infos'</span><span class="p">,</span>                        <span class="c1">// Mandatory</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'The description.'</span><span class="p">,</span>      <span class="c1">// Optional</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s1">'2019-04-05'</span><span class="p">,</span>                   <span class="c1">// Mandatory</span>
+  <span class="na">docs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5c32b832a67a297bb5028be6'</span><span class="p">],</span>   <span class="c1">// Optional</span>
+  <span class="na">parent</span><span class="p">:</span> <span class="s1">'5c32b832a67a297bb5028be9'</span><span class="p">,</span>   <span class="c1">// Optional</span>
+  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>                           <span class="c1">// Optional (the admin access is automatically added)</span>
+    <span class="p">{</span>
+      <span class="na">rights</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">removable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>               <span class="c1">// Optional (default: false)</span>
+        <span class="na">editable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>                 <span class="c1">// Optional (default: false)</span>
+        <span class="na">validate</span><span class="p">:</span> <span class="kc">true</span>                  <span class="c1">// Optional (default: false)</span>
+      <span class="p">},</span>
+      <span class="na">access</span><span class="p">:</span> <span class="s1">'employer'</span>                <span class="c1">// Mandatory (par access)</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/tasks/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The task could not be created</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ba1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-05T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates tasks within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-3'>HTTP Route</h3>
+<p><code>POST projects/&lt;ID&gt;/tasks/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the task is created</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-a-task'>Fetch a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">TaskNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">TaskNotFound</span><span class="p">)</span>
+      <span class="c1">// The task could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Task"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description of the task."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be7"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028bea"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific task within a specific project.</p>
+<h3 id='http-route-4'>HTTP Route</h3>
+<p><code>GET project/&lt;PROJECT_ID&gt;/tasks/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the task is retrieved</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the task to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-task'>Update a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">ProjectNotFound</span><span class="p">,</span>
+  <span class="nx">TaskNotFound</span><span class="p">,</span>
+  <span class="nx">InvalidAccess</span><span class="p">,</span>
+  <span class="nx">ValidationError</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="c1">// Setting a task as completed: requires 'validate' access</span>
+<span class="c1">// Updating any other fields: requires 'editable' access</span>
+<span class="c1">// Updating/Creating accesses: only for ADMIN</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'New name'</span><span class="p">,</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'New description.'</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s2">"2019-06-24"</span><span class="p">,</span>
+  <span class="na">docs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5c32b832a67a297bb5028ca8'</span><span class="p">],</span>   <span class="c1">// This will not delete previous documents</span>
+  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>                           <span class="c1">// This will modify existing accesses or create new accesses</span>
+    <span class="p">{</span>
+      <span class="na">rights</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">removable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">editable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">validate</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="na">access</span><span class="p">:</span> <span class="s1">'employer'</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">TaskNotFound</span><span class="p">)</span>
+      <span class="c1">// The task could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidAccess</span><span class="p">)</span>
+      <span class="c1">// The user does not have the rights to update this task</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The task could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ba1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New description."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028ca8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific task within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>PUT project/&lt;PROJECT_ID&gt;/tasks/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the task is updated</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the task to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-task'>Delete a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">ProjectNotFound</span><span class="p">,</span>
+  <span class="nx">TaskNotFound</span><span class="p">,</span>
+  <span class="nx">InvalidAccess</span><span class="p">,</span>
+  <span class="nx">ValidationError</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">TaskNotFound</span><span class="p">)</span>
+      <span class="c1">// The task could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidAccess</span><span class="p">)</span>
+      <span class="c1">// The user does not have the rights to delete this task</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific company.</p>
+<h3 id='http-route-6'>HTTP Route</h3>
+<p><code>DELETE project/&lt;PROJECT_ID&gt;/tasks/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the task is delete</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the task to delete</td>
+</tr>
+</tbody></table>
+<h1 id='document'>Document</h1><h2 id='fetch-all-documents'>Fetch all documents</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoDocuments</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/documents`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoDocuments</span><span class="p">)</span>
+      <span class="c1">// No documents could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all documents within a specific project.</p>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET projects/&lt;ID&gt;/documents/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the documents are retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-document'>Create a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// TODO</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/documents/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The document could not be created</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates documents within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>POST projects/&lt;ID&gt;/documents/</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the project in which the document is created</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-a-document'>Fetch a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">DocumentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">DocumentNotFound</span><span class="p">)</span>
+      <span class="c1">// The document could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific document within a specific project.</p>
+<h3 id='http-route-3'>HTTP Route</h3>
+<p><code>GET project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the document is retrieved</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the document to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-document'>Update a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">ProjectNotFound</span><span class="p">,</span>
+  <span class="nx">DocumentNotFound</span><span class="p">,</span>
+  <span class="nx">ValidationError</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// TODO</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">DocumentNotFound</span><span class="p">)</span>
+      <span class="c1">// The document could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+      <span class="c1">// The document could not be updated</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific document within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-4'>HTTP Route</h3>
+<p><code>PUT project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the document is updated</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the document to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-document'>Delete a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">ProjectNotFound</span><span class="p">,</span>
+  <span class="nx">DocumentNotFound</span><span class="p">,</span>
+  <span class="nx">ValidationError</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+      <span class="c1">// The project could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">DocumentNotFound</span><span class="p">)</span>
+      <span class="c1">// The document could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific company.</p>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>DELETE project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the document is delete</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the document to delete</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1><h2 id='validationerror'>ValidationError</h2>
+<p>TODO</p>
 
       </div>
       <div class="dark-box">
