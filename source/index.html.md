@@ -14,6 +14,7 @@ includes:
   - documents
   - establishments
   - colleges
+  - electors
   - errors
 
 search: true

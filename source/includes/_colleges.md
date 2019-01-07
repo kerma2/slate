@@ -1,7 +1,3 @@
-- GET establishments/colleges/names
-- POST establishments/users
-- POST establishments/users/cards
-
 # College
 
 ## Fetch all colleges
@@ -72,6 +68,47 @@ This endpoint retrieves all colleges within a specific establishment.
 | Parameter | Description                                                     |
 | --------- | --------------------------------------------------------------- |
 | ID        | The ID of the establishment in which the colleges are retrieved |
+
+## Fetch all colleges names
+
+```javascript
+import { EstablishmentNotFound, NoColleges } from './src/common/errors'
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c32ee4a2fa935441f8cc414'
+
+request
+  .get(`establishments/${id}/colleges/names`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof EstablishmentNotFound)
+      // The establishment could not be found
+
+    if (err instanceof NoColleges)
+      // No colleges could be found
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+["Name 1", "Name 2", "Name 3"]
+```
+
+This endpoint retrieves all college's names within a specific establishment.
+
+### HTTP Route
+
+`GET establishments/<ID>/colleges/names`
+
+### URL Parameters
+
+| Parameter | Description                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| ID        | The ID of the establishment in which the college's names are retrieved |
 
 ## Create a college
 
@@ -225,7 +262,7 @@ This endpoint retrieves a specific college.
 
 ### HTTP Route
 
-`GET college/<ID>/`
+`GET colleges/<ID>/`
 
 ### URL Parameters
 
