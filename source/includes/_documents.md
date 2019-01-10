@@ -360,7 +360,7 @@ class ExampleDownload extends Component {
         download(file, store.file.name) // This will open a popup to save the file locally
       })
       .catch(APIErrorHandler)
-			.catch(err => {
+      .catch(err => {
         if (err instanceof ProjectNotFound)
           // The project could be found
 
