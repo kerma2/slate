@@ -16,6 +16,8 @@ includes:
   - colleges
   - electors
   - rounds
+  - lists
+  - candidates
   - errors
 
 search: true
@@ -26,13 +28,7 @@ search: true
 ## Request instance
 
 ```javascript
-import config from 'config'
-
-const endpoint =
-  process.env.NODE_ENV === 'production'
-    ? `https://${config.server.host}`
-    : `http://${config.server.host}:${config.server.port}`
-
+const endpoint = `${window.location.protocol}//${window.location.host}`
 const request = axios.create({ baseURL: `${endpoint}/api` })
 ```
 

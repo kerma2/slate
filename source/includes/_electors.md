@@ -104,11 +104,11 @@ request
     const hasError = _.some(_.map(res.data, item => !_.isEmpty(data.error)))
 
     if (!hasError) {
-      // All user were successfully created
+      // All users were successfully created
       console.log(res.data)
 
     } else {
-      // Some user could not be created (none was saved)
+      // Some users could not be created (none was saved)
       console.log(res.data)
 
       _.forEach(res.data, item => {
@@ -120,8 +120,9 @@ request
         const error = parseError(item)
 
         if (error instanceof ValidationError)
-          // The user has invalid data
+          // This user has invalid data
 
+        // An other error occurred for this user
       })
     }
   })
@@ -155,7 +156,7 @@ WITHOUT ERRORS:
 
 WITH ERRORS:
 [
-  { "valid": true }
+  { "valid": true },
   {
     "name": "ValidationError",
     "status": 400,
