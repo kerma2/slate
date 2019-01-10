@@ -1,4 +1,4 @@
-# Rounds
+# Round
 
 ## Fetch a round
 

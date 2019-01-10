@@ -1,4 +1,4 @@
-# Candidates
+# Candidate
 
 ## Fetch all candidates
 

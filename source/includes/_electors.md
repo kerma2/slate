@@ -1,4 +1,4 @@
-# Electors
+# Elector
 
 ## Fetch all electors
 

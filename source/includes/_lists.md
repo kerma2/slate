@@ -1,4 +1,4 @@
-# Lists
+# List
 
 ## Fetch all valid lists
 
