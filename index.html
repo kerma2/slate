@@ -308,7 +308,13 @@
                     <a href="#fetch-a-document" class="toc-h2 toc-link" data-title="Fetch a document">Fetch a document</a>
                   </li>
                   <li>
-                    <a href="#update-a-document" class="toc-h2 toc-link" data-title="Update a document">Update a document</a>
+                    <a href="#update-a-document-39-s-name" class="toc-h2 toc-link" data-title="Update a document's name">Update a document's name</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-document-39-s-content" class="toc-h2 toc-link" data-title="Update a document's content">Update a document's content</a>
+                  </li>
+                  <li>
+                    <a href="#download-a-document" class="toc-h2 toc-link" data-title="Download a document">Download a document</a>
                   </li>
                   <li>
                     <a href="#delete-a-document" class="toc-h2 toc-link" data-title="Delete a document">Delete a document</a>
@@ -377,7 +383,7 @@
               </ul>
           </li>
           <li>
-            <a href="#electors" class="toc-h1 toc-link" data-title="Electors">Electors</a>
+            <a href="#elector" class="toc-h1 toc-link" data-title="Elector">Elector</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#fetch-all-electors" class="toc-h2 toc-link" data-title="Fetch all electors">Fetch all electors</a>
@@ -400,7 +406,7 @@
               </ul>
           </li>
           <li>
-            <a href="#rounds" class="toc-h1 toc-link" data-title="Rounds">Rounds</a>
+            <a href="#round" class="toc-h1 toc-link" data-title="Round">Round</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#fetch-a-round" class="toc-h2 toc-link" data-title="Fetch a round">Fetch a round</a>
@@ -420,7 +426,7 @@
               </ul>
           </li>
           <li>
-            <a href="#lists" class="toc-h1 toc-link" data-title="Lists">Lists</a>
+            <a href="#list" class="toc-h1 toc-link" data-title="List">List</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#fetch-all-valid-lists" class="toc-h2 toc-link" data-title="Fetch all valid lists">Fetch all valid lists</a>
@@ -443,7 +449,7 @@
               </ul>
           </li>
           <li>
-            <a href="#candidates" class="toc-h1 toc-link" data-title="Candidates">Candidates</a>
+            <a href="#candidate" class="toc-h1 toc-link" data-title="Candidate">Candidate</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#fetch-all-candidates" class="toc-h2 toc-link" data-title="Fetch all candidates">Fetch all candidates</a>
@@ -1520,7 +1526,16 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all documents within a specific project.</p>
 <h3 id='http-route'>HTTP Route</h3>
@@ -1537,33 +1552,68 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the project in which the documents are retrieved</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-document'>Create a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h2 id='create-a-document'>Create a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">InvalidRequestFormat</span><span class="p">,</span>
+  <span class="nx">ProjectNotFound</span><span class="p">,</span>
+  <span class="nx">ValidationError</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">class</span> <span class="nx">ExampleUpload</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
 
-<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">// TODO</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stats</span> <span class="o">=</span> <span class="p">{</span> <span class="na">file</span><span class="p">:</span> <span class="kc">null</span> <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleUpload</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleUpload</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleSelectedFile</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">file</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleUpload</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">()</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'file'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">file</span><span class="p">)</span>
+
+    <span class="nx">request</span>
+      <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/documents`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidRequestFormat</span><span class="p">)</span>
+          <span class="c1">// No file was uploaded</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+          <span class="c1">// The project could be found</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+          <span class="c1">// The document could be created</span>
+
+        <span class="c1">// Handle any other errors</span>
+      <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s1">'file'</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleUpload</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Upload</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">)</span>
+  <span class="p">}</span>
 <span class="p">}</span>
-
-<span class="nx">request</span>
-  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/documents/`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
-      <span class="c1">// The project could be found</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
-      <span class="c1">// The document could not be created</span>
-
-    <span class="c1">// Handle any other errors</span>
-  <span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37c3a637da83209590deac"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some file.pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates documents within a specific project.</p>
 
@@ -1585,8 +1635,8 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <h2 id='fetch-a-document'>Fetch a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">DocumentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
 <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -1605,7 +1655,10 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific document within a specific project.</p>
 <h3 id='http-route-3'>HTTP Route</h3>
@@ -1626,7 +1679,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the document to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-document'>Update a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+<h2 id='update-a-document-39-s-name'>Update a document&#39;s name</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
   <span class="nx">ProjectNotFound</span><span class="p">,</span>
   <span class="nx">DocumentNotFound</span><span class="p">,</span>
   <span class="nx">ValidationError</span>
@@ -1634,12 +1687,10 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
 <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
 
-<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">// TODO</span>
-<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'New name'</span> <span class="p">}</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
@@ -1661,11 +1712,18 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">TODO</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint updates a specific document within a specific project.</p>
+<p>This endpoint updates the name of a specific document within a specific project.</p>
 
 <p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+
+<aside class="notice">
+Updating a document's name does not update it's content
+</aside>
 <h3 id='http-route-4'>HTTP Route</h3>
 <p><code>PUT project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
@@ -1684,7 +1742,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <td>The ID of the document to update</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-document'>Delete a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+<h2 id='update-a-document-39-s-content'>Update a document&#39;s content</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
   <span class="nx">ProjectNotFound</span><span class="p">,</span>
   <span class="nx">DocumentNotFound</span><span class="p">,</span>
   <span class="nx">ValidationError</span>
@@ -1692,7 +1750,166 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
+<span class="kr">class</span> <span class="nx">ExampleUpdate</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">stats</span> <span class="o">=</span> <span class="p">{</span> <span class="na">file</span><span class="p">:</span> <span class="kc">null</span> <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">handleUpdate</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleUpdate</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="p">}</span>
+
+  <span class="nx">handleSelectedFile</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">file</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+    <span class="nx">handleUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
+    <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">()</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'file'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">file</span><span class="p">)</span>
+
+    <span class="nx">request</span>
+      <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+          <span class="c1">// The project could be found</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">DocumentNotFound</span><span class="p">)</span>
+          <span class="c1">// The document could be found</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ValidationError</span><span class="p">)</span>
+          <span class="c1">// The document could not be updated</span>
+
+        <span class="c1">// Handle any other errors</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s1">'file'</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleUpdate</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Update</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates the content of a specific document within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+
+<aside class="notice">
+Updating a document's content also updates it's name (the new name will be the received file name).
+</aside>
+<h3 id='http-route-5'>HTTP Route</h3>
+<p><code>PUT project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the document is updated</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the document to update</td>
+</tr>
+</tbody></table>
+<h2 id='download-a-document'>Download a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">download</span> <span class="nx">from</span> <span class="s1">'downloadjs'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">DocumentNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">class</span> <span class="nx">ExampleDownload</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">stats</span> <span class="o">=</span> <span class="p">{</span> <span class="na">file</span><span class="p">:</span> <span class="kc">null</span> <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">handleDownload</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleDownload</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="p">}</span>
+
+  <span class="nx">handleSelectedFile</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">file</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+    <span class="nx">handleDownload</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
+    <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+
+        <span class="nx">request</span>
+      <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/download`</span><span class="p">,</span> <span class="p">{</span> <span class="na">responseType</span><span class="p">:</span> <span class="s1">'blob'</span> <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">],</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'octet/stream'</span> <span class="p">})</span>
+        <span class="nx">download</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">store</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">// This will open a popup to save the file locally</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
+          <span class="c1">// The project could be found</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">DocumentNotFound</span><span class="p">)</span>
+          <span class="c1">// The document could be found</span>
+
+        <span class="c1">// Handle any other errors</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s1">'file'</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSelectedFile</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleDownload</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Update</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>The above command does not returns any JSON but a Blob</p>
+</blockquote>
+
+<p>This endpoint download a specific document&#39;s content within a specific project.</p>
+
+<p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+<h3 id='http-route-6'>HTTP Route</h3>
+<p><code>GET project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/download</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROJECT_ID</td>
+<td>The ID of the project in which the document is contained</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the document to download</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-document'>Delete a document</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">DocumentNotFound</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
 <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
 
 <span class="nx">request</span>
@@ -1717,9 +1934,9 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific company.</p>
-<h3 id='http-route-5'>HTTP Route</h3>
+<h3 id='http-route-7'>HTTP Route</h3>
 <p><code>DELETE project/&lt;PROJECT_ID&gt;/documents/&lt;ID&gt;/</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2697,7 +2914,7 @@ Removing a status will automatically delete from the college all electors linked
 <td>The STATUS to delete</td>
 </tr>
 </tbody></table>
-<h1 id='electors'>Electors</h1><h2 id='fetch-all-electors'>Fetch all electors</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='elector'>Elector</h1><h2 id='fetch-all-electors'>Fetch all electors</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
@@ -3111,7 +3328,7 @@ Modifying an elector's status will automatically move him from his current colle
 <td>The ID of the elector</td>
 </tr>
 </tbody></table>
-<h1 id='rounds'>Rounds</h1><h2 id='fetch-a-round'>Fetch a round</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">RoundNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='round'>Round</h1><h2 id='fetch-a-round'>Fetch a round</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">RoundNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
@@ -3488,7 +3705,7 @@ An officer can be assigned to several colleges as long as he is an elector in at
 <td>The ID of the officer to delete</td>
 </tr>
 </tbody></table>
-<h1 id='lists'>Lists</h1><h2 id='fetch-all-valid-lists'>Fetch all valid lists</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">RoundNotFound</span><span class="p">,</span> <span class="nx">NoLists</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='list'>List</h1><h2 id='fetch-all-valid-lists'>Fetch all valid lists</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">RoundNotFound</span><span class="p">,</span> <span class="nx">NoLists</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
@@ -3874,7 +4091,7 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
 <td>The ID of the list to delete</td>
 </tr>
 </tbody></table>
-<h1 id='candidates'>Candidates</h1><h2 id='fetch-all-candidates'>Fetch all candidates</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ListNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='candidate'>Candidate</h1><h2 id='fetch-all-candidates'>Fetch all candidates</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ListNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc414'</span>
