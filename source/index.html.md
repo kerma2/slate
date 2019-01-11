@@ -28,6 +28,8 @@ search: true
 ## Request instance
 
 ```javascript
+import axios from 'axios'
+
 const endpoint = `${window.location.protocol}//${window.location.host}`
 const request = axios.create({ baseURL: `${endpoint}/api` })
 ```
