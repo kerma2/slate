@@ -124,7 +124,7 @@ This endpoint retrieves a specific user.
 | --------- | ------------------------------ |
 | ID        | The ID of the user to retrieve |
 
-## Update an user
+## Update a user
 
 ```javascript
 import { UserNotFound, ValidationError } from './src/common/errors'
