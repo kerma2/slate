@@ -95,7 +95,7 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 
 `POST auth/login`
 
-## Authorize
+## Authorize a user
 
 ```javascript
 import { withCookies } from 'react-cookie'

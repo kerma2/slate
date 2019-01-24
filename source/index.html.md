@@ -42,7 +42,7 @@ The request object is used to handle communications with the API.
 It should be stored in the Redux Store.
 </aside>
 
-## Authorize a user
+## Authorization
 
 ```javascript
 // This will set the 'Authorization' headers in the axios request instance
