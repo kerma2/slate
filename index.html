@@ -409,7 +409,7 @@
                     <a href="#add-a-status" class="toc-h2 toc-link" data-title="Add a status">Add a status</a>
                   </li>
                   <li>
-                    <a href="#delete-a-status" class="toc-h2 toc-link" data-title="Delete a status">Delete a status</a>
+                    <a href="#remove-a-status" class="toc-h2 toc-link" data-title="Remove a status">Remove a status</a>
                   </li>
               </ul>
           </li>
@@ -3230,7 +3230,7 @@ Removing a status will automatically delete all electors linked to this status a
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
-<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Status 1"</span><span class="p">]</span>
+<span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="s2">"Status 1"</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/statuses/</span><span class="p">${</span><span class="nx">status</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -3300,7 +3300,7 @@ Adding a status will automatically add to the college all electors linked to thi
 <td>The STATUS to add</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-status'>Delete a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h2 id='remove-a-status'>Remove a status</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
