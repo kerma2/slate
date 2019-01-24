@@ -392,7 +392,7 @@ import { ValidationError, CollegeNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c32ee4a2fa935441f8cc425'
-const status = ["Status 1"]
+const status = "Status 1"
 
 request
   .post(`colleges/${id}/statuses/${status}`)
@@ -458,7 +458,7 @@ Adding a status will automatically add to the college all electors linked to thi
 | ID        | The ID of the colleges in which the status is created |
 | STATUS    | The STATUS to add                                     |
 
-## Delete a status
+## Remove a status
 
 ```javascript
 import { CollegeNotFound } from './src/common/errors'
