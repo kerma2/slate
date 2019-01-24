@@ -241,6 +241,9 @@
                   <li>
                     <a href="#authenticate-a-user" class="toc-h2 toc-link" data-title="Authenticate a user">Authenticate a user</a>
                   </li>
+                  <li>
+                    <a href="#authorize" class="toc-h2 toc-link" data-title="Authorize">Authorize</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -519,24 +522,15 @@
 <aside class="notice">
 It should be stored in the Redux Store.
 </aside>
-<h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
-
-<span class="kr">class</span> <span class="nx">TopLevelComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-  <span class="c1">// It is not required to get/set token in the constructor</span>
-  <span class="c1">// This is for the sake of the example only</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">cookies</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
-
-    <span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'jwt'</span><span class="p">)}</span><span class="s2">`</span>
-  <span class="p">}</span>
-
-  <span class="c1">// ... component definition</span>
-<span class="p">}</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">withCookies</span><span class="p">(</span><span class="nx">TopLevelComponent</span><span class="p">)</span>
+<h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
 </code></pre>
-<p>The request object must have a valid &#39;Authorization&#39; header in order to communicate with the API (except for <a href="#authentication">Authentication</a>)</p>
+<blockquote>
+<p>A token a the following format:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"</span><span class="w">
+</span></code></pre>
+<p>The request object must have a valid &#39;Authorization&#39; header to communicate with the API (except for <a href="#authentication">Authentication</a>)</p>
 <h2 id='chain-requests'>Chain requests</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="nx">request</span>
@@ -588,23 +582,39 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 
   <span class="c1">// ... component definition</span>
 
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Clear any previous token reference</span>
+    <span class="c1">// This is mandatory to ensure a smooth redirection flow</span>
+    <span class="nx">cookies</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">'jwt'</span><span class="p">,</span> <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span> <span class="p">})</span>
+  <span class="p">}</span>
+
   <span class="nx">logIn</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="p">{</span> <span class="nx">cookies</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
 
     <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
       <span class="na">username</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span>
-      <span class="na">password</span><span class="p">:</span> <span class="s1">'pwd'</span><span class="p">,</span> 
+      <span class="na">password</span><span class="p">:</span> <span class="s1">'pwd'</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="nx">request</span>
       <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`auth/login`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// This is mandatory to allow the client to get route that need authorization</span>
-        <span class="nx">cookies</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'jwt'</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span> <span class="na">expires</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">864</span><span class="nx">e5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="p">})</span>
+        <span class="nx">cookies</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'jwt'</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span> <span class="na">expires</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">864</span><span class="nx">e5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="p">})</span>
+
+        <span class="c1">// This will set the 'Authorization' headers in the axios requested instance</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
 
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+
+        <span class="c1">// The 'hasAccess' function/condition need to be implemented</span>
+        <span class="c1">// It should map the different home page to each allowed accesses in the request url</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">hasAccess</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">access</span><span class="p">))</span>
+          <span class="c1">// Redirect to appropriate home page</span>
+        <span class="k">else</span> <span class="p">{</span>
+          <span class="c1">// Redirect to other LogInComponent</span>
+        <span class="p">}</span>
       <span class="p">})</span>
-      <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">next</span><span class="p">())</span>
       <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
       <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidCredentials</span><span class="p">)</span>
@@ -623,15 +633,99 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxNmIxNTY2YjY2MWNmMzQxNWFhMyIsImlhdCI6MTU0ODI5MzgxMCwiZXhwIjoxNTQ4ODk4NjEwfQ.IcNimx1wnNSzFqEocX5160WkF0uKMPQc2DBUkB_vVzA"</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c491a65afca66204e281fdd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mail"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hiring"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"admin"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This authenticates a specifics user.</p>
+<p>This endpoint authenticates a specifics user.</p>
 
 <aside class="notice">
 The expire date of the cookie must be 5 days to ensure better refresh performance.
 </aside>
 <h3 id='http-route'>HTTP Route</h3>
 <p><code>POST user/</code></p>
+<h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
+
+<span class="kr">class</span> <span class="nx">TopLevelComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="c1">// ... component definition</span>
+
+  <span class="c1">// It can be in componentWillMount as well</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">cookies</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
+
+    <span class="kr">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">cookies</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'jwt'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span>
+      <span class="c1">// Redirect to login page matching the requested url</span>
+    <span class="k">else</span>
+      <span class="nx">request</span>
+        <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`auth/login/</span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
+          <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
+
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidCredentials</span><span class="p">)</span>
+            <span class="c1">// The token is invalid or has expired</span>
+
+          <span class="c1">// Handle any other errors</span>
+        <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ... component definition</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">withCookies</span><span class="p">(</span><span class="nx">TopLevelComponent</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c491a65afca66204e281fdd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mail"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hiring"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"admin"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint authorizes a specifics user.</p>
+
+<aside class="notice">
+The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
+</aside>
 <h1 id='user'>User</h1><h2 id='create-a-user'>Create a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span><span class="p">,</span> <span class="nx">InvalidRequestFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
