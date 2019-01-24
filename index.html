@@ -225,7 +225,7 @@
                     <a href="#request-instance" class="toc-h2 toc-link" data-title="Request instance">Request instance</a>
                   </li>
                   <li>
-                    <a href="#authorize" class="toc-h2 toc-link" data-title="Authorize">Authorize</a>
+                    <a href="#authorize-a-user" class="toc-h2 toc-link" data-title="Authorize a user">Authorize a user</a>
                   </li>
                   <li>
                     <a href="#chain-requests" class="toc-h2 toc-link" data-title="Chain requests">Chain requests</a>
@@ -522,11 +522,11 @@
 <aside class="notice">
 It should be stored in the Redux Store.
 </aside>
-<h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
+<h2 id='authorize-a-user'>Authorize a user</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
 </code></pre>
 <blockquote>
-<p>A token a the following format:</p>
+<p>A token has the following format:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"</span><span class="w">
 </span></code></pre>
@@ -660,7 +660,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 The expire date of the cookie must be 5 days to ensure better refresh performance.
 </aside>
 <h3 id='http-route'>HTTP Route</h3>
-<p><code>POST user/</code></p>
+<p><code>POST auth/login</code></p>
 <h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
 
 <span class="kr">class</span> <span class="nx">TopLevelComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
@@ -726,6 +726,20 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 <aside class="notice">
 The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
 </aside>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>GET auth/login/&lt;TOKEN&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOKEN</td>
+<td>The TOKEN of the user to authorize</td>
+</tr>
+</tbody></table>
 <h1 id='user'>User</h1><h2 id='create-a-user'>Create a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ValidationError</span><span class="p">,</span> <span class="nx">InvalidRequestFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
