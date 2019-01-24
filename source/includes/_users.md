@@ -195,7 +195,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 | --------- | ---------------------------- |
 | ID        | The ID of the user to update |
 
-## Delete a list
+## Delete a user
 
 ```javascript
 import { UserNotFound } from './src/common/errors'
