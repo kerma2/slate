@@ -225,7 +225,7 @@
                     <a href="#request-instance" class="toc-h2 toc-link" data-title="Request instance">Request instance</a>
                   </li>
                   <li>
-                    <a href="#authorize-a-user" class="toc-h2 toc-link" data-title="Authorize a user">Authorize a user</a>
+                    <a href="#authorization" class="toc-h2 toc-link" data-title="Authorization">Authorization</a>
                   </li>
                   <li>
                     <a href="#chain-requests" class="toc-h2 toc-link" data-title="Chain requests">Chain requests</a>
@@ -242,7 +242,7 @@
                     <a href="#authenticate-a-user" class="toc-h2 toc-link" data-title="Authenticate a user">Authenticate a user</a>
                   </li>
                   <li>
-                    <a href="#authorize" class="toc-h2 toc-link" data-title="Authorize">Authorize</a>
+                    <a href="#authorize-a-user" class="toc-h2 toc-link" data-title="Authorize a user">Authorize a user</a>
                   </li>
               </ul>
           </li>
@@ -522,7 +522,7 @@
 <aside class="notice">
 It should be stored in the Redux Store.
 </aside>
-<h2 id='authorize-a-user'>Authorize a user</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
+<h2 id='authorization'>Authorization</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// This will set the 'Authorization' headers in the axios request instance</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`JWT </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
 </code></pre>
 <blockquote>
@@ -661,7 +661,7 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 </aside>
 <h3 id='http-route'>HTTP Route</h3>
 <p><code>POST auth/login</code></p>
-<h2 id='authorize'>Authorize</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
+<h2 id='authorize-a-user'>Authorize a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
 
 <span class="kr">class</span> <span class="nx">TopLevelComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
 
