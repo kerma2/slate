@@ -93,7 +93,7 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 
 ### HTTP Route
 
-`POST user/`
+`POST auth/login`
 
 ## Authorize
 
@@ -165,3 +165,13 @@ This endpoint authorizes a specifics user.
 <aside class="notice">
 The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
 </aside>
+
+### HTTP Route
+
+`GET auth/login/<TOKEN>`
+
+### URL Parameters
+
+| Parameter | Description                        |
+| --------- | ---------------------------------- |
+| TOKEN     | The TOKEN of the user to authorize |

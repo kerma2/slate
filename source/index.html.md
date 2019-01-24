@@ -42,14 +42,14 @@ The request object is used to handle communications with the API.
 It should be stored in the Redux Store.
 </aside>
 
-## Authorize
+## Authorize a user
 
 ```javascript
 // This will set the 'Authorization' headers in the axios request instance
 request.defaults.headers.common['Authorization'] = `JWT ${token}`
 ```
 
-> A token a the following format:
+> A token has the following format:
 
 ```json
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"
