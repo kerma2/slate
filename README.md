@@ -17,6 +17,6 @@ Run these commands at root of the repository.
 
 ---
 
-## Deploy
+## Deploy
 
 - Run: `./deploy.sh`

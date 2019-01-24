@@ -8,6 +8,8 @@ toc_footers:
   - Documentation Powered by Kerma
 
 includes:
+  - auth
+  - users
   - companies
   - projects
   - tasks
@@ -39,6 +41,29 @@ The request object is used to handle communications with the API.
 <aside class="notice">
 It should be stored in the Redux Store.
 </aside>
+
+## Authorize
+
+```javascript
+import { withCookies } from 'react-cookie'
+
+class TopLevelComponent extends Component {
+  // It is not required to get/set token in the constructor
+  // This is for the sake of the example only
+  constructor(props) {
+    const { cookies } = this.props
+
+    // This will set the 'Authorization' headers in the axios request instance
+    request.defaults.headers.common['Authorization'] = `JWT ${cookies.get('jwt')}`
+  }
+
+  // ... component definition
+}
+
+export default withCookies(TopLevelComponent)
+```
+
+The request object must have a valid 'Authorization' header in order to communicate with the API (except for [Authentication](#authentication))
 
 ## Chain requests
 
