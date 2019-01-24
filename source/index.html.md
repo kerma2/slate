@@ -45,25 +45,17 @@ It should be stored in the Redux Store.
 ## Authorize
 
 ```javascript
-import { withCookies } from 'react-cookie'
-
-class TopLevelComponent extends Component {
-  // It is not required to get/set token in the constructor
-  // This is for the sake of the example only
-  constructor(props) {
-    const { cookies } = this.props
-
-    // This will set the 'Authorization' headers in the axios request instance
-    request.defaults.headers.common['Authorization'] = `JWT ${cookies.get('jwt')}`
-  }
-
-  // ... component definition
-}
-
-export default withCookies(TopLevelComponent)
+// This will set the 'Authorization' headers in the axios request instance
+request.defaults.headers.common['Authorization'] = `JWT ${token}`
 ```
 
-The request object must have a valid 'Authorization' header in order to communicate with the API (except for [Authentication](#authentication))
+> A token a the following format:
+
+```json
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"
+```
+
+The request object must have a valid 'Authorization' header to communicate with the API (except for [Authentication](#authentication))
 
 ## Chain requests
 

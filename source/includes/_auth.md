@@ -11,23 +11,39 @@ class LogInComponent extends Component {
 
   // ... component definition
 
+  componentDidMount() {
+    // Clear any previous token reference
+    // This is mandatory to ensure a smooth redirection flow
+    cookies.remove('jwt', { path: '/' })
+  }
+
   logIn() {
     const { cookies } = this.props
 
     const data = {
       username: 'name',
-      password: 'pwd', 
+      password: 'pwd',
     }
 
     request
       .post(`auth/login`, data)
       .then(res => {
         // This is mandatory to allow the client to get route that need authorization
-        cookies.set('jwt', res.data, { path: '/', expires: new Date(Date.now() + 864e5 * 5) })
+        cookies.set('jwt', res.data.token, { path: '/', expires: new Date(Date.now() + 864e5 * 5) })
+
+        // This will set the 'Authorization' headers in the axios requested instance
+        request.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
 
         console.log(res.data)
+
+        // The 'hasAccess' function/condition need to be implemented
+        // It should map the different home page to each allowed accesses in the request url
+        if (hasAccess(res.data.access))
+          // Redirect to appropriate home page
+        else {
+          // Redirect to other LogInComponent
+        }
       })
-      .then(() => next())
       .catch(APIErrorHandler)
       .catch(err => {
         if (err instanceof InvalidCredentials)
@@ -47,10 +63,29 @@ export default withCookies(LogInComponent)
 > The above command returns JSON structured like this:
 
 ```json
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxNmIxNTY2YjY2MWNmMzQxNWFhMyIsImlhdCI6MTU0ODI5MzgxMCwiZXhwIjoxNTQ4ODk4NjEwfQ.IcNimx1wnNSzFqEocX5160WkF0uKMPQc2DBUkB_vVzA"
+{
+  "user": {
+    "_id": "5c491a65afca66204e281fdd",
+    "companyId": null,
+    "projectId": null,
+    "username": "admin",
+    "mail": null,
+    "fullname": "Admin",
+    "civility": "m",
+    "address": "none",
+    "hiring": 0,
+    "birth": {
+      "date": "1970-01-01T00:00:00.000Z",
+      "county": "none",
+      "place": "none"
+    }
+  },
+  "accesses": ["admin"],
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"
+}
 ```
 
-This authenticates a specifics user.
+This endpoint authenticates a specifics user.
 
 <aside class="notice">
 The expire date of the cookie must be 5 days to ensure better refresh performance.
@@ -59,3 +94,74 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 ### HTTP Route
 
 `POST user/`
+
+## Authorize
+
+```javascript
+import { withCookies } from 'react-cookie'
+
+class TopLevelComponent extends Component {
+
+  // ... component definition
+
+  // It can be in componentWillMount as well
+  componentDidMount() {
+    const { cookies } = this.props
+
+    const token = cookies.get('jwt')
+
+    if (!token)
+      // Redirect to login page matching the requested url
+    else
+      request
+        .get(`auth/login/${token}`)
+        .then(res => {
+          // This will set the 'Authorization' headers in the axios request instance
+          request.defaults.headers.common['Authorization'] = `JWT ${token}`
+
+          console.log(res.data)
+        })
+        .catch(APIErrorHandler)
+        .catch(err => {
+          if (err instanceof InvalidCredentials)
+            // The token is invalid or has expired
+
+          // Handle any other errors
+        })
+  }
+
+  // ... component definition
+}
+
+export default withCookies(TopLevelComponent)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "user": {
+    "_id": "5c491a65afca66204e281fdd",
+    "companyId": null,
+    "projectId": null,
+    "username": "admin",
+    "mail": null,
+    "fullname": "Admin",
+    "civility": "m",
+    "address": "none",
+    "hiring": 0,
+    "birth": {
+      "date": "1970-01-01T00:00:00.000Z",
+      "county": "none",
+      "place": "none"
+    }
+  },
+  "accesses": ["admin"]
+}
+```
+
+This endpoint authorizes a specifics user.
+
+<aside class="notice">
+The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
+</aside>
