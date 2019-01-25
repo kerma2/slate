@@ -331,7 +331,7 @@ const data = [
 ]
 
 request
-  .post(`establishments/${id}/statuses`)
+  .post(`establishments/${id}/statuses`, data)
   .then(res => console.log(res.data))
   .catch(APIErrorHandler)
   .catch(err => {
