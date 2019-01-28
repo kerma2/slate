@@ -624,7 +624,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 
         <span class="c1">// The 'hasAccess' function/condition need to be implemented</span>
         <span class="c1">// It should map the different home page to each allowed accesses in the request url</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">hasAccess</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">access</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">hasAccess</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">accesses</span><span class="p">))</span>
           <span class="c1">// Redirect to appropriate home page</span>
         <span class="k">else</span> <span class="p">{</span>
           <span class="c1">// Redirect to other LogInComponent</span>
