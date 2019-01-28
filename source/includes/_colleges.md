@@ -503,3 +503,184 @@ Removing a status will automatically delete from the college all electors linked
 | --------- | ---------------------------------------------------- |
 | ID        | The ID of the college in which the status is deleted |
 | STATUS    | The STATUS to delete                                 |
+
+## Initialize a college
+
+```javascript
+import { CollegeNotFound } from './src/common/errors'
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c32ee4a2fa935441f8cc425'
+
+request
+  .get(`colleges/${id}/init`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof CollegeNotFound)
+      // The college could be found
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint inits a specific college.
+
+It generates the local key pair (used to encrypt/decrypt an urn as a file).
+
+<aside class="notice">
+This is a mandatory call before accessing one of the urn content or generating USB keys.
+</aside>
+
+### HTTP Route
+
+`GET colleges/<ID>/init`
+
+### URL Parameters
+
+| Parameter | Description                         |
+| --------- | ----------------------------------- |
+| ID        | The ID of the college to initialize |
+
+## Keys exchange
+
+```javascript
+import NodeRSA from 'node-rsa'
+
+import {
+  CollegeNotFound,
+  InvalidRequestFormat,
+  InvalidKey
+} from './src/common/errors'
+
+import { APIErrorHandler } from './src/common/utils'
+
+const key = new NodeRSA({ b: 2048 })
+const id = '5c32ee4a2fa935441f8cc425'
+
+request
+  .post(`colleges/${id}/keys`, { vote: key.exportKey('public') })
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof InvalidRequestFormat)
+      // The body of the request is invalid
+
+    if (err instanceof CollegeNotFound)
+      // The college could be found
+
+    if (err instanceof InvalidKey)
+      // The given key is invalid
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "usb": "-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6rXsusxtlEJjFOhXwd2V
+    wrxq6+16fruU/MSBBNcEX71EvI2yHg+C+kL93g71MkEBMONnhHVsQgYEbE4xQ/rL
+    ISgOm5yepigrWrS4stS5C1GW7DXuiX0onPChaQUiExoNq+dSAPMqHALkTtd9lERo
+    FDms+FsswS/f//yF3ok9qz5JnCNYfBayj/6OrtoqWurfjLQWfXqtxWyB/5GCGe7C
+    PWo0QyYUilhS2li26evGh3fwQBf6WTmLEksLFZ6FLHEjxOOMTAZxbODYY9r0kVgh
+    XWLsghpBFVcQ9lW3eha23gu5uARM5lOPFpC6kHcZ/I2ei1MAorNp2eaNIwuwwL54
+    bQIDAQAB
+    -----END PUBLIC KEY-----"
+}
+```
+
+This endpoint saves the public key (used to encrypt votes) within a specific college.
+
+It generates the usb key pair (used to encrypt/decrypt the content of the usb keys).
+
+<aside class="notice">
+This is a mandatory call before any vote can occur.
+</aside>
+
+### HTTP Route
+
+`POST colleges/<ID>/keys`
+
+### URL Parameters
+
+| Parameter | Description                                           |
+| --------- | ----------------------------------------------------- |
+| ID        | The ID of the college in which the keys are generated |
+
+## Decipher USB
+
+```javascript
+import NodeRSA from 'node-rsa'
+
+import {
+  CollegeNotFound,
+  InvalidRequestFormat,
+  InvalidKey
+} from './src/common/errors'
+
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c32ee4a2fa935441f8cc425'
+const content = { key: 'value' }
+
+const key = new NodeRSA({ b: 2048 })
+const usb = new NodeRSA()
+
+usb.importKey(USBPublicKey, 'public')
+
+const encrypted = usb.encrypt(content, 'base64')
+
+request
+  .post(`colleges/${id}/usb`, { content: encrypted, secure: key.exportKey('public') })
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof InvalidRequestFormat)
+      // The body of the request is invalid
+
+    if (err instanceof CollegeNotFound)
+      // The college could be found
+
+    if (err instanceof InvalidKey)
+      // 1. The given key is invalid
+      // 2. The content is invalid
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "content": "QQt+ZLrEuwBO+gwTQ4IRcAzmgefULVM7UpJhZGbpPpS9tiV7GirLf4p3cRMIg/V3zpUZGPRfmL2LD9+g4LaKffz5TWuucRv056ZBcMuL9u6u3jlKr2cB99gt7pcqnkwENzf/AGcWDq/uhxFgcJPetDsoxk649u5kXH4NYZOLrvO7XQS
+Q1e7HxqxLVuGiAYwO/Rua/okMr2bdwgcLvRhnK1rknB6vwUSxUMMRWbhTvUdaieUqvtlnsj06yC0PSBYUCzXBpQG/+KN3R4aOwRX0DuVF1ZuZkXWk4xrZUrHXxjYTgkSd9RY3JC1N6R5tuUybPPs57rW5NaF5WF3ml7XFEQ=="
+}
+```
+
+This endpoint decrypts the given content of an usb key and encrypt it with the given secure public key.
+
+<aside class="notice">
+The content MUST be an object
+</aside>
+
+### HTTP Route
+
+`POST colleges/<ID>/usb`
+
+### URL Parameters
+
+| Parameter | Description                                                     |
+| --------- | --------------------------------------------------------------- |
+| ID        | The ID of the college in which the usb private key is contained |
