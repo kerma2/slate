@@ -38,7 +38,7 @@ class LogInComponent extends Component {
 
         // The 'hasAccess' function/condition need to be implemented
         // It should map the different home page to each allowed accesses in the request url
-        if (hasAccess(res.data.access))
+        if (hasAccess(res.data.accesses))
           // Redirect to appropriate home page
         else {
           // Redirect to other LogInComponent
