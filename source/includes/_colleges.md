@@ -618,7 +618,7 @@ This is a mandatory call before any vote can occur.
 | --------- | ----------------------------------------------------- |
 | ID        | The ID of the college in which the keys are generated |
 
-## Decipher USB
+## Decrypt USB content
 
 ```javascript
 import NodeRSA from 'node-rsa'
