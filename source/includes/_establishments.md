@@ -33,7 +33,6 @@ request
     "name": "Name",
     "state": "init",
     "colleges": ["5c32d8e48dde18253603bd07"],
-    "users": ["5c32d8e48dde18253603bd08"],
     "statuses": ["Ouvrier", "Employés", "Techniciens", "Agents de maîtrise", "Ingénieurs", "Cadres"]
   }
 ]
@@ -91,7 +90,6 @@ request
   "name": "Name",
   "state": "init",
   "colleges": [],
-  "users": [],
   "statuses": [
     "Custom Status",
     "Moar Status",
@@ -148,7 +146,6 @@ request
   "name": "Name",
   "state": "init",
   "colleges": [],
-  "users": [],
   "statuses": [
     "Custom Status",
     "Moar Status",
@@ -210,7 +207,6 @@ request
   "name": "New Name",
   "state": "init",
   "colleges": [],
-  "users": [],
   "statuses": [
     "Custom Status",
     "Moar Status",

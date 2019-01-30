@@ -35,24 +35,7 @@ request
     "seats": 3,
     "statuses": ["Ingénieurs", "Techniciens"],
     "state": "waiting",
-    "round": 1,
-    "electors": ["5c32ee4a2fa935441f8cc426"],
-    "rounds": [
-      {
-        "_id": "5c32ee4a2fa935441f8cc426",
-        "nbr": 1,
-        "dates": { "start": "2019-01-17T06:14:34.712Z", "end": "2019-01-18T06:14:34.712Z" },
-        "officers": ["5c32ee4a2fa935441f8cc427"],
-        "lists": ["5c32ee4a2fa935441f8cc428"]
-      },
-      {
-        "_id": "5c32ee4a2fa935441f8cc429",
-        "nbr": 2,
-        "dates": { "start": "2019-02-02T06:14:34.712Z", "end": "2019-02-03T06:14:34.712Z" },
-        "officers": [],
-        "lists": []
-      }
-    ]
+    "round": 1
   }
 ]
 ```
@@ -162,33 +145,15 @@ request
 > The above command returns JSON structured like this:
 
 ```json
-  {
-    "_id": "5c32ee4a2fa935441f8ccac4",
-    "establishmentId": "5c32ee4a2fa935441f8cc414",
-    "name": "Name",
-    "workforce": 0.5,
-    "seats": 2,
-    "statuses": ["Ouvrier"],
-    "state": "waiting",
-    "round": 1,
-    "electors": [],
-    "rounds": [
-      {
-        "_id": "5c32ee4a2fa935441f8ccac5",
-        "nbr": 1,
-        "dates": { "start": "2019-05-01T00:00:00.000Z", "end": "2019-05-02T00:00:00.000Z" },
-        "officers": [],
-        "lists": []
-      },
-      {
-        "_id": "5c32ee4a2fa935441f8ccac5",
-        "nbr": 2,
-        "dates": { "start": "2019-05-17T00:00:00.000Z", "end": "2019-05-18T00:00:00.000Z" },
-        "officers": [],
-        "lists": []
-      }
-    ]
-  }
+{
+  "_id": "5c32ee4a2fa935441f8ccac4",
+  "establishmentId": "5c32ee4a2fa935441f8cc414",
+  "name": "Name",
+  "workforce": 0.5,
+  "seats": 2,
+  "statuses": ["Ouvrier"],
+  "state": "waiting",
+  "round": 1
 }
 ```
 
@@ -237,24 +202,7 @@ request
   "seats": 3,
   "statuses": ["Ingénieurs", "Techniciens"],
   "state": "waiting",
-  "round": 1,
-  "electors": ["5c32ee4a2fa935441f8cc426"],
-  "rounds": [
-    {
-      "_id": "5c32ee4a2fa935441f8cc426",
-      "nbr": 1,
-      "dates": { "start": "2019-01-17T06:14:34.712Z", "end": "2019-01-18T06:14:34.712Z" },
-      "officers": ["5c32ee4a2fa935441f8cc427"],
-      "lists": ["5c32ee4a2fa935441f8cc428"]
-    },
-    {
-      "_id": "5c32ee4a2fa935441f8cc429",
-      "nbr": 2,
-      "dates": { "start": "2019-02-02T06:14:34.712Z", "end": "2019-02-03T06:14:34.712Z" },
-      "officers": [],
-      "lists": []
-    }
-  ]
+  "round": 1
 }
 ```
 
@@ -310,24 +258,7 @@ request
   "seats": 4,
   "statuses": ["Ouvrier"],
   "state": "waiting",
-  "round": 1,
-  "electors": [],
-  "rounds": [
-    {
-      "_id": "5c32ee4a2fa935441f8ccac5",
-      "nbr": 1,
-      "dates": { "start": "2019-05-01T00:00:00.000Z", "end": "2019-05-02T00:00:00.000Z" },
-      "officers": [],
-      "lists": []
-    },
-    {
-      "_id": "5c32ee4a2fa935441f8ccac5",
-      "nbr": 2,
-      "dates": { "start": "2019-05-17T00:00:00.000Z", "end": "2019-05-18T00:00:00.000Z" },
-      "officers": [],
-      "lists": []
-    }
-  ]
+  "round": 1
 }
 ```
 
@@ -420,24 +351,7 @@ request
   "seats": 3,
   "statuses": ["Ingénieurs", "Techniciens", "Status 1"],
   "state": "waiting",
-  "round": 1,
-  "electors": ["5c32ee4a2fa935441f8cc426", "5c32ee4a2fa935441f8cc427", "5c32ee4a2fa935441f8cc428"],
-  "rounds": [
-    {
-      "_id": "5c32ee4a2fa935441f8cc426",
-      "nbr": 1,
-      "dates": { "start": "2019-01-17T06:14:34.712Z", "end": "2019-01-18T06:14:34.712Z" },
-      "officers": ["5c32ee4a2fa935441f8cc427"],
-      "lists": ["5c32ee4a2fa935441f8cc428"]
-    },
-    {
-      "_id": "5c32ee4a2fa935441f8cc429",
-      "nbr": 2,
-      "dates": { "start": "2019-02-02T06:14:34.712Z", "end": "2019-02-03T06:14:34.712Z" },
-      "officers": [],
-      "lists": []
-    }
-  ]
+  "round": 1
 }
 ```
 
@@ -684,3 +598,60 @@ The content MUST be an object
 | Parameter | Description                                                     |
 | --------- | --------------------------------------------------------------- |
 | ID        | The ID of the college in which the usb private key is contained |
+
+## Get public key
+
+```javascript
+import NodeRSA from 'node-rsa'
+
+import { CollegeNotFound, InvalidAccess } from './src/common/errors'
+import { APIErrorHandler } from './src/common/utils'
+
+const id = '5c32ee4a2fa935441f8cc425'
+
+request
+  .put(`colleges/${id}/public`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof CollegeNotFound)
+      // The college could be found
+
+    if (err instanceof InvalidAccess)
+      // The college has not been controlled yet
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "key": "-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6rXsusxtlEJjFOhXwd2V
+    wrxq6+16fruU/MSBBNcEX71EvI2yHg+C+kL93g71MkEBMONnhHVsQgYEbE4xQ/rL
+    ISgOm5yepigrWrS4stS5C1GW7DXuiX0onPChaQUiExoNq+dSAPMqHALkTtd9lERo
+    FDms+FsswS/f//yF3ok9qz5JnCNYfBayj/6OrtoqWurfjLQWfXqtxWyB/5GCGe7C
+    PWo0QyYUilhS2li26evGh3fwQBf6WTmLEksLFZ6FLHEjxOOMTAZxbODYY9r0kVgh
+    XWLsghpBFVcQ9lW3eha23gu5uARM5lOPFpC6kHcZ/I2ei1MAorNp2eaNIwuwwL54
+    bQIDAQAB
+    -----END PUBLIC KEY-----"
+}
+```
+
+This endpoint retrieves the public key (used to encrypt votes) within a specific college.
+
+<aside class="notice">
+All votes MUST be encrypted with this key before being sent to the server.
+</aside>
+
+### HTTP Route
+
+`GET colleges/<ID>/public`
+
+### URL Parameters
+
+| Parameter | Description                                         |
+| --------- | --------------------------------------------------- |
+| ID        | The ID of the college in which the key is contained |

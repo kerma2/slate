@@ -30,12 +30,9 @@ request
   {
     "_id": "5c32b186702a5b72b178b2ea",
     "companyId": "5c32b185702a5b72b178b2e9",
-    "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "finishedAt": null },
-    "documents": ["5c32b185702a5b72b178b2a3", "5c32b185702a5b72b178b2a4"],
-    "tasks": ["5c32b185702a5b72b178b2a7", "5c32b185702a5b72b178b2a8"],
+    "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
     "shared": false,
-    "establishments": ["5c32b185702a5b72b178b2a1"],
-    "users": ["5c32b185702a5b72b178b2a2"]
+    "establishments": ["5c32b185702a5b72b178b2a1"]
   }
 ]
 ```
@@ -83,14 +80,11 @@ request
 
 ```json
 {
-  "_id": "5c32b186702a5b72b178b4a2",
+  "_id": "5c32b186702a5b72b178b2ea",
   "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:58:17.453Z", "finishedAt": null },
-  "documents": ["5c32b185702a5b72b178b2a3", "5c32b185702a5b72b178b2a4"],
-  "tasks": ["5c32b185702a5b72b178b2a7", "5c32b185702a5b72b178b2a8"],
+  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
   "shared": true,
-  "establishments": ["5c32b185702a5b72b178b2a1"],
-  "users": ["5c32b185702a5b72b178b2a2"]
+  "establishments": []
 }
 ```
 
@@ -134,12 +128,9 @@ request
 {
   "_id": "5c32b186702a5b72b178b4a2",
   "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:58:17.453Z", "finishedAt": null },
-  "documents": ["5c32b185702a5b72b178b2a3", "5c32b185702a5b72b178b2a4"],
-  "tasks": ["5c32b185702a5b72b178b2a7", "5c32b185702a5b72b178b2a8"],
-  "shared": true,
-  "establishments": ["5c32b185702a5b72b178b2a1"],
-  "users": ["5c32b185702a5b72b178b2a2"]
+  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
+  "shared": false,
+  "establishments": ["5c32b185702a5b72b178b2a1"]
 }
 ```
 
@@ -188,12 +179,9 @@ request
 {
   "_id": "5c32b186702a5b72b178b4a2",
   "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:58:17.453Z", "finishedAt": null },
-  "documents": ["5c32b185702a5b72b178b2a3", "5c32b185702a5b72b178b2a4"],
-  "tasks": ["5c32b185702a5b72b178b2a7", "5c32b185702a5b72b178b2a8"],
+  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
   "shared": false,
-  "establishments": ["5c32b185702a5b72b178b2a1"],
-  "users": ["5c32b185702a5b72b178b2a2"]
+  "establishments": []
 }
 ```
 

@@ -40,19 +40,7 @@ request
     "slogan": "Slogan",
     "valid": true,
     "logo": "https://i.imgur.com/ZUtiogP.png",
-    "profession": "5c3780c64bb8ea63fc222a56",
-    "candidates": [
-      {
-        "_id": "5c3780c94bb8ea63fc222acd",
-        "userId": "5c3780c74bb8ea63fc222a6f",
-        "rank": 1
-      },
-      {
-        "_id": "5c3780c94bb8ea63fc222ace",
-        "userId": "5c3780c74bb8ea63fc222a73",
-        "rank": 2
-      }
-    ]
+    "profession": "5c3780c64bb8ea63fc222a56"
   }
 ]
 ```
@@ -118,24 +106,7 @@ request
     "slogan": "Slogan",
     "valid": false,
     "logo": "https://i.imgur.com/ZUtiogP.png",
-    "profession": "5c3780c64bb8ea63fc222a56",
-    "candidates": [
-      {
-        "_id": "5c3780c94bb8ea63fc222acd",
-        "userId": "5c3780c74bb8ea63fc222a6f",
-        "rank": 1
-      },
-      {
-        "_id": "5c3780c94bb8ea63fc222ace",
-        "userId": "5c3780c74bb8ea63fc222a73",
-        "rank": 2
-      },
-      {
-        "_id": "5c3780c94bb8ea63fc222acf",
-        "userId": "5c3780c74bb8ea63fc222a74",
-        "rank": 3
-      }
-    ]
+    "profession": "5c3780c64bb8ea63fc222a56"
   }
 ]
 ```
@@ -208,8 +179,7 @@ request
   "slogan": "Slogan",
   "valid": true,
   "logo": "https://i.imgur.com/ZUtiogP.png",
-  "profession": "5c3780c94bb8ea63fc222acd",
-  "candidates": []
+  "profession": "5c3780c94bb8ea63fc222acd"
 }
 ```
 
@@ -260,19 +230,7 @@ request
   "slogan": "Slogan",
   "valid": true,
   "logo": "https://i.imgur.com/ZUtiogP.png",
-  "profession": "5c3780c64bb8ea63fc222a56",
-  "candidates": [
-    {
-      "_id": "5c3780c94bb8ea63fc222acd",
-      "userId": "5c3780c74bb8ea63fc222a6f",
-      "rank": 1
-    },
-    {
-      "_id": "5c3780c94bb8ea63fc222ace",
-      "userId": "5c3780c74bb8ea63fc222a73",
-      "rank": 2
-    }
-  ]
+  "profession": "5c3780c64bb8ea63fc222a56"
 }
 ```
 
@@ -300,7 +258,7 @@ const data = {
   name: 'New Name',
   slogan: 'New Slogan',
   logo: 'https://bit.ly/2RhAGZM',
-  profession: '5c3780c94bb8ea63fc222ae4'  
+  profession: '5c3780c94bb8ea63fc222ae4'
 }
 
 request
@@ -330,8 +288,7 @@ request
   "slogan": "New Slogan",
   "valid": true,
   "logo": "https://bit.ly/2RhAGZM",
-  "profession": "5c3780c94bb8ea63fc222ae4",
-  "candidates": []
+  "profession": "5c3780c94bb8ea63fc222ae4"
 }
 ```
 
@@ -345,8 +302,8 @@ Be sure to check how to handle [ValidationError](#validationerror).
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                  |
+| --------- | ---------------------------- |
 | ID        | The ID of the list to update |
 
 ## Delete a list
@@ -385,6 +342,6 @@ This endpoint deletes a specific list.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                  |
+| --------- | ---------------------------- |
 | ID        | The ID of the list to delete |

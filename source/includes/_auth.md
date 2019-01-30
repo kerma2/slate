@@ -1,5 +1,57 @@
 # Authentication
 
+## Verify a user
+
+```javascript
+import { UserNotFound, InvalidAccess } from './src/common/errors'
+import { APIErrorHandler } from './src/common/utils'
+
+const username = '762a14a6'
+
+request
+  .get(`users/${username}/verify`)
+  .then(res => console.log(res.data))
+  .catch(APIErrorHandler)
+  .catch(err => {
+    if (err instanceof InvalidAccess)
+      // The user is not an elector
+
+    if (err instanceof UserNotFound)
+      // The user could be found
+
+    // Handle any other errors
+  })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "logo": "https://i.imgur.com/kl6PnDj.png",
+  "round": 1,
+  "dates": {
+    "start": "2019-02-09T00:43:39.108Z",
+    "end": "2019-02-10T00:43:39.108Z"
+  }
+}
+```
+
+This endpoint retrieves basic informations about a specific user.
+
+<aside class="notice">
+Only electors can be verified.
+</aside>
+
+### HTTP Route
+
+`GET auth/<USERNAME>/verify`
+
+### URL Parameters
+
+| Parameter | Description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| USERNAME  | The USERNAME of the user from which the information is retrieved |
+
 ## Authenticate a user
 
 ```javascript

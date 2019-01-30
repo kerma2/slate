@@ -25,12 +25,10 @@ request
 ```json
 [
   {
-    "_id": "5c379bee037d637ffad35a1a",
     "userId": "5c379bec037d637ffad359bc",
     "rank": 1
   },
   {
-    "_id": "5c379bee037d637ffad35a1b",
     "userId": "5c379bec037d637ffad359c0",
     "rank": 2
   }
@@ -117,17 +115,14 @@ request
 WITHOUT ERRORS:
 [
   {
-    "_id": "5c379ee293271f03b5bca6ba",
     "userId": "5c32ee4a2fa935441f8cc415",
     "rank": 1
   },
   {
-    "_id": "5c379ee293271f03b5bca6bb",
     "userId": "5c32ee4a2fa935441f8cc416",
     "rank": 2
   },
   {
-    "_id": "5c379ee293271f03b5bca6bc",
     "userId": "5c32ee4a2fa935441f8cc417",
     "rank": 3
   }
@@ -218,17 +213,14 @@ request
 ```json
 [
   {
-    "_id": "5c379ee293271f03b5bca6ba",
     "userId": "5c32ee4a2fa935441f8cc415",
     "rank": 2
   },
   {
-    "_id": "5c379ee293271f03b5bca6bb",
     "userId": "5c32ee4a2fa935441f8cc416",
     "rank": 3
   },
   {
-    "_id": "5c379ee293271f03b5bca6bc",
     "userId": "5c32ee4a2fa935441f8cc417",
     "rank": 1
   }
