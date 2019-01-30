@@ -239,6 +239,9 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#verify-a-user" class="toc-h2 toc-link" data-title="Verify a user">Verify a user</a>
+                  </li>
+                  <li>
                     <a href="#authenticate-a-user" class="toc-h2 toc-link" data-title="Authenticate a user">Authenticate a user</a>
                   </li>
                   <li>
@@ -420,6 +423,9 @@
                   <li>
                     <a href="#decrypt-usb-content" class="toc-h2 toc-link" data-title="Decrypt USB content">Decrypt USB content</a>
                   </li>
+                  <li>
+                    <a href="#get-public-key" class="toc-h2 toc-link" data-title="Get public key">Get public key</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -589,7 +595,57 @@ Always use the <code>sync</code> method to make batch to the API.
 <aside class="notice">
 You can bind context to the <code>task</code> function: <code>task.bind(this)</code>.
 </aside>
-<h1 id='authentication'>Authentication</h1><h2 id='authenticate-a-user'>Authenticate a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
+<h1 id='authentication'>Authentication</h1><h2 id='verify-a-user'>Verify a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserNotFound</span><span class="p">,</span> <span class="nx">InvalidAccess</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="s1">'762a14a6'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`users/</span><span class="p">${</span><span class="nx">username</span><span class="p">}</span><span class="s2">/verify`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidAccess</span><span class="p">)</span>
+      <span class="c1">// The user is not an elector</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">UserNotFound</span><span class="p">)</span>
+      <span class="c1">// The user could be found</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-09T00:43:39.108Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-10T00:43:39.108Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves basic informations about a specific user.</p>
+
+<aside class="notice">
+Only electors can be verified.
+</aside>
+<h3 id='http-route'>HTTP Route</h3>
+<p><code>GET auth/&lt;USERNAME&gt;/verify</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>USERNAME</td>
+<td>The USERNAME of the user from which the information is retrieved</td>
+</tr>
+</tbody></table>
+<h2 id='authenticate-a-user'>Authenticate a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">InvalidCredentials</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
@@ -674,7 +730,7 @@ You can bind context to the <code>task</code> function: <code>task.bind(this)</c
 <aside class="notice">
 The expire date of the cookie must be 5 days to ensure better refresh performance.
 </aside>
-<h3 id='http-route'>HTTP Route</h3>
+<h3 id='http-route-2'>HTTP Route</h3>
 <p><code>POST auth/login</code></p>
 <h2 id='authorize-a-user'>Authorize a user</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">withCookies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react-cookie'</span>
 
@@ -741,9 +797,9 @@ The expire date of the cookie must be 5 days to ensure better refresh performanc
 <aside class="notice">
 The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
 </aside>
-<h3 id='http-route-2'>HTTP Route</h3>
+<h3 id='http-route-3'>HTTP Route</h3>
 <p><code>GET auth/login/&lt;TOKEN&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1223,12 +1279,9 @@ Depending on accesses, deleting a user will remove any reference of the user in 
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b2ea"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
     </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1274,14 +1327,11 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b2ea"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
   </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates project within a specific company.</p>
@@ -1323,12 +1373,9 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific project.</p>
@@ -1375,12 +1422,9 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:58:17.453Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a4"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2a8"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
   </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a2"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific project.</p>
@@ -2429,7 +2473,6 @@ Updating a document's content also updates it's name (the new name will be the r
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32d8e48dde18253603bd07"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32d8e48dde18253603bd08"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Cadres"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -2485,7 +2528,6 @@ Updating a document's content also updates it's name (the new name will be the r
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
@@ -2540,7 +2582,6 @@ Updating a document's content also updates it's name (the new name will be the r
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
@@ -2600,7 +2641,6 @@ Updating a document's content also updates it's name (the new name will be the r
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"colleges"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"Custom Status"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Moar Status"</span><span class="p">,</span><span class="w">
@@ -2899,24 +2939,7 @@ Removing a status will automatically delete all electors linked to this status a
     </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
-        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -3022,33 +3045,15 @@ Removing a status will automatically delete all electors linked to this status a
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-01T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-17T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-18T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a college within a specific establishment.</p>
@@ -3095,24 +3100,7 @@ Removing a status will automatically delete all electors linked to this status a
   </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific college.</p>
@@ -3166,24 +3154,7 @@ Removing a status will automatically delete all electors linked to this status a
   </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-01T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-17T00:00:00.000Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-18T00:00:00.000Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific college.</p>
@@ -3272,24 +3243,7 @@ Removing a status will automatically delete all electors linked to this status a
   </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Status 1"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"electors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"rounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc426"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-17T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-18T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc427"</span><span class="p">],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32ee4a2fa935441f8cc428"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc429"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"nbr"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-02T06:14:34.712Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-03T06:14:34.712Z"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a specific status within a specific college.</p>
@@ -3535,6 +3489,61 @@ The content MUST be an object
 <tr>
 <td>ID</td>
 <td>The ID of the college in which the usb private key is contained</td>
+</tr>
+</tbody></table>
+<h2 id='get-public-key'>Get public key</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">NodeRSA</span> <span class="nx">from</span> <span class="s1">'node-rsa'</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span><span class="p">,</span> <span class="nx">InvalidAccess</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32ee4a2fa935441f8cc425'</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`colleges/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/public`</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CollegeNotFound</span><span class="p">)</span>
+      <span class="c1">// The college could be found</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">InvalidAccess</span><span class="p">)</span>
+      <span class="c1">// The college has not been controlled yet</span>
+
+    <span class="c1">// Handle any other errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6rXsusxtlEJjFOhXwd2V
+    wrxq6+16fruU/MSBBNcEX71EvI2yHg+C+kL93g71MkEBMONnhHVsQgYEbE4xQ/rL
+    ISgOm5yepigrWrS4stS5C1GW7DXuiX0onPChaQUiExoNq+dSAPMqHALkTtd9lERo
+    FDms+FsswS/f//yF3ok9qz5JnCNYfBayj/6OrtoqWurfjLQWfXqtxWyB/5GCGe7C
+    PWo0QyYUilhS2li26evGh3fwQBf6WTmLEksLFZ6FLHEjxOOMTAZxbODYY9r0kVgh
+    XWLsghpBFVcQ9lW3eha23gu5uARM5lOPFpC6kHcZ/I2ei1MAorNp2eaNIwuwwL54
+    bQIDAQAB
+    -----END PUBLIC KEY-----"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the public key (used to encrypt votes) within a specific college.</p>
+
+<aside class="notice">
+All votes MUST be encrypted with this key before being sent to the server.
+</aside>
+<h3 id='http-route-12'>HTTP Route</h3>
+<p><code>GET colleges/&lt;ID&gt;/public</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the college in which the key is contained</td>
 </tr>
 </tbody></table>
 <h1 id='elector'>Elector</h1><h2 id='fetch-all-electors'>Fetch all electors</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CollegeNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
@@ -4531,19 +4540,7 @@ Each vote is encrypted with the public vote key given during the college's keys 
     </span><span class="s2">"slogan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slogan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/ZUtiogP.png"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a6f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222ace"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a73"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -4610,24 +4607,7 @@ A valid list does not exceed the maximum size allowed (which is the number of se
     </span><span class="s2">"slogan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slogan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/ZUtiogP.png"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a6f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222ace"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a73"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a74"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -4701,8 +4681,7 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
   </span><span class="s2">"slogan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slogan"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/ZUtiogP.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acd"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acd"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a list within a specific round of a specific college.</p>
@@ -4754,19 +4733,7 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
   </span><span class="s2">"slogan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slogan"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/ZUtiogP.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222acd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a6f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222ace"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c74bb8ea63fc222a73"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c64bb8ea63fc222a56"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific college.</p>
@@ -4793,7 +4760,7 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
   <span class="na">name</span><span class="p">:</span> <span class="s1">'New Name'</span><span class="p">,</span>
   <span class="na">slogan</span><span class="p">:</span> <span class="s1">'New Slogan'</span><span class="p">,</span>
   <span class="na">logo</span><span class="p">:</span> <span class="s1">'https://bit.ly/2RhAGZM'</span><span class="p">,</span>
-  <span class="na">profession</span><span class="p">:</span> <span class="s1">'5c3780c94bb8ea63fc222ae4'</span>  
+  <span class="na">profession</span><span class="p">:</span> <span class="s1">'5c3780c94bb8ea63fc222ae4'</span>
 <span class="p">}</span>
 
 <span class="nx">request</span>
@@ -4822,8 +4789,7 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
   </span><span class="s2">"slogan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Slogan"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bit.ly/2RhAGZM"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222ae4"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"candidates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="s2">"profession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c3780c94bb8ea63fc222ae4"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific list.</p>
@@ -4902,12 +4868,10 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379bee037d637ffad35a1a"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379bec037d637ffad359bc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379bee037d637ffad35a1b"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379bec037d637ffad359c0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -4992,17 +4956,14 @@ An invalid list exceed the maximum size allowed (which is the number of seats in
 <pre class="highlight json tab-json"><code><span class="err">WITHOUT</span><span class="w"> </span><span class="err">ERRORS</span><span class="p">:</span><span class="w">
 </span><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6ba"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc415"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6bb"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc416"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6bc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc417"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -5091,17 +5052,14 @@ On error, the response object will holds whether or not each candidate has valid
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6ba"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc415"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6bb"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc416"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c379ee293271f03b5bca6bc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc417"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
