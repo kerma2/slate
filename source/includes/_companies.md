@@ -26,7 +26,7 @@ request
     "_id": "5c328f1a1d430b3d610a0833",
     "name": "Name",
     "infos": {
-      "siret": "00000000000000",
+      "sirets": ["00000000000000"],
       "headquarters": "Headquarters",
       "logo": "https://i.imgur.com/kl6PnDj.png",
       "theme": {}
@@ -51,7 +51,7 @@ import { APIErrorHandler } from './src/common/utils'
 const data = {
   name: "My Company",                         // Mandatory
   infos: {
-    siret: "00000000000002",                  // Mandatory and Unique
+    sirets: ["00000000000002"],               // Mandatory and Unique
     headquarters: "Headquarters",             // Mandatory
     logo: "https://i.imgur.com/kl6PnDj.png"   // Optional
   }
@@ -76,7 +76,7 @@ request
   "_id": "5c328f1a1d430b3d610a08a4",
   "name": "My Company",
   "infos": {
-    "siret": "00000000000002",
+    "sirets": ["00000000000002"],
     "headquarters": "Headquarters",
     "logo": "https://i.imgur.com/kl6PnDj.png",
     "theme": {}
@@ -120,7 +120,7 @@ request
   "_id": "5c328f1a1d430b3d610a0833",
   "name": "Name",
   "infos": {
-    "siret": "00000000000000",
+    "sirets": ["00000000000000"],
     "headquarters": "Headquarters",
     "logo": "https://i.imgur.com/kl6PnDj.png",
     "theme": {}
@@ -176,7 +176,7 @@ request
   "_id": "5c328f1a1d430b3d610a08a4",
   "name": "New Name",
   "infos": {
-    "siret": "00000000000002",
+    "sirets": ["00000000000000"],
     "headquarters": "New Headquarters",
     "logo": "https://bit.ly./AfgTyH",
     "theme": {}
