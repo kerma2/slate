@@ -481,8 +481,22 @@ const id = '5c32ee4a2fa935441f8cc414'
 const type = 'titular' // Or 'substitute'
 const round = 1
 
+const ballot = {
+  listId: '5c32ee4a2fa935441f8cc412',
+  candidates: [
+    {
+      userId: '5c32ee4a2fa935441f8cc411',
+      checked: true
+    },
+    {
+      userId: '5c32ee4a2fa935441f8cc410',
+      checked: false
+    }
+  ]
+}
+
 request
-  .post(`colleges/${id}/rounds/${round}/vote/${type}`)
+  .post(`colleges/${id}/rounds/${round}/vote/${type}`, {ballot: })
   .then(res => console.log(res.data))
   .catch(APIErrorHandler)
   .catch(err => {

@@ -27,9 +27,18 @@ request
     "name": "Name",
     "infos": {
       "sirets": ["00000000000000"],
+      "idcc": 1000,
       "headquarters": "Headquarters",
+      "status": "SARL",
+      "city": "City",
+      "capital": -1,
       "logo": "https://i.imgur.com/kl6PnDj.png",
       "theme": {}
+    },
+    "representative": {
+      "name": null,
+      "civility": null,
+      "title": null
     },
     "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
   }
@@ -52,8 +61,17 @@ const data = {
   name: "My Company",                         // Mandatory
   infos: {
     sirets: ["00000000000002"],               // Mandatory and Unique
+    idcc: 1000,                               // Mandatory
+    capital: 1000000,                         // Optional (default: -1)
+    status: "SARL",                           // Mandatory
+    city: "City",                             // Mandatory
     headquarters: "Headquarters",             // Mandatory
     logo: "https://i.imgur.com/kl6PnDj.png"   // Optional
+  },
+  representative: {
+    name: "Name Surname",                     // Optional
+    civility: "M",                            // Optional
+    title: "Representative Status"            // Optional
   }
 }
 
@@ -77,9 +95,18 @@ request
   "name": "My Company",
   "infos": {
     "sirets": ["00000000000002"],
+    "idcc": 1000,
     "headquarters": "Headquarters",
+    "status": "SARL",
+    "city": "City",
+    "capital": 1000000,
     "logo": "https://i.imgur.com/kl6PnDj.png",
     "theme": {}
+  },
+  "representative": {
+    "name": "Name Surname",
+    "civility": "m",
+    "title": "Representative Status"
   },
   "projects": []
 }
@@ -121,9 +148,18 @@ request
   "name": "Name",
   "infos": {
     "sirets": ["00000000000000"],
+    "idcc": 1000,
     "headquarters": "Headquarters",
+    "status": "SARL",
+    "city": "City",
+    "capital": 1000000,
     "logo": "https://i.imgur.com/kl6PnDj.png",
     "theme": {}
+  },
+  "representative": {
+    "name": "Name Surname",
+    "civility": "m",
+    "title": "Representative Status"
   },
   "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
 }
@@ -152,8 +188,18 @@ const id = '5c328f1a1d430b3d610a08a4'
 const data = {
   name: "New Name",
   infos: {
+    sirets: ["10000000000000", "20000000000000"], // This will COMPLETELY replace any existing siret
     headquarters: "New Headquarters",
+    status: "SAS",
+    city: "New City",
+    capital: 17000000,
+    idcc: 2000,
     logo: "https://bit.ly./AfgTyH"
+  },
+    representative: {
+    name: "New Name Surname",
+    civility: "MME",
+    title: "New Representative Status"
   }
 }
 
@@ -176,10 +222,19 @@ request
   "_id": "5c328f1a1d430b3d610a08a4",
   "name": "New Name",
   "infos": {
-    "sirets": ["00000000000000"],
+    "sirets": ["10000000000000", "20000000000000"],
+    "idcc": 2000,
     "headquarters": "New Headquarters",
+    "status": "SAS",
+    "city": "New City",
+    "capital": 17000000,
     "logo": "https://bit.ly./AfgTyH",
     "theme": {}
+  },
+    "representative": {
+    "name": "New Name Surname",
+    "civility": "mme",
+    "title": "New Representative Status"
   },
   "projects": []
 }

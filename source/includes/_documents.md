@@ -335,29 +335,27 @@ import download from 'downloadjs'
 
 import { ProjectNotFound, DocumentNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
+import { Store } from './src/common/factory'
 
 class ExampleDownload extends Component {
 	constructor(props) {
 		super(props)
 
 		this.stats = { file: null }
-		this.handleSelectedFile = this.handleSelectedFile.bind(this)
 		this.handleDownload = this.handleDownload.bind(this)
 	}
 
-  handleSelectedFile(event) {
-    this.setState({ file: event.target.files[0] })
-  }
-
-	handleDownload() {
+  handleDownload() {
     const id = '5c37be7581a72c1a4ddb654b'
     const projectId = '5c32b832a67a297bb5028be5'
+    const store = new Store()
 
-		request
-      .get(`projects/${projectId}/documents/${id}/download`, { responseType: 'blob' })
+    request.get(`projects/${projectId}/documents/${id}`)
+      .then(res => store.add('doc', res.data))
+      .then(doc => request.get(`projects/${projectId}/documents/${doc._id}/download`, { responseType: 'blob' }))
       .then(res => {
         const file = new Blob([res.data], { type: 'octet/stream' })
-        download(file, store.file.name) // This will open a popup to save the file locally
+        download(file, store.doc.name) // This will open a popup to save the file locally
       })
       .catch(APIErrorHandler)
       .catch(err => {
@@ -369,7 +367,7 @@ class ExampleDownload extends Component {
 
         // Handle any other errors
       })
-	}
+  }
 
 	render() {
 		return (

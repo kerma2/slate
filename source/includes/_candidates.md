@@ -241,7 +241,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 | --------- | ------------------------------------------------------ |
 | ID        | The ID of the list in which the candidates are updated |
 
-## Delete an elector
+## Delete an candidate
 
 ```javascript
 import { ListNotFound, UserNotFound } from './src/common/errors'

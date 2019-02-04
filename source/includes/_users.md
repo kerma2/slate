@@ -13,7 +13,8 @@ const data = {
   fullname: 'User',                       // Mandatory
   mail: 'user@domain.com',                // Optional
   civility: 'm',                          // Mandatory
-  access: 'admin'                         // Mandatory
+  access: 'admin',                        // Mandatory
+  title: 'founder'                        // Optional (only for employer)
 }
 
 request
@@ -65,6 +66,10 @@ Only user with access <code>admin</code>, <code>employer</code>, <code>control</
 
 <aside class="notice">
 Users <code>admin</code> and <code>control</code> must be linked to a company.
+</aside>
+
+<aside class="notice">
+When creating an <code>employer</code>, it will automatically update the representative field in the company linked to the account. The <code>title</code> fields can be set directly in user create request. 
 </aside>
 
 ### HTTP Route
