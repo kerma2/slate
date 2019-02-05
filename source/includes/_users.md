@@ -10,7 +10,8 @@ const data = {
   companyId: '5c4911487d93561947c5fe48',  // Partially Mandatory
   username: 'name',                       // Mandatory
   password: 'pwd',                        // Mandatory
-  fullname: 'User',                       // Mandatory
+  firstname: 'First Name',                // Mandatory
+  lastname: 'Last Name',                  // Mandatory
   mail: 'user@domain.com',                // Optional
   civility: 'm',                          // Mandatory
   access: 'admin',                        // Mandatory
@@ -44,9 +45,14 @@ request
   "projectId": null,
   "username": "name",
   "mail": "user@domain.com",
-  "fullname": "User",
+  "firstname": "First Name",
+  "lastname": "Last Name",
   "civility": "m",
-  "address": "none",
+  "address": {
+    "street": "none",
+    "city": "none",
+    "code": "none"
+  },
   "hiring": 0,
   "birth": {
     "date": "1970-01-01T00:00:00.000Z",
@@ -102,12 +108,17 @@ request
 {
   "_id": "5c490cd192f0f21359f5e1ed",
   "companyId": null,
-  "projectId": "5c490cd092f0f21359f5e1d1",
+  "projectId": "5c59777b4ab7d323740cc071",
   "username": "ba4f1d85",
   "mail": null,
-  "fullname": "Worker 1",
+  "firstname": "First Name",
+  "lastname": "Last Name",
   "civility": "m",
-  "address": "Address",
+  "address": {
+    "street": "Street Address",
+    "city": "City",
+    "code": "31500"
+  },
   "hiring": 31536000000,
   "birth": {
     "date": "1990-01-01T00:00:00.000Z",
@@ -139,9 +150,14 @@ const id = '5c490cd192f0f21359f5e1ed'
 
 const data = {
   mail: "new@mail.com",
-  fullname: 'Worker 1',
+  firstname: 'New First Name',
+  lastname: 'New Last Name',
   civility: 'mme',
-  address: 'New Address',
+  address: {
+    street: "New Street Address",
+    city: "New City",
+    code: "35000"
+  },
   hiring: 44444000000,
   birth: {
     date: '1991-03-02T17:17:17.000Z',
@@ -171,12 +187,17 @@ request
 {
   "_id": "5c490cd192f0f21359f5e1ed",
   "companyId": null,
-  "projectId": "5c490cd092f0f21359f5e1d1",
+  "projectId": "5c59777b4ab7d323740cc071",
   "username": "ba4f1d85",
   "mail": "new@mail.com",
-  "fullname": "Worker 1",
+  "firstname": "New First Name",
+  "lastname": "New Last Name",
   "civility": "mme",
-  "address": "New Address",
+  "address": {
+    "street": "New Street Address",
+    "city": "New City",
+    "code": "35000"
+  },
   "hiring": 44444000000,
   "birth": {
     "date": "1991-03-02T17:17:17.000Z",

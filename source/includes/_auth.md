@@ -27,11 +27,13 @@ request
 
 ```json
 {
+  "name": "SpaceX",
   "logo": "https://i.imgur.com/kl6PnDj.png",
   "round": 1,
   "dates": {
-    "start": "2019-02-09T00:43:39.108Z",
-    "end": "2019-02-10T00:43:39.108Z"
+    "locked": "2019-02-06T11:28:23.904Z",
+    "start": "2019-02-15T11:28:23.904Z",
+    "end": "2019-02-16T11:28:23.904Z"
   }
 }
 ```

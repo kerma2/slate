@@ -29,6 +29,7 @@ request
       "sirets": ["00000000000000"],
       "idcc": 1000,
       "headquarters": "Headquarters",
+      "agreement": true,
       "status": "SARL",
       "city": "City",
       "capital": -1,
@@ -62,6 +63,7 @@ const data = {
   infos: {
     sirets: ["00000000000002"],               // Mandatory and Unique
     idcc: 1000,                               // Mandatory
+    agreement: false,                         // Optional (default: true)
     capital: 1000000,                         // Optional (default: -1)
     status: "SARL",                           // Mandatory
     city: "City",                             // Mandatory
@@ -97,6 +99,7 @@ request
     "sirets": ["00000000000002"],
     "idcc": 1000,
     "headquarters": "Headquarters",
+    "agreement": false,
     "status": "SARL",
     "city": "City",
     "capital": 1000000,
@@ -150,6 +153,7 @@ request
     "sirets": ["00000000000000"],
     "idcc": 1000,
     "headquarters": "Headquarters",
+    "agreement": true,
     "status": "SARL",
     "city": "City",
     "capital": 1000000,
@@ -190,6 +194,7 @@ const data = {
   infos: {
     sirets: ["10000000000000", "20000000000000"], // This will COMPLETELY replace any existing siret
     headquarters: "New Headquarters",
+    agreement: false,
     status: "SAS",
     city: "New City",
     capital: 17000000,
@@ -225,13 +230,14 @@ request
     "sirets": ["10000000000000", "20000000000000"],
     "idcc": 2000,
     "headquarters": "New Headquarters",
+    "agreement": false,
     "status": "SAS",
     "city": "New City",
     "capital": 17000000,
     "logo": "https://bit.ly./AfgTyH",
     "theme": {}
   },
-    "representative": {
+  "representative": {
     "name": "New Name Surname",
     "civility": "mme",
     "title": "New Representative Status"

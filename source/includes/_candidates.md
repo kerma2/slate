@@ -26,10 +26,16 @@ request
 [
   {
     "userId": "5c379bec037d637ffad359bc",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "civility": "m",
     "rank": 1
   },
   {
     "userId": "5c379bec037d637ffad359c0",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "civility": "mme",
     "rank": 2
   }
 ]
