@@ -342,10 +342,10 @@
                     <a href="#fetch-a-document" class="toc-h2 toc-link" data-title="Fetch a document">Fetch a document</a>
                   </li>
                   <li>
-                    <a href="#update-a-document-39-s-name" class="toc-h2 toc-link" data-title="Update a document's name">Update a document's name</a>
+                    <a href="#update-a-document-name-refs" class="toc-h2 toc-link" data-title="Update a document (name/refs)">Update a document (name/refs)</a>
                   </li>
                   <li>
-                    <a href="#update-a-document-39-s-content" class="toc-h2 toc-link" data-title="Update a document's content">Update a document's content</a>
+                    <a href="#update-a-document-name-content" class="toc-h2 toc-link" data-title="Update a document (name/content)">Update a document (name/content)</a>
                   </li>
                   <li>
                     <a href="#download-a-document" class="toc-h2 toc-link" data-title="Download a document">Download a document</a>
@@ -1064,17 +1064,13 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the user to delete</td>
 </tr>
 </tbody></table>
-<h1 id='company'>Company</h1><h2 id='fetch-all-companies'>Fetch all companies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">NoCompanies</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
+<h1 id='company'>Company</h1><h2 id='fetch-all-companies'>Fetch all companies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`companies`</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">APIErrorHandler</span><span class="p">)</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoCompanies</span><span class="p">)</span>
-      <span class="c1">// No companies could be found</span>
-
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
 </code></pre>
@@ -1083,25 +1079,19 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a0833"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fcfb091b715ccfbd7f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SpaceX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"headquarter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd81"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"sirets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"00000000000000"</span><span class="p">],</span><span class="w">
-      </span><span class="s2">"idcc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"headquarters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Headquarters"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SARL"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"representative"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c328f1a1d430b3d610a0834"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a0835"</span><span class="p">]</span><span class="w">
+      </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1112,21 +1102,53 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"My Company"</span><span class="p">,</span>                         <span class="c1">// Mandatory</span>
-  <span class="na">infos</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">sirets</span><span class="p">:</span> <span class="p">[</span><span class="s2">"00000000000002"</span><span class="p">],</span>               <span class="c1">// Mandatory and Unique</span>
-    <span class="na">idcc</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>                               <span class="c1">// Mandatory</span>
-    <span class="na">agreement</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>                         <span class="c1">// Optional (default: true)</span>
-    <span class="na">capital</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>                         <span class="c1">// Optional (default: -1)</span>
-    <span class="na">status</span><span class="p">:</span> <span class="s2">"SARL"</span><span class="p">,</span>                           <span class="c1">// Mandatory</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s2">"City"</span><span class="p">,</span>                             <span class="c1">// Mandatory</span>
-    <span class="na">headquarters</span><span class="p">:</span> <span class="s2">"Headquarters"</span><span class="p">,</span>             <span class="c1">// Mandatory</span>
-    <span class="na">logo</span><span class="p">:</span> <span class="s2">"https://i.imgur.com/kl6PnDj.png"</span>   <span class="c1">// Optional</span>
+  <span class="c1">// Company Fields</span>
+  <span class="na">company</span><span class="p">:</span> 
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'SpaceX'</span><span class="p">,</span>                             <span class="c1">// Mandatory</span>
+    <span class="na">infos</span><span class="p">:</span> 
+    <span class="p">{</span>
+      <span class="na">agreement</span><span class="p">:</span> 
+      <span class="p">{</span>
+        <span class="na">date</span><span class="p">:</span> <span class="s2">"2019-01-01"</span><span class="p">,</span>                     <span class="c1">// Optional (default: null)</span>
+        <span class="na">has</span><span class="p">:</span> <span class="kc">true</span>                               <span class="c1">// Optional (default: false)</span>
+      <span class="p">},</span>
+      <span class="na">previous</span><span class="p">:</span> <span class="s1">'2016-01-01'</span><span class="p">,</span>                   <span class="c1">// Optional (default: null)</span>
+      <span class="na">status</span><span class="p">:</span> <span class="s1">'SARL'</span><span class="p">,</span>                           <span class="c1">// Mandatory</span>
+      <span class="na">captial</span><span class="p">:</span> <span class="mi">100000</span><span class="p">,</span>                          <span class="c1">// Optional (default: -1)</span>
+      <span class="na">logo</span><span class="p">:</span> <span class="s1">'https://i.imgur.com/kl6PnDj.png'</span>   <span class="c1">// Optional (default: null)</span>
+    <span class="p">}</span>
   <span class="p">},</span>
-  <span class="na">representative</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s2">"Name Surname"</span><span class="p">,</span>                     <span class="c1">// Optional</span>
-    <span class="na">civility</span><span class="p">:</span> <span class="s2">"M"</span><span class="p">,</span>                            <span class="c1">// Optional</span>
-    <span class="na">title</span><span class="p">:</span> <span class="s2">"Representative Status"</span>            <span class="c1">// Optional</span>
+
+  <span class="c1">// Project Fields</span>
+  <span class="na">project</span><span class="p">:</span> 
+  <span class="p">{</span>
+    <span class="na">shared</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>              <span class="c1">// Optional (default: false)</span>
+    <span class="na">negotiating</span><span class="p">:</span> <span class="s1">'2019-01-01'</span>   <span class="c1">// Mandatory</span>
+  <span class="p">},</span>
+
+  <span class="c1">// Establishment Fields</span>
+  <span class="na">establishment</span><span class="p">:</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'SpaceX West Office'</span><span class="p">,</span>   <span class="c1">// Mandatory</span>
+    <span class="na">idcc</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>                    <span class="c1">// Mandatory</span>
+    <span class="na">siret</span><span class="p">:</span> <span class="s1">'0000 000 0000 000'</span><span class="p">,</span>   <span class="c1">// Mandatory</span>
+    <span class="na">address</span><span class="p">:</span>
+    <span class="p">{</span>
+      <span class="na">street</span><span class="p">:</span> <span class="s1">'Street Address'</span><span class="p">,</span>   <span class="c1">// Mandatory</span>
+      <span class="na">city</span><span class="p">:</span> <span class="s1">'City'</span><span class="p">,</span>               <span class="c1">// Mandatory</span>
+      <span class="na">code</span><span class="p">:</span> <span class="s1">'31500'</span><span class="p">,</span>              <span class="c1">// Mandatory</span>
+      <span class="na">country</span><span class="p">:</span> <span class="s1">'France'</span>           <span class="c1">// Mandatory</span>
+    <span class="p">},</span>
+    <span class="na">representative</span><span class="p">:</span>
+    <span class="p">{</span>
+      <span class="na">firstname</span><span class="p">:</span> <span class="s1">'First Name'</span><span class="p">,</span>    <span class="c1">// Mandatory</span>
+      <span class="na">lastname</span><span class="p">:</span> <span class="s1">'Last Name'</span><span class="p">,</span>      <span class="c1">// Mandatory</span>
+      <span class="na">civility</span><span class="p">:</span> <span class="s1">'m'</span><span class="p">,</span>              <span class="c1">// Mandatory</span>
+      <span class="na">title</span><span class="p">:</span> <span class="s1">'title'</span><span class="p">,</span>             <span class="c1">// Mandatory</span>
+      <span class="na">phone</span><span class="p">:</span> <span class="s1">'0636363636'</span>         <span class="c1">// Mandatory</span>
+    <span class="p">},</span>
+    <span class="na">statuses</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'Workers'</span><span class="p">,</span> <span class="s1">'Engineer'</span> <span class="p">]</span> <span class="c1">// Optional</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -1145,25 +1167,63 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a08a4"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Company"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"sirets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"00000000000002"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"idcc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"headquarters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Headquarters"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SARL"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+  </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fcfb091b715ccfbd7f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SpaceX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"headquarter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd81"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SARL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"representative"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name Surname"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Representative Status"</span><span class="w">
+  </span><span class="s2">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd80"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fcfb091b715ccfbd7f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T15:40:45.240Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"negotiating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="s2">"establishment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd81"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd80"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SpaceX West Office"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"idcc"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"siret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Street Address"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31500"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"France"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"representative"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0636363636"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Engineer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Workers"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Ouvrier"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Employés"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Techniciens"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Agents de maîtrise"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Cadres"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates company.</p>
@@ -1191,25 +1251,19 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a0833"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fcfb091b715ccfbd7f"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SpaceX"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"headquarter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd81"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"sirets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"00000000000000"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"idcc"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"headquarters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Headquarters"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SARL"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"representative"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name Surname"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Representative Status"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c328f1a1d430b3d610a0834"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a0835"</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/kl6PnDj.png"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific company.</p>
@@ -1233,21 +1287,17 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c328f1a1d430b3d610a08a4'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"New Name"</span><span class="p">,</span>
-  <span class="na">infos</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">sirets</span><span class="p">:</span> <span class="p">[</span><span class="s2">"10000000000000"</span><span class="p">,</span> <span class="s2">"20000000000000"</span><span class="p">],</span> <span class="c1">// This will COMPLETELY replace any existing siret</span>
-    <span class="na">headquarters</span><span class="p">:</span> <span class="s2">"New Headquarters"</span><span class="p">,</span>
-    <span class="na">agreement</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">status</span><span class="p">:</span> <span class="s2">"SAS"</span><span class="p">,</span>
-    <span class="na">city</span><span class="p">:</span> <span class="s2">"New City"</span><span class="p">,</span>
-    <span class="na">capital</span><span class="p">:</span> <span class="mi">17000000</span><span class="p">,</span>
-    <span class="na">idcc</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
-    <span class="na">logo</span><span class="p">:</span> <span class="s2">"https://bit.ly./AfgTyH"</span>
-  <span class="p">},</span>
-    <span class="na">representative</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s2">"New Name Surname"</span><span class="p">,</span>
-    <span class="na">civility</span><span class="p">:</span> <span class="s2">"MME"</span><span class="p">,</span>
-    <span class="na">title</span><span class="p">:</span> <span class="s2">"New Representative Status"</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'New Name'</span><span class="p">,</span>
+  <span class="na">infos</span><span class="p">:</span> 
+  <span class="p">{</span>
+    <span class="na">agreement</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">date</span><span class="p">:</span> <span class="s1">'2019-02-10'</span><span class="p">,</span>
+      <span class="na">has</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">previous</span><span class="p">:</span> <span class="s1">'2018-01-01'</span><span class="p">,</span>
+    <span class="na">status</span><span class="p">:</span> <span class="s1">'New Status'</span><span class="p">,</span>
+    <span class="na">capital</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="na">logo</span><span class="p">:</span> <span class="s1">'New Logo'</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -1266,25 +1316,19 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c328f1a1d430b3d610a08a4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fcfb091b715ccfbd7f"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"headquarter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7800fdfb091b715ccfbd81"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"infos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"sirets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"10000000000000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"20000000000000"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"idcc"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"headquarters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Headquarters"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SAS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New City"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">17000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bit.ly./AfgTyH"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"representative"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name Surname"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"civility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mme"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Representative Status"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="s2">"agreement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-10T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"capital"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Logo"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific company.</p>
@@ -1342,10 +1386,10 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the company to delete</td>
 </tr>
 </tbody></table>
-<h1 id='project'>Project</h1><h2 id='fetch-all-projects'>Fetch all projects</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">NoProjects</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='project'>Project</h1><h2 id='fetch-all-projects'>Fetch all projects</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7804542077997c741e6f96'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`companies/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/projects`</span><span class="p">)</span>
@@ -1355,9 +1399,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">CompanyNotFound</span><span class="p">)</span>
       <span class="c1">// The company could not be found</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoProjects</span><span class="p">)</span>
-      <span class="c1">// No projects could be found</span>
-
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
 </code></pre>
@@ -1366,11 +1407,15 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b2ea"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f97"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f96"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T15:55:00.679Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"negotiating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1392,10 +1437,11 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='create-a-project'>Create a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">CompanyNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b185702a5b72b178b2e9'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7804542077997c741e6f96'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">shared</span><span class="p">:</span> <span class="kc">true</span>  <span class="c1">// Optional</span>
+  <span class="na">shared</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>               <span class="c1">// Optional (default: false)</span>
+  <span class="na">negotiating</span><span class="p">:</span> <span class="s1">'2018-01-01'</span>   <span class="c1">// Mandatory</span>
 <span class="p">}</span>
 
 <span class="nx">request</span>
@@ -1416,11 +1462,15 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b2ea"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78046a2077997c741e7026"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f96"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T15:55:22.798Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="s2">"negotiating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01T00:00:00.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates project within a specific company.</p>
@@ -1443,7 +1493,7 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='fetch-a-project'>Fetch a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7804542077997c741e6f97'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -1460,11 +1510,15 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f97"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f96"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T15:55:00.679Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a1"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"negotiating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T00:00:00.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific project.</p>
@@ -1485,10 +1539,11 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='update-a-project'>Update a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7804542077997c741e6f97'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">shared</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="na">shared</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">negotiating</span><span class="p">:</span> <span class="s2">"2019-02-10"</span>
 <span class="p">}</span>
 
 <span class="nx">request</span>
@@ -1509,11 +1564,15 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b186702a5b72b178b4a2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b185702a5b72b178b2e9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-07T01:55:18.123Z"</span><span class="p">,</span><span class="w"> </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f97"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"companyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7804542077997c741e6f96"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T15:55:00.679Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"archivedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="s2">"negotiating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-10T00:00:00.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific project.</p>
@@ -1536,7 +1595,7 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='delete-a-project'>Delete a project</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b186702a5b72b178b4a2'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7804542077997c741e6f97'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -1571,10 +1630,10 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the project to delete</td>
 </tr>
 </tbody></table>
-<h1 id='task'>Task</h1><h2 id='fetch-all-tasks'>Fetch all tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoTasks</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='task'>Task</h1><h2 id='fetch-all-tasks'>Fetch all tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/tasks`</span><span class="p">)</span>
@@ -1584,9 +1643,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
       <span class="c1">// The project could be found</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoTasks</span><span class="p">)</span>
-      <span class="c1">// No tasks could be found</span>
-
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
 </code></pre>
@@ -1595,19 +1651,21 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Task"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description of the task."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6445"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be7"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b6449"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644c"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644d"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1615,7 +1673,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
           </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
           </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028bea"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -1624,7 +1681,87 @@ Depending on accesses, deleting a user will remove any reference of the user in 
           </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-02T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Third Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -1646,11 +1783,10 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the project in which the tasks are retrieved</td>
 </tr>
 </tbody></table>
-<h2 id='fetch-important-tasks'>Fetch important tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoTasks</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h2 id='fetch-important-tasks'>Fetch important tasks</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
-
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 <span class="kr">const</span> <span class="nx">nb</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="nx">request</span>
@@ -1661,9 +1797,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
       <span class="c1">// The project could be found</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoTasks</span><span class="p">)</span>
-      <span class="c1">// No tasks could be found</span>
-
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
 </code></pre>
@@ -1672,18 +1805,20 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ac8"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The task ends very soon."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -1692,24 +1827,25 @@ Depending on accesses, deleting a user will remove any reference of the user in 
           </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ac9"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task 2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The task ends soon, but not so much."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-10T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second Task"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-02T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -1718,7 +1854,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
           </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -1747,23 +1882,29 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='create-a-task'>Create a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">ValidationError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Name'</span><span class="p">,</span>                         <span class="c1">// Mandatory</span>
-  <span class="na">type</span><span class="p">:</span> <span class="s1">'infos'</span><span class="p">,</span>                        <span class="c1">// Mandatory</span>
-  <span class="na">description</span><span class="p">:</span> <span class="s1">'The description.'</span><span class="p">,</span>      <span class="c1">// Optional</span>
-  <span class="na">date</span><span class="p">:</span> <span class="s1">'2019-04-05'</span><span class="p">,</span>                   <span class="c1">// Mandatory</span>
-  <span class="na">docs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5c32b832a67a297bb5028be6'</span><span class="p">],</span>   <span class="c1">// Optional</span>
-  <span class="na">parent</span><span class="p">:</span> <span class="s1">'5c32b832a67a297bb5028be9'</span><span class="p">,</span>   <span class="c1">// Optional</span>
-  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>                           <span class="c1">// Optional (the admin access is automatically added)</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'Name'</span><span class="p">,</span>                       <span class="c1">// Mandatory</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'infos'</span><span class="p">,</span>                      <span class="c1">// Mandatory</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'Description'</span><span class="p">,</span>         <span class="c1">// Optional (default: null)</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s1">'2019-03-01'</span><span class="p">,</span>                 <span class="c1">// Mandatory</span>
+  <span class="na">ref</span><span class="p">:</span> <span class="p">[</span>                              <span class="c1">// Optional (default: [])</span>
     <span class="p">{</span>
+      <span class="na">schema</span><span class="p">:</span> <span class="s1">'Establishment'</span><span class="p">,</span>        <span class="c1">// Mandatory (by ref)</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'5c7858fb495a9c15945b6446'</span>  <span class="c1">// Mandatory (by ref)</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="na">docs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5c7858fb495a9c15945b6449'</span><span class="p">],</span> <span class="c1">// Optional (default: [])</span>
+  <span class="na">parent</span><span class="p">:</span> <span class="s1">'5c7858fb495a9c15945b644a'</span><span class="p">,</span> <span class="c1">// Optional (default: null)</span>
+  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>                         <span class="c1">// Optional</span>
+    <span class="p">{</span>
+      <span class="na">access</span><span class="p">:</span> <span class="s1">'employer'</span><span class="p">,</span>             <span class="c1">// Mandatory (by access)</span>
       <span class="na">rights</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">removable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>               <span class="c1">// Optional (default: false)</span>
-        <span class="na">editable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>                 <span class="c1">// Optional (default: false)</span>
-        <span class="na">validate</span><span class="p">:</span> <span class="kc">true</span>                  <span class="c1">// Optional (default: false)</span>
-      <span class="p">},</span>
-      <span class="na">access</span><span class="p">:</span> <span class="s1">'employer'</span>                <span class="c1">// Mandatory (par access)</span>
+        <span class="na">removable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>              <span class="c1">// Optional (default: false)</span>
+        <span class="na">editable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>               <span class="c1">// Optional (default: false)</span>
+        <span class="na">validate</span><span class="p">:</span> <span class="kc">true</span>                <span class="c1">// Optional (default: false)</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -1786,27 +1927,23 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ba1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c785917495a9c15945b64cf"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description."</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-05T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b6449"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1815,7 +1952,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1841,8 +1977,8 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <h2 id='fetch-a-task'>Fetch a task</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">TaskNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
-<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7858fb495a9c15945b644a'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -1862,19 +1998,134 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Task"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The description of the task."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6445"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028be6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be7"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b6449"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b185702a5b72b178b2a3"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Task"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c785917495a9c15945b64cf"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b6449"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644c"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second Task"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-02T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Third Task"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6446"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1882,7 +2133,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028bea"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1891,13 +2141,16 @@ Depending on accesses, deleting a user will remove any reference of the user in 
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028beb"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific task within a specific project.</p>
+
+<aside class="notice">
+This endpoint has a default recursive on task's children. 
+</aside>
 <h3 id='http-route-4'>HTTP Route</h3>
 <p><code>GET project/&lt;PROJECT_ID&gt;/tasks/&lt;ID&gt;/</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
@@ -1925,27 +2178,25 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
-<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7858fb495a9c15945b644a'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 
 <span class="c1">// Setting a task as completed: requires 'validate' access</span>
 <span class="c1">// Updating any other fields: requires 'editable' access</span>
 <span class="c1">// Updating/Creating accesses: only for ADMIN</span>
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'New Name'</span><span class="p">,</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'New Description'</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="s1">'2019-03-10'</span><span class="p">,</span>
+  <span class="na">docs</span><span class="p">:</span> <span class="p">[],</span>             <span class="c1">// This will not delete previous document refs</span>
   <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'New name'</span><span class="p">,</span>
-  <span class="na">description</span><span class="p">:</span> <span class="s1">'New description.'</span><span class="p">,</span>
-  <span class="na">date</span><span class="p">:</span> <span class="s2">"2019-06-24"</span><span class="p">,</span>
-  <span class="na">docs</span><span class="p">:</span> <span class="p">[</span><span class="s1">'5c32b832a67a297bb5028ca8'</span><span class="p">],</span>   <span class="c1">// This will not delete previous documents</span>
-  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>                           <span class="c1">// This will modify existing accesses or create new accesses</span>
+  <span class="na">accesses</span><span class="p">:</span> <span class="p">[</span>           <span class="c1">// This will modify existing accesses or create new accesses</span>
     <span class="p">{</span>
+      <span class="na">access</span><span class="p">:</span> <span class="s1">'officer'</span><span class="p">,</span>
       <span class="na">rights</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">removable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="na">editable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="na">validate</span><span class="p">:</span> <span class="kc">true</span>
-      <span class="p">},</span>
-      <span class="na">access</span><span class="p">:</span> <span class="s1">'employer'</span>
+        <span class="na">removable</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -1974,19 +2225,26 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028ba1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b644a"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infos"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New description."</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Establishment"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be8"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Description"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-10T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7858fb495a9c15945b6445"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c32b832a67a297bb5028ca8"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c7858fb495a9c15945b6449"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"5c7858fb495a9c15945b644b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5c7858fb495a9c15945b644c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5c7858fb495a9c15945b644d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5c785917495a9c15945b64cf"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"accesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1994,7 +2252,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employer"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2003,8 +2260,15 @@ Depending on accesses, deleting a user will remove any reference of the user in 
         </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32b832a67a297bb5028be1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rights"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"removable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"officer"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2039,8 +2303,8 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be9'</span>
-<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c7858fb495a9c15945b644a'</span>
+<span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c7856889b3d4811e2503558'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -2085,7 +2349,7 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the task to delete</td>
 </tr>
 </tbody></table>
-<h1 id='document'>Document</h1><h2 id='fetch-all-documents'>Fetch all documents</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span><span class="p">,</span> <span class="nx">NoDocuments</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
+<h1 id='document'>Document</h1><h2 id='fetch-all-documents'>Fetch all documents</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProjectNotFound</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/errors'</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
@@ -2098,9 +2362,6 @@ Depending on accesses, deleting a user will remove any reference of the user in 
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ProjectNotFound</span><span class="p">)</span>
       <span class="c1">// The project could be found</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">NoDocuments</span><span class="p">)</span>
-      <span class="c1">// No documents could be found</span>
-
     <span class="c1">// Handle any other errors</span>
   <span class="p">})</span>
 </code></pre>
@@ -2109,12 +2370,9 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file1"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file2"</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78405aaf73e569790d8d37"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -2192,13 +2450,18 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37c3a637da83209590deac"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some file.pdf"</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78406aaf73e569790d8dbd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates documents within a specific project.</p>
 
 <p>Be sure to check how to handle <a href="#validationerror">ValidationError</a>.</p>
+
+<aside class="notice">
+Only the name and content of a document can be passed upon create. To add/update refs you must use the PUT method.
+</aside>
 <h3 id='http-route-2'>HTTP Route</h3>
 <p><code>POST projects/&lt;ID&gt;/documents/</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
@@ -2217,7 +2480,7 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c78405aaf73e569790d8d37'</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -2237,8 +2500,9 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file1"</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78405aaf73e569790d8d37"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific document within a specific project.</p>
@@ -2260,7 +2524,7 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <td>The ID of the document to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-document-39-s-name'>Update a document&#39;s name</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+<h2 id='update-a-document-name-refs'>Update a document (name/refs)</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
   <span class="nx">ProjectNotFound</span><span class="p">,</span>
   <span class="nx">DocumentNotFound</span><span class="p">,</span>
   <span class="nx">ValidationError</span>
@@ -2269,9 +2533,21 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">APIErrorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./src/common/utils'</span>
 
 <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
-<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
+<span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c78405aaf73e569790d8d37'</span>
 
-<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'New name'</span> <span class="p">}</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'new.pdf'</span><span class="p">,</span>
+  <span class="na">refs</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s1">'company'</span><span class="p">,</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'5c784059af73e569790d8d32'</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s1">'user'</span><span class="p">,</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s1">'5c784059af73e569790d8d31'</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 
 <span class="nx">request</span>
   <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s2">`projects/</span><span class="p">${</span><span class="nx">projectId</span><span class="p">}</span><span class="s2">/documents/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
@@ -2294,8 +2570,18 @@ Depending on accesses, deleting a user will remove any reference of the user in 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New name"</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78405aaf73e569790d8d37"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c784059af73e569790d8d32"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c784059af73e569790d8d31"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates the name of a specific document within a specific project.</p>
@@ -2323,7 +2609,7 @@ Updating a document's name does not update it's content
 <td>The ID of the document to update</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-document-39-s-content'>Update a document&#39;s content</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
+<h2 id='update-a-document-name-content'>Update a document (name/content)</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>
   <span class="nx">ProjectNotFound</span><span class="p">,</span>
   <span class="nx">DocumentNotFound</span><span class="p">,</span>
   <span class="nx">ValidationError</span>
@@ -2345,7 +2631,7 @@ Updating a document's name does not update it's content
   <span class="p">}</span>
 
     <span class="nx">handleUpdate</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c37be7581a72c1a4ddb654b'</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="s1">'5c78405aaf73e569790d8d37'</span>
     <span class="kr">const</span> <span class="nx">projectId</span> <span class="o">=</span> <span class="s1">'5c32b832a67a297bb5028be5'</span>
     <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">()</span>
 
@@ -2383,8 +2669,18 @@ Updating a document's name does not update it's content
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c37be7581a72c1a4ddb654b"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file name"</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c78405aaf73e569790d8d37"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c784059af73e569790d8d32"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c784059af73e569790d8d31"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates the content of a specific document within a specific project.</p>
@@ -3019,12 +3315,19 @@ Removing a status will automatically delete all electors linked to this status a
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc425"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a3e714bb12ea8ca950"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a2e714bb12ea8ca946"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
     </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"nb"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a3e714bb12ea8ca951"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ouvrier"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3091,12 +3394,19 @@ Removing a status will automatically delete all electors linked to this status a
 
 <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s2">"Name"</span><span class="p">,</span>             <span class="c1">// Mandatory</span>
-  <span class="na">workforce</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>           <span class="c1">// Mandatory</span>
+  <span class="na">workforce</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>            <span class="c1">// Mandatory</span>
   <span class="na">seats</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>                 <span class="c1">// Mandatory</span>
+  <span class="na">reserved</span><span class="p">:</span> <span class="p">[</span>               <span class="c1">// Optional (default: one object per status with nb at 0)</span>
+    <span class="p">{</span>
+      <span class="na">nb</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">status</span><span class="p">:</span> <span class="s2">"Ouvrier"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
   <span class="na">statuses</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span>    <span class="c1">// Optional</span>
   <span class="na">rounds</span><span class="p">:</span> <span class="p">[</span>                 <span class="c1">// Mandatory (for both rounds)</span>
     <span class="p">{</span>
       <span class="na">dates</span><span class="p">:</span> <span class="p">{</span>                <span class="c1">// Mandatory</span>
+        <span class="na">locked</span><span class="p">:</span> <span class="s2">"2019-04-25"</span><span class="p">,</span>
         <span class="na">start</span><span class="p">:</span> <span class="s2">"2019-05-01"</span><span class="p">,</span>
         <span class="na">end</span><span class="p">:</span> <span class="s2">"2019-05-02"</span>
       <span class="p">},</span>
@@ -3105,6 +3415,7 @@ Removing a status will automatically delete all electors linked to this status a
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="na">dates</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">locked</span><span class="p">:</span> <span class="s2">"2019-04-12"</span><span class="p">,</span>
         <span class="na">start</span><span class="p">:</span> <span class="s2">"2019-05-17"</span><span class="p">,</span>
         <span class="na">end</span><span class="p">:</span> <span class="s2">"2019-05-18"</span>
       <span class="p">},</span>
@@ -3136,8 +3447,15 @@ Removing a status will automatically delete all electors linked to this status a
   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8ccac4"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
   </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nb"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a3e714bb12ea8ca951"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ouvrier"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
@@ -3181,11 +3499,18 @@ Removing a status will automatically delete all electors linked to this status a
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc425"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c32ee4a2fa935441f8cc414"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"establishmentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a2e714bb12ea8ca946"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workforce"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
   </span><span class="s2">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ingénieurs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Techniciens"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nb"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c5999a3e714bb12ea8ca951"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ouvrier"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Ouvrier"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waiting"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
