@@ -3,10 +3,10 @@
 ## Fetch all projects
 
 ```javascript
-import { CompanyNotFound, NoProjects } from './src/common/errors'
+import { CompanyNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b185702a5b72b178b2e9'
+const id = '5c7804542077997c741e6f96'
 
 request
   .get(`companies/${id}/projects`)
@@ -15,9 +15,6 @@ request
   .catch(err => {
     if (err instanceof CompanyNotFound)
       // The company could not be found
-
-    if (err instanceof NoProjects)
-      // No projects could be found
 
     // Handle any other errors
   })
@@ -28,11 +25,15 @@ request
 ```json
 [
   {
-    "_id": "5c32b186702a5b72b178b2ea",
-    "companyId": "5c32b185702a5b72b178b2e9",
-    "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
+    "_id": "5c7804542077997c741e6f97",
+    "companyId": "5c7804542077997c741e6f96",
+    "dates": {
+      "createdAt": "2019-02-28T15:55:00.679Z",
+      "closedAt": null,
+      "archivedAt": null
+    },
     "shared": false,
-    "establishments": ["5c32b185702a5b72b178b2a1"]
+    "negotiating": "2019-01-01T00:00:00.000Z"
   }
 ]
 ```
@@ -55,10 +56,11 @@ This endpoint retrieves all projects within a specific company.
 import { CompanyNotFound, ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b185702a5b72b178b2e9'
+const id = '5c7804542077997c741e6f96'
 
 const data = {
-  shared: true  // Optional
+  shared: true,               // Optional (default: false)
+  negotiating: '2018-01-01'   // Mandatory
 }
 
 request
@@ -80,11 +82,15 @@ request
 
 ```json
 {
-  "_id": "5c32b186702a5b72b178b2ea",
-  "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
+  "_id": "5c78046a2077997c741e7026",
+  "companyId": "5c7804542077997c741e6f96",
+  "dates": {
+    "createdAt": "2019-02-28T15:55:22.798Z",
+    "closedAt": null,
+    "archivedAt": null
+  },
   "shared": true,
-  "establishments": []
+  "negotiating": "2018-01-01T00:00:00.000Z"
 }
 ```
 
@@ -108,7 +114,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 import { ProjectNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b186702a5b72b178b4a2'
+const id = '5c7804542077997c741e6f97'
 
 request
   .get(`projects/${id}`)
@@ -126,11 +132,15 @@ request
 
 ```json
 {
-  "_id": "5c32b186702a5b72b178b4a2",
-  "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
+  "_id": "5c7804542077997c741e6f97",
+  "companyId": "5c7804542077997c741e6f96",
+  "dates": {
+    "createdAt": "2019-02-28T15:55:00.679Z",
+    "closedAt": null,
+    "archivedAt": null
+  },
   "shared": false,
-  "establishments": ["5c32b185702a5b72b178b2a1"]
+  "negotiating": "2019-01-01T00:00:00.000Z"
 }
 ```
 
@@ -152,10 +162,11 @@ This endpoint retrieves a specific project.
 import { ProjectNotFound, ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b186702a5b72b178b4a2'
+const id = '5c7804542077997c741e6f97'
 
 const data = {
-  shared: false
+  shared: false,
+  negotiating: "2019-02-10"
 }
 
 request
@@ -177,11 +188,15 @@ request
 
 ```json
 {
-  "_id": "5c32b186702a5b72b178b4a2",
-  "companyId": "5c32b185702a5b72b178b2e9",
-  "dates": { "createdAt": "2019-01-07T01:55:18.123Z", "closedAt": null, "archivedAt": null },
+  "_id": "5c7804542077997c741e6f97",
+  "companyId": "5c7804542077997c741e6f96",
+  "dates": {
+    "createdAt": "2019-02-28T15:55:00.679Z",
+    "closedAt": null,
+    "archivedAt": null
+  },
   "shared": false,
-  "establishments": []
+  "negotiating": "2019-02-10T00:00:00.000Z"
 }
 ```
 
@@ -205,7 +220,7 @@ Be sure to check how to handle [ValidationError](#validationerror).
 import { ProjectNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b186702a5b72b178b4a2'
+const id = '5c7804542077997c741e6f97'
 
 request
   .delete(`projects/${id}`)

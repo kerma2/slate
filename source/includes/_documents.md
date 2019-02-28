@@ -3,7 +3,7 @@
 ## Fetch all documents
 
 ```javascript
-import { ProjectNotFound, NoDocuments } from './src/common/errors'
+import { ProjectNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const id = '5c32b832a67a297bb5028be5'
@@ -16,9 +16,6 @@ request
     if (err instanceof ProjectNotFound)
       // The project could be found
 
-    if (err instanceof NoDocuments)
-      // No documents could be found
-
     // Handle any other errors
   })
 ```
@@ -28,12 +25,9 @@ request
 ```json
 [
   {
-    "_id": "5c37be7581a72c1a4ddb654b",
-    "name": "file1"
-  },
-  {
-    "_id": "5c37be7581a72c1a4ddb654c",
-    "name": "file2"
+    "_id": "5c78405aaf73e569790d8d37",
+    "name": "file.pdf",
+    "refs": []
   }
 ]
 ```
@@ -113,14 +107,19 @@ class ExampleUpload extends Component {
 
 ```json
 {
-  "_id": "5c37c3a637da83209590deac",
-  "name": "some file.pdf"
+  "_id": "5c78406aaf73e569790d8dbd",
+  "name": "Name",
+  "refs": []
 }
 ```
 
 This endpoint creates documents within a specific project.
 
 Be sure to check how to handle [ValidationError](#validationerror).
+
+<aside class="notice">
+Only the name and content of a document can be passed upon create. To add/update refs you must use the PUT method.
+</aside>
 
 ### HTTP Route
 
@@ -139,7 +138,7 @@ import { ProjectNotFound, DocumentNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const projectId = '5c32b832a67a297bb5028be5'
-const id = '5c37be7581a72c1a4ddb654b'
+const id = '5c78405aaf73e569790d8d37'
 
 request
   .get(`projects/${projectId}/documents/${id}`)
@@ -160,8 +159,9 @@ request
 
 ```json
 {
-  "_id": "5c37be7581a72c1a4ddb654b",
-  "name": "file1"
+  "_id": "5c78405aaf73e569790d8d37",
+  "name": "file.pdf",
+  "refs": []
 }
 ```
 
@@ -178,7 +178,7 @@ This endpoint retrieves a specific document within a specific project.
 | PROJECT_ID | The ID of the project in which the document is retrieved |
 | ID         | The ID of the document to retrieve                       |
 
-## Update a document's name
+## Update a document (name/refs)
 
 ```javascript
 import {
@@ -190,9 +190,21 @@ import {
 import { APIErrorHandler } from './src/common/utils'
 
 const projectId = '5c32b832a67a297bb5028be5'
-const id = '5c37be7581a72c1a4ddb654b'
+const id = '5c78405aaf73e569790d8d37'
 
-const data = { name: 'New name' }
+const data = {
+  name: 'new.pdf',
+  refs: [
+    {
+      name: 'company',
+      id: '5c784059af73e569790d8d32'
+    },
+    {
+      name: 'user',
+      id: '5c784059af73e569790d8d31'
+    }
+  ]
+}
 
 request
   .put(`projects/${projectId}/documents/${id}`, data)
@@ -216,8 +228,18 @@ request
 
 ```json
 {
-  "_id": "5c37be7581a72c1a4ddb654b",
-  "name": "New name"
+  "_id": "5c78405aaf73e569790d8d37",
+  "name": "new.pdf",
+  "refs": [
+    {
+      "name": "Company",
+      "id": "5c784059af73e569790d8d32"
+    },
+    {
+      "name": "User",
+      "id": "5c784059af73e569790d8d31"
+    }
+  ]
 }
 ```
 
@@ -240,7 +262,7 @@ Updating a document's name does not update it's content
 | PROJECT_ID | The ID of the project in which the document is updated |
 | ID         | The ID of the document to update                       |
 
-## Update a document's content
+## Update a document (name/content)
 
 ```javascript
 import {
@@ -265,7 +287,7 @@ class ExampleUpdate extends Component {
   }
 
 	handleUpdate() {
-    const id = '5c37be7581a72c1a4ddb654b'
+    const id = '5c78405aaf73e569790d8d37'
     const projectId = '5c32b832a67a297bb5028be5'
     const data = new FormData()
 
@@ -304,8 +326,18 @@ class ExampleUpdate extends Component {
 
 ```json
 {
-  "_id": "5c37be7581a72c1a4ddb654b",
-  "name": "file name"
+  "_id": "5c78405aaf73e569790d8d37",
+  "name": "file.pdf",
+  "refs": [
+    {
+      "name": "Company",
+      "id": "5c784059af73e569790d8d32"
+    },
+    {
+      "name": "User",
+      "id": "5c784059af73e569790d8d31"
+    }
+  ]
 }
 ```
 

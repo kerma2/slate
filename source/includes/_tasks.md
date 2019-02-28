@@ -3,10 +3,10 @@
 ## Fetch all tasks
 
 ```javascript
-import { ProjectNotFound, NoTasks } from './src/common/errors'
+import { ProjectNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be5'
+const id = '5c7856889b3d4811e2503558'
 
 request
   .get(`projects/${id}/tasks`)
@@ -15,9 +15,6 @@ request
   .catch(err => {
     if (err instanceof ProjectNotFound)
       // The project could be found
-
-    if (err instanceof NoTasks)
-      // No tasks could be found
 
     // Handle any other errors
   })
@@ -28,19 +25,21 @@ request
 ```json
 [
   {
-    "_id": "5c32b832a67a297bb5028be9",
+    "_id": "5c7858fb495a9c15945b644a",
     "name": "Default Task",
     "type": "action",
-    "description": "The description of the task.",
+    "description": null,
     "date": "2019-04-01T00:00:00.000Z",
-    "ref": {
-      "schema": "Establishment",
-      "id": "5c32b832a67a297bb5028be8"
-    },
+    "refs": [
+      {
+        "name": "Project",
+        "id": "5c7858fb495a9c15945b6445"
+      }
+    ],
     "completed": false,
-    "docs": ["5c32b832a67a297bb5028be6", "5c32b832a67a297bb5028be7"],
+    "docs": ["5c7858fb495a9c15945b6449"],
     "parent": null,
-    "children": ["5c32b185702a5b72b178b2a3"],
+    "children": ["5c7858fb495a9c15945b644b", "5c7858fb495a9c15945b644c", "5c7858fb495a9c15945b644d"],
     "accesses": [
       {
         "rights": {
@@ -48,7 +47,6 @@ request
           "editable": false,
           "validate": true
         },
-        "_id": "5c32b832a67a297bb5028bea",
         "access": "employer"
       },
       {
@@ -57,7 +55,87 @@ request
           "editable": true,
           "validate": true
         },
-        "_id": "5c32b832a67a297bb5028beb",
+        "access": "admin"
+      }
+    ]
+  },
+  {
+    "_id": "5c7858fb495a9c15945b644b",
+    "name": "First Task",
+    "type": "infos",
+    "description": null,
+    "date": "2020-01-01T00:00:00.000Z",
+    "refs": [
+      {
+        "name": "Establishment",
+        "id": "5c7858fb495a9c15945b6446"
+      }
+    ],
+    "completed": false,
+    "docs": [],
+    "parent": "5c7858fb495a9c15945b644a",
+    "children": [],
+    "accesses": [
+      {
+        "rights": {
+          "removable": true,
+          "editable": true,
+          "validate": true
+        },
+        "access": "admin"
+      }
+    ]
+  },
+  {
+    "_id": "5c7858fb495a9c15945b644c",
+    "name": "Second Task",
+    "type": "infos",
+    "description": null,
+    "date": "2020-01-02T00:00:00.000Z",
+    "refs": [
+      {
+        "name": "Establishment",
+        "id": "5c7858fb495a9c15945b6446"
+      }
+    ],
+    "completed": false,
+    "docs": [],
+    "parent": "5c7858fb495a9c15945b644a",
+    "children": [],
+    "accesses": [
+      {
+        "rights": {
+          "removable": true,
+          "editable": true,
+          "validate": true
+        },
+        "access": "admin"
+      }
+    ]
+  },
+  {
+    "_id": "5c7858fb495a9c15945b644d",
+    "name": "Third Task",
+    "type": "infos",
+    "description": null,
+    "date": "2020-01-03T00:00:00.000Z",
+    "refs": [
+      {
+        "name": "Establishment",
+        "id": "5c7858fb495a9c15945b6446"
+      }
+    ],
+    "completed": false,
+    "docs": [],
+    "parent": "5c7858fb495a9c15945b644a",
+    "children": [],
+    "accesses": [
+      {
+        "rights": {
+          "removable": true,
+          "editable": true,
+          "validate": true
+        },
         "access": "admin"
       }
     ]
@@ -80,11 +158,10 @@ This endpoint retrieves all tasks within a specific project.
 ## Fetch important tasks
 
 ```javascript
-import { ProjectNotFound, NoTasks } from './src/common/errors'
+import { ProjectNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be5'
-
+const id = '5c7856889b3d4811e2503558'
 const nb = 2
 
 request
@@ -95,9 +172,6 @@ request
     if (err instanceof ProjectNotFound)
       // The project could be found
 
-    if (err instanceof NoTasks)
-      // No tasks could be found
-
     // Handle any other errors
   })
 ```
@@ -107,18 +181,20 @@ request
 ```json
 [
   {
-    "_id": "5c32b832a67a297bb5028ac8",
-    "name": "Task 1",
-    "type": "action",
-    "description": "The task ends very soon.",
-    "date": "2019-04-01T00:00:00.000Z",
-    "ref": {
-      "schema": "Establishment",
-      "id": "5c32b832a67a297bb5028be8"
-    },
+    "_id": "5c7858fb495a9c15945b644b",
+    "name": "First Task",
+    "type": "infos",
+    "description": null,
+    "date": "2020-01-01T00:00:00.000Z",
+    "refs": [
+      {
+        "name": "Establishment",
+        "id": "5c7858fb495a9c15945b6446"
+      }
+    ],
     "completed": false,
     "docs": [],
-    "parent": null,
+    "parent": "5c7858fb495a9c15945b644a",
     "children": [],
     "accesses": [
       {
@@ -127,24 +203,25 @@ request
           "editable": true,
           "validate": true
         },
-        "_id": "5c32b832a67a297bb5028beb",
         "access": "admin"
       }
     ]
   },
   {
-    "_id": "5c32b832a67a297bb5028ac9",
-    "name": "Task 2",
-    "type": "action",
-    "description": "The task ends soon, but not so much.",
-    "date": "2019-04-10T00:00:00.000Z",
-    "ref": {
-      "schema": "Establishment",
-      "id": "5c32b832a67a297bb5028be8"
-    },
+    "_id": "5c7858fb495a9c15945b644c",
+    "name": "Second Task",
+    "type": "infos",
+    "description": null,
+    "date": "2020-01-02T00:00:00.000Z",
+    "refs": [
+      {
+        "name": "Establishment",
+        "id": "5c7858fb495a9c15945b6446"
+      }
+    ],
     "completed": false,
     "docs": [],
-    "parent": null,
+    "parent": "5c7858fb495a9c15945b644a",
     "children": [],
     "accesses": [
       {
@@ -153,7 +230,6 @@ request
           "editable": true,
           "validate": true
         },
-        "_id": "5c32b832a67a297bb5028beb",
         "access": "admin"
       }
     ]
@@ -180,23 +256,29 @@ This endpoint retrieves the most important tasks within a specific project order
 import { ProjectNotFound, ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be5'
+const id = '5c7856889b3d4811e2503558'
 
 const data = {
-  name: 'Name',                         // Mandatory
-  type: 'infos',                        // Mandatory
-  description: 'The description.',      // Optional
-  date: '2019-04-05',                   // Mandatory
-  docs: ['5c32b832a67a297bb5028be6'],   // Optional
-  parent: '5c32b832a67a297bb5028be9',   // Optional
-  accesses: [                           // Optional (the admin access is automatically added)
+  name: 'Name',                       // Mandatory
+  type: 'infos',                      // Mandatory
+  description: 'Description',         // Optional (default: null)
+  date: '2019-03-01',                 // Mandatory
+  ref: [                              // Optional (default: [])
     {
+      schema: 'Establishment',        // Mandatory (by ref)
+      id: '5c7858fb495a9c15945b6446'  // Mandatory (by ref)
+    }
+  ],
+  docs: ['5c7858fb495a9c15945b6449'], // Optional (default: [])
+  parent: '5c7858fb495a9c15945b644a', // Optional (default: null)
+  accesses: [                         // Optional
+    {
+      access: 'employer',             // Mandatory (by access)
       rights: {
-        removable: false,               // Optional (default: false)
-        editable: true,                 // Optional (default: false)
-        validate: true                  // Optional (default: false)
-      },
-      access: 'employer'                // Mandatory (par access)
+        removable: true,              // Optional (default: false)
+        editable: true,               // Optional (default: false)
+        validate: true                // Optional (default: false)
+      }
     }
   ]
 }
@@ -220,27 +302,23 @@ request
 
 ```json
 {
-  "_id": "5c32b832a67a297bb5028ba1",
+  "_id": "5c785917495a9c15945b64cf",
   "name": "Name",
   "type": "infos",
-  "description": "The description.",
-  "date": "2019-04-05T00:00:00.000Z",
-  "ref": {
-    "schema": "Establishment",
-    "id": "5c32b832a67a297bb5028be8"
-  },
+  "description": "Description",
+  "date": "2019-03-01T00:00:00.000Z",
+  "refs": [],
   "completed": false,
-  "docs": ["5c32b832a67a297bb5028be6"],
-  "parent": "5c32b832a67a297bb5028be9",
+  "docs": ["5c7858fb495a9c15945b6449"],
+  "parent": "5c7858fb495a9c15945b644b",
   "children": [],
   "accesses": [
     {
       "rights": {
-        "removable": false,
+        "removable": true,
         "editable": true,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028be2",
       "access": "employer"
     },
     {
@@ -249,7 +327,6 @@ request
         "editable": true,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028be1",
       "access": "admin"
     }
   ]
@@ -276,8 +353,8 @@ Be sure to check how to handle [ValidationError](#validationerror).
 import { ProjectNotFound, TaskNotFound } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be9'
-const projectId = '5c32b832a67a297bb5028be5'
+const id = '5c7858fb495a9c15945b644a'
+const projectId = '5c7856889b3d4811e2503558'
 
 request
   .get(`projects/${projectId}/tasks/${id}`)
@@ -298,19 +375,134 @@ request
 
 ```json
 {
-  "_id": "5c32b832a67a297bb5028be9",
+  "_id": "5c7858fb495a9c15945b644a",
   "name": "Default Task",
   "type": "action",
-  "description": "The description of the task.",
+  "description": null,
   "date": "2019-04-01T00:00:00.000Z",
-  "ref": {
-    "schema": "Establishment",
-    "id": "5c32b832a67a297bb5028be8"
-  },
+  "refs": [
+    {
+      "name": "Project",
+      "id": "5c7858fb495a9c15945b6445"
+    }
+  ],
   "completed": false,
-  "docs": ["5c32b832a67a297bb5028be6", "5c32b832a67a297bb5028be7"],
+  "docs": ["5c7858fb495a9c15945b6449"],
   "parent": null,
-  "children": ["5c32b185702a5b72b178b2a3"],
+  "children": [
+    {
+      "_id": "5c7858fb495a9c15945b644b",
+      "name": "First Task",
+      "type": "infos",
+      "description": null,
+      "date": "2020-01-01T00:00:00.000Z",
+      "refs": [
+        {
+          "name": "Establishment",
+          "id": "5c7858fb495a9c15945b6446"
+        }
+      ],
+      "completed": false,
+      "docs": [],
+      "parent": "5c7858fb495a9c15945b644a",
+      "children": [
+        {
+          "_id": "5c785917495a9c15945b64cf",
+          "name": "Name",
+          "type": "infos",
+          "description": "Description",
+          "date": "2019-03-01T00:00:00.000Z",
+          "refs": [],
+          "completed": false,
+          "docs": ["5c7858fb495a9c15945b6449"],
+          "parent": "5c7858fb495a9c15945b644b",
+          "children": [],
+          "accesses": [
+            {
+              "rights": {
+                "removable": true,
+                "editable": true,
+                "validate": true
+              },
+              "access": "employer"
+            },
+            {
+              "rights": {
+                "removable": true,
+                "editable": true,
+                "validate": true
+              },
+              "access": "admin"
+            }
+          ]
+        }
+      ],
+      "accesses": [
+        {
+          "rights": {
+            "removable": true,
+            "editable": true,
+            "validate": true
+          },
+          "access": "admin"
+        }
+      ]
+    },
+    {
+      "_id": "5c7858fb495a9c15945b644c",
+      "name": "Second Task",
+      "type": "infos",
+      "description": null,
+      "date": "2020-01-02T00:00:00.000Z",
+      "refs": [
+        {
+          "name": "Establishment",
+          "id": "5c7858fb495a9c15945b6446"
+        }
+      ],
+      "completed": false,
+      "docs": [],
+      "parent": "5c7858fb495a9c15945b644a",
+      "children": [],
+      "accesses": [
+        {
+          "rights": {
+            "removable": true,
+            "editable": true,
+            "validate": true
+          },
+          "access": "admin"
+        }
+      ]
+    },
+    {
+      "_id": "5c7858fb495a9c15945b644d",
+      "name": "Third Task",
+      "type": "infos",
+      "description": null,
+      "date": "2020-01-03T00:00:00.000Z",
+      "refs": [
+        {
+          "name": "Establishment",
+          "id": "5c7858fb495a9c15945b6446"
+        }
+      ],
+      "completed": false,
+      "docs": [],
+      "parent": "5c7858fb495a9c15945b644a",
+      "children": [],
+      "accesses": [
+        {
+          "rights": {
+            "removable": true,
+            "editable": true,
+            "validate": true
+          },
+          "access": "admin"
+        }
+      ]
+    }
+  ],
   "accesses": [
     {
       "rights": {
@@ -318,7 +510,6 @@ request
         "editable": false,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028bea",
       "access": "employer"
     },
     {
@@ -327,7 +518,6 @@ request
         "editable": true,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028beb",
       "access": "admin"
     }
   ]
@@ -335,6 +525,10 @@ request
 ```
 
 This endpoint retrieves a specific task within a specific project.
+
+<aside class="notice">
+This endpoint has a default recursive on task's children. 
+</aside>
 
 ### HTTP Route
 
@@ -359,27 +553,25 @@ import {
 
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be9'
-const projectId = '5c32b832a67a297bb5028be5'
+const id = '5c7858fb495a9c15945b644a'
+const projectId = '5c7856889b3d4811e2503558'
 
 // Setting a task as completed: requires 'validate' access
 // Updating any other fields: requires 'editable' access
 // Updating/Creating accesses: only for ADMIN
 
 const data = {
+	name: 'New Name',
+  description: 'New Description',
+  date: '2019-03-10',
+  docs: [],             // This will not delete previous document refs
   completed: true,
-  name: 'New name',
-  description: 'New description.',
-  date: "2019-06-24",
-  docs: ['5c32b832a67a297bb5028ca8'],   // This will not delete previous documents
-  accesses: [                           // This will modify existing accesses or create new accesses
+  accesses: [           // This will modify existing accesses or create new accesses
     {
+      access: 'officer',
       rights: {
-        removable: false,
-        editable: false,
-        validate: true
-      },
-      access: 'employer'
+        removable: true
+      }
     }
   ]
 }
@@ -409,19 +601,26 @@ request
 
 ```json
 {
-  "_id": "5c32b832a67a297bb5028ba1",
+  "_id": "5c7858fb495a9c15945b644a",
   "name": "New Name",
-  "type": "infos",
-  "description": "New description.",
-  "date": "2019-06-24T00:00:00.000Z",
-  "ref": {
-    "schema": "Establishment",
-    "id": "5c32b832a67a297bb5028be8"
-  },
+  "type": "action",
+  "description": "New Description",
+  "date": "2019-03-10T00:00:00.000Z",
+  "refs": [
+    {
+      "name": "Project",
+      "id": "5c7858fb495a9c15945b6445"
+    }
+  ],
   "completed": true,
-  "docs": ["5c32b832a67a297bb5028ca8"],
-  "parent": "5c32b832a67a297bb5028be9",
-  "children": [],
+  "docs": ["5c7858fb495a9c15945b6449"],
+  "parent": null,
+  "children": [
+    "5c7858fb495a9c15945b644b",
+    "5c7858fb495a9c15945b644c",
+    "5c7858fb495a9c15945b644d",
+    "5c785917495a9c15945b64cf"
+  ],
   "accesses": [
     {
       "rights": {
@@ -429,7 +628,6 @@ request
         "editable": false,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028be2",
       "access": "employer"
     },
     {
@@ -438,8 +636,15 @@ request
         "editable": true,
         "validate": true
       },
-      "_id": "5c32b832a67a297bb5028be1",
       "access": "admin"
+    },
+    {
+      "rights": {
+        "removable": true,
+        "editable": false,
+        "validate": false
+      },
+      "access": "officer"
     }
   ]
 }
@@ -472,8 +677,8 @@ import {
 
 import { APIErrorHandler } from './src/common/utils'
 
-const id = '5c32b832a67a297bb5028be9'
-const projectId = '5c32b832a67a297bb5028be5'
+const id = '5c7858fb495a9c15945b644a'
+const projectId = '5c7856889b3d4811e2503558'
 
 request
   .delete(`projects/${projectId}/tasks/${id}`)

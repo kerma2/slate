@@ -3,7 +3,6 @@
 ## Fetch all companies
 
 ```javascript
-import { NoCompanies } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 request
@@ -11,9 +10,6 @@ request
   .then(res => console.log(res.data))
   .catch(APIErrorHandler)
   .catch(err => {
-    if (err instanceof NoCompanies)
-      // No companies could be found
-
     // Handle any other errors
   })
 ```
@@ -23,25 +19,19 @@ request
 ```json
 [
   {
-    "_id": "5c328f1a1d430b3d610a0833",
-    "name": "Name",
+    "_id": "5c7800fcfb091b715ccfbd7f",
+    "name": "SpaceX",
+    "headquarter": "5c7800fdfb091b715ccfbd81",
     "infos": {
-      "sirets": ["00000000000000"],
-      "idcc": 1000,
-      "headquarters": "Headquarters",
-      "agreement": true,
+      "agreement": {
+        "date": "2019-01-01T00:00:00.000Z",
+        "has": true
+      },
+      "previous": "2016-01-01T00:00:00.000Z",
       "status": "SARL",
-      "city": "City",
       "capital": -1,
-      "logo": "https://i.imgur.com/kl6PnDj.png",
-      "theme": {}
-    },
-    "representative": {
-      "name": null,
-      "civility": null,
-      "title": null
-    },
-    "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
+      "logo": "https://i.imgur.com/kl6PnDj.png"
+    }
   }
 ]
 ```
@@ -59,21 +49,53 @@ import { ValidationError } from './src/common/errors'
 import { APIErrorHandler } from './src/common/utils'
 
 const data = {
-  name: "My Company",                         // Mandatory
-  infos: {
-    sirets: ["00000000000002"],               // Mandatory and Unique
-    idcc: 1000,                               // Mandatory
-    agreement: false,                         // Optional (default: true)
-    capital: 1000000,                         // Optional (default: -1)
-    status: "SARL",                           // Mandatory
-    city: "City",                             // Mandatory
-    headquarters: "Headquarters",             // Mandatory
-    logo: "https://i.imgur.com/kl6PnDj.png"   // Optional
+  // Company Fields
+  company: 
+  {
+    name: 'SpaceX',                             // Mandatory
+    infos: 
+    {
+      agreement: 
+      {
+        date: "2019-01-01",                     // Optional (default: null)
+        has: true                               // Optional (default: false)
+      },
+      previous: '2016-01-01',                   // Optional (default: null)
+      status: 'SARL',                           // Mandatory
+      captial: 100000,                          // Optional (default: -1)
+      logo: 'https://i.imgur.com/kl6PnDj.png'   // Optional (default: null)
+    }
   },
-  representative: {
-    name: "Name Surname",                     // Optional
-    civility: "M",                            // Optional
-    title: "Representative Status"            // Optional
+
+  // Project Fields
+  project: 
+  {
+    shared: false,              // Optional (default: false)
+    negotiating: '2019-01-01'   // Mandatory
+  },
+
+  // Establishment Fields
+  establishment:
+  {
+    name: 'SpaceX West Office',   // Mandatory
+    idcc: 180,                    // Mandatory
+    siret: '0000 000 0000 000',   // Mandatory
+    address:
+    {
+      street: 'Street Address',   // Mandatory
+      city: 'City',               // Mandatory
+      code: '31500',              // Mandatory
+      country: 'France'           // Mandatory
+    },
+    representative:
+    {
+      firstname: 'First Name',    // Mandatory
+      lastname: 'Last Name',      // Mandatory
+      civility: 'm',              // Mandatory
+      title: 'title',             // Mandatory
+      phone: '0636363636'         // Mandatory
+    },
+    statuses: [ 'Workers', 'Engineer' ] // Optional
   }
 }
 
@@ -93,25 +115,63 @@ request
 
 ```json
 {
-  "_id": "5c328f1a1d430b3d610a08a4",
-  "name": "My Company",
-  "infos": {
-    "sirets": ["00000000000002"],
-    "idcc": 1000,
-    "headquarters": "Headquarters",
-    "agreement": false,
-    "status": "SARL",
-    "city": "City",
-    "capital": 1000000,
-    "logo": "https://i.imgur.com/kl6PnDj.png",
-    "theme": {}
+  "company": {
+    "_id": "5c7800fcfb091b715ccfbd7f",
+    "name": "SpaceX",
+    "headquarter": "5c7800fdfb091b715ccfbd81",
+    "infos": {
+      "agreement": {
+        "date": "2019-01-01T00:00:00.000Z",
+        "has": true
+      },
+      "previous": "2016-01-01T00:00:00.000Z",
+      "status": "SARL",
+      "capital": -1,
+      "logo": "https://i.imgur.com/kl6PnDj.png"
+    }
   },
-  "representative": {
-    "name": "Name Surname",
-    "civility": "m",
-    "title": "Representative Status"
+  "project": {
+    "_id": "5c7800fdfb091b715ccfbd80",
+    "companyId": "5c7800fcfb091b715ccfbd7f",
+    "dates": {
+      "createdAt": "2019-02-28T15:40:45.240Z",
+      "closedAt": null,
+      "archivedAt": null
+    },
+    "shared": false,
+    "negotiating": "2019-01-01T00:00:00.000Z"
   },
-  "projects": []
+  "establishment": {
+    "_id": "5c7800fdfb091b715ccfbd81",
+    "projectId": "5c7800fdfb091b715ccfbd80",
+    "name": "SpaceX West Office",
+    "state": "init",
+    "idcc": 180,
+    "siret": "00000000000000",
+    "address": {
+      "street": "Street Address",
+      "city": "City",
+      "code": "31500",
+      "country": "France"
+    },
+    "representative": {
+      "firstname": "First Name",
+      "lastname": "Last Name",
+      "civility": "m",
+      "title": "title",
+      "phone": "0636363636"
+    },
+    "statuses": [
+      "Engineer",
+      "Workers",
+      "Ouvrier",
+      "Employés",
+      "Techniciens",
+      "Agents de maîtrise",
+      "Ingénieurs",
+      "Cadres"
+    ]
+  }
 }
 ```
 
@@ -147,25 +207,19 @@ request
 
 ```json
 {
-  "_id": "5c328f1a1d430b3d610a0833",
-  "name": "Name",
+  "_id": "5c7800fcfb091b715ccfbd7f",
+  "name": "SpaceX",
+  "headquarter": "5c7800fdfb091b715ccfbd81",
   "infos": {
-    "sirets": ["00000000000000"],
-    "idcc": 1000,
-    "headquarters": "Headquarters",
-    "agreement": true,
+    "agreement": {
+      "date": "2019-01-01T00:00:00.000Z",
+      "has": true
+    },
+    "previous": "2016-01-01T00:00:00.000Z",
     "status": "SARL",
-    "city": "City",
-    "capital": 1000000,
-    "logo": "https://i.imgur.com/kl6PnDj.png",
-    "theme": {}
-  },
-  "representative": {
-    "name": "Name Surname",
-    "civility": "m",
-    "title": "Representative Status"
-  },
-  "projects": ["5c328f1a1d430b3d610a0834", "5c328f1a1d430b3d610a0835"]
+    "capital": -1,
+    "logo": "https://i.imgur.com/kl6PnDj.png"
+  }
 }
 ```
 
@@ -190,21 +244,17 @@ import { APIErrorHandler } from './src/common/utils'
 const id = '5c328f1a1d430b3d610a08a4'
 
 const data = {
-  name: "New Name",
-  infos: {
-    sirets: ["10000000000000", "20000000000000"], // This will COMPLETELY replace any existing siret
-    headquarters: "New Headquarters",
-    agreement: false,
-    status: "SAS",
-    city: "New City",
-    capital: 17000000,
-    idcc: 2000,
-    logo: "https://bit.ly./AfgTyH"
-  },
-    representative: {
-    name: "New Name Surname",
-    civility: "MME",
-    title: "New Representative Status"
+  name: 'New Name',
+  infos: 
+  {
+    agreement: {
+      date: '2019-02-10',
+      has: true
+    },
+    previous: '2018-01-01',
+    status: 'New Status',
+    capital: 10000,
+    logo: 'New Logo'
   }
 }
 
@@ -224,25 +274,19 @@ request
 
 ```json
 {
-  "_id": "5c328f1a1d430b3d610a08a4",
+  "_id": "5c7800fcfb091b715ccfbd7f",
   "name": "New Name",
+  "headquarter": "5c7800fdfb091b715ccfbd81",
   "infos": {
-    "sirets": ["10000000000000", "20000000000000"],
-    "idcc": 2000,
-    "headquarters": "New Headquarters",
-    "agreement": false,
-    "status": "SAS",
-    "city": "New City",
-    "capital": 17000000,
-    "logo": "https://bit.ly./AfgTyH",
-    "theme": {}
-  },
-  "representative": {
-    "name": "New Name Surname",
-    "civility": "mme",
-    "title": "New Representative Status"
-  },
-  "projects": []
+    "agreement": {
+      "date": "2019-02-10T00:00:00.000Z",
+      "has": true
+    },
+    "previous": "2018-01-01T00:00:00.000Z",
+    "status": "New Status",
+    "capital": 10000,
+    "logo": "New Logo"
+  }
 }
 ```
 

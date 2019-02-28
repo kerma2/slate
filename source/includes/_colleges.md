@@ -28,12 +28,19 @@ request
 ```json
 [
   {
-    "_id": "5c32ee4a2fa935441f8cc425",
-    "establishmentId": "5c32ee4a2fa935441f8cc414",
+    "_id": "5c5999a3e714bb12ea8ca950",
+    "establishmentId": "5c5999a2e714bb12ea8ca946",
     "name": "Name",
-    "workforce": 0.8,
+    "workforce": 11,
     "seats": 3,
-    "statuses": ["Ingénieurs", "Techniciens"],
+    "reserved": [
+      {
+        "nb": 0,
+        "_id": "5c5999a3e714bb12ea8ca951",
+        "status": "Ouvrier"
+      }
+    ],
+    "statuses": ["Ouvrier"],
     "state": "waiting",
     "round": 1
   }
@@ -103,12 +110,19 @@ const id = '5c32ee4a2fa935441f8cc414'
 
 const data = {
   name: "Name",             // Mandatory
-  workforce: 0.5,           // Mandatory
+  workforce: 11,            // Mandatory
   seats: 2,                 // Mandatory
+  reserved: [               // Optional (default: one object per status with nb at 0)
+    {
+      nb: 0,
+      status: "Ouvrier"
+    }
+  ],
   statuses: ["Ouvrier"],    // Optional
   rounds: [                 // Mandatory (for both rounds)
     {
       dates: {                // Mandatory
+        locked: "2019-04-25",
         start: "2019-05-01",
         end: "2019-05-02"
       },
@@ -117,6 +131,7 @@ const data = {
     },
     {
       dates: {
+        locked: "2019-04-12",
         start: "2019-05-17",
         end: "2019-05-18"
       },
@@ -149,8 +164,15 @@ request
   "_id": "5c32ee4a2fa935441f8ccac4",
   "establishmentId": "5c32ee4a2fa935441f8cc414",
   "name": "Name",
-  "workforce": 0.5,
+  "workforce": 11,
   "seats": 2,
+  "reserved": [
+    {
+      "nb": 0,
+      "_id": "5c5999a3e714bb12ea8ca951",
+      "status": "Ouvrier"
+    }
+  ],
   "statuses": ["Ouvrier"],
   "state": "waiting",
   "round": 1
@@ -196,11 +218,18 @@ request
 ```json
 {
   "_id": "5c32ee4a2fa935441f8cc425",
-  "establishmentId": "5c32ee4a2fa935441f8cc414",
+  "establishmentId": "5c5999a2e714bb12ea8ca946",
   "name": "Name",
-  "workforce": 0.8,
+  "workforce": 11,
   "seats": 3,
-  "statuses": ["Ingénieurs", "Techniciens"],
+  "reserved": [
+    {
+      "nb": 0,
+      "_id": "5c5999a3e714bb12ea8ca951",
+      "status": "Ouvrier"
+    }
+  ],
+  "statuses": ["Ouvrier"],
   "state": "waiting",
   "round": 1
 }
