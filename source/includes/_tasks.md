@@ -25,7 +25,7 @@ request
 ```json
 [
   {
-    "_id": "5c7858fb495a9c15945b644a",
+    "_id": "5c79581e7d47c13c17a9beca",
     "name": "Default Task",
     "type": "action",
     "description": null,
@@ -33,13 +33,95 @@ request
     "refs": [
       {
         "name": "Project",
-        "id": "5c7858fb495a9c15945b6445"
+        "id": "5c79581d7d47c13c17a9bec5"
       }
     ],
     "completed": false,
-    "docs": ["5c7858fb495a9c15945b6449"],
+    "docs": ["5c79581e7d47c13c17a9bec9"],
     "parent": null,
-    "children": ["5c7858fb495a9c15945b644b", "5c7858fb495a9c15945b644c", "5c7858fb495a9c15945b644d"],
+    "children": [
+      {
+        "_id": "5c79581e7d47c13c17a9becb",
+        "name": "First Task",
+        "type": "infos",
+        "description": null,
+        "date": "2020-01-01T00:00:00.000Z",
+        "refs": [
+          {
+            "name": "Establishment",
+            "id": "5c79581e7d47c13c17a9bec6"
+          }
+        ],
+        "completed": false,
+        "docs": [],
+        "parent": "5c79581e7d47c13c17a9beca",
+        "children": [],
+        "accesses": [
+          {
+            "rights": {
+              "removable": true,
+              "editable": true,
+              "validate": true
+            },
+            "access": "admin"
+          }
+        ]
+      },
+      {
+        "_id": "5c79581e7d47c13c17a9becc",
+        "name": "Second Task",
+        "type": "infos",
+        "description": null,
+        "date": "2020-01-02T00:00:00.000Z",
+        "refs": [
+          {
+            "name": "Establishment",
+            "id": "5c79581e7d47c13c17a9bec6"
+          }
+        ],
+        "completed": false,
+        "docs": [],
+        "parent": "5c79581e7d47c13c17a9beca",
+        "children": [],
+        "accesses": [
+          {
+            "rights": {
+              "removable": true,
+              "editable": true,
+              "validate": true
+            },
+            "access": "admin"
+          }
+        ]
+      },
+      {
+        "_id": "5c79581e7d47c13c17a9becd",
+        "name": "Third Task",
+        "type": "infos",
+        "description": null,
+        "date": "2020-01-03T00:00:00.000Z",
+        "refs": [
+          {
+            "name": "Establishment",
+            "id": "5c79581e7d47c13c17a9bec6"
+          }
+        ],
+        "completed": false,
+        "docs": [],
+        "parent": "5c79581e7d47c13c17a9beca",
+        "children": [],
+        "accesses": [
+          {
+            "rights": {
+              "removable": true,
+              "editable": true,
+              "validate": true
+            },
+            "access": "admin"
+          }
+        ]
+      }
+    ],
     "accesses": [
       {
         "rights": {
@@ -58,92 +140,15 @@ request
         "access": "admin"
       }
     ]
-  },
-  {
-    "_id": "5c7858fb495a9c15945b644b",
-    "name": "First Task",
-    "type": "infos",
-    "description": null,
-    "date": "2020-01-01T00:00:00.000Z",
-    "refs": [
-      {
-        "name": "Establishment",
-        "id": "5c7858fb495a9c15945b6446"
-      }
-    ],
-    "completed": false,
-    "docs": [],
-    "parent": "5c7858fb495a9c15945b644a",
-    "children": [],
-    "accesses": [
-      {
-        "rights": {
-          "removable": true,
-          "editable": true,
-          "validate": true
-        },
-        "access": "admin"
-      }
-    ]
-  },
-  {
-    "_id": "5c7858fb495a9c15945b644c",
-    "name": "Second Task",
-    "type": "infos",
-    "description": null,
-    "date": "2020-01-02T00:00:00.000Z",
-    "refs": [
-      {
-        "name": "Establishment",
-        "id": "5c7858fb495a9c15945b6446"
-      }
-    ],
-    "completed": false,
-    "docs": [],
-    "parent": "5c7858fb495a9c15945b644a",
-    "children": [],
-    "accesses": [
-      {
-        "rights": {
-          "removable": true,
-          "editable": true,
-          "validate": true
-        },
-        "access": "admin"
-      }
-    ]
-  },
-  {
-    "_id": "5c7858fb495a9c15945b644d",
-    "name": "Third Task",
-    "type": "infos",
-    "description": null,
-    "date": "2020-01-03T00:00:00.000Z",
-    "refs": [
-      {
-        "name": "Establishment",
-        "id": "5c7858fb495a9c15945b6446"
-      }
-    ],
-    "completed": false,
-    "docs": [],
-    "parent": "5c7858fb495a9c15945b644a",
-    "children": [],
-    "accesses": [
-      {
-        "rights": {
-          "removable": true,
-          "editable": true,
-          "validate": true
-        },
-        "access": "admin"
-      }
-    ]
   }
 ]
 ```
 
 This endpoint retrieves all tasks within a specific project.
+
+<aside class="notice">
+This endpoint has a default recursive on task's children. 
+</aside>
 
 ### HTTP Route
 
