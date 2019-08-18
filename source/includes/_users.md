@@ -1,36 +1,14 @@
-# User
+# Users
 
-## Create a user
+## Get users
 
 ```javascript
-import { ValidationError, InvalidRequestFormat } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-const data = {
-  companyId: '5c4911487d93561947c5fe48',  // Partially Mandatory
-  username: 'name',                       // Mandatory
-  password: 'pwd',                        // Mandatory
-  firstname: 'First Name',                // Mandatory
-  lastname: 'Last Name',                  // Mandatory
-  mail: 'user@domain.com',                // Optional
-  civility: 'm',                          // Mandatory
-  access: 'admin',                        // Mandatory
-  title: 'founder'                        // Optional (only for employer)
-}
-
 request
-  .post(`users`, data)
+  .get(`users`)
   .then(res => console.log(res.data))
-  .then(() => next())
-  .catch(APIErrorHandler)
   .catch(err => {
-    if (err instanceof InvalidRequestFormat)
-      // 1. The access is invalid
-      // 2. No password provided
-      // 3. The user is missing the companyId Ref (only for 'employer' and 'control')
-
-    if (err instanceof ValidationError)
-      // The user could not be created
+    if (err instanceof InvalidAccess)
+      // The logged in user does not have access rights
 
     // Handle any other errors
   })
@@ -39,100 +17,85 @@ request
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "_id": "5c490a5a04f33110c6195cc7",
-  "companyId": null,
-  "projectId": null,
-  "username": "name",
-  "mail": "user@domain.com",
-  "firstname": "First Name",
-  "lastname": "Last Name",
-  "civility": "m",
-  "address": {
-    "street": "none",
-    "city": "none",
-    "code": "none"
+[
+  {
+    "_id": "5d5910a495aaab1e7c756e6e",
+    "firstname": "tina",
+    "lastname": "smith",
+    "username": "tina",
+    "mail": "tina.smith@mail.com",
+    "universityId": "5d59109a6c92671dd20aaaee",
+    "curriculumId": "5d5910919cb03b1d9cf6f849",
+    "year": 1,
+    "country": "FR",
+    "lang": "fr",
+    "theme": "Light",
+    "curriculum": "Accounting & Finance",
+    "university": "Griffith College"
   },
-  "hiring": 0,
-  "birth": {
-    "date": "1970-01-01T00:00:00.000Z",
-    "county": "none",
-    "place": "none"
-  }
-}
+  ...
+]
 ```
 
-This creates a user within a specific access.
+This endpoint retrieves basic informations about all users.
 
-Be sure to check how to handle [ValidationError](#validationerror).
-
-<aside class="notice">
-Only user with access <code>admin</code>, <code>employer</code>, <code>control</code> and <code>provider</code> can be created with this route.
-</aside>
-
-<aside class="notice">
-Users <code>admin</code> and <code>control</code> must be linked to a company.
-</aside>
-
-<aside class="notice">
-When creating an <code>employer</code>, it will automatically update the representative field in the company linked to the account. The <code>title</code> fields can be set directly in user create request. 
+<aside class="warning">
+ADMIN ONLY PROTECTED ENDPOINT
 </aside>
 
 ### HTTP Route
 
-`POST user/`
+`GET users`
 
-## Fetch a user
+## Get a user
 
 ```javascript
-import { UserNotFound } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-const id = '5c490cd192f0f21359f5e1ed'
+const id = '5d5910a495aaab1e7c756e6e'
 
 request
   .get(`users/${id}`)
   .then(res => console.log(res.data))
-  .catch(APIErrorHandler)
   .catch(err => {
+    if (err instanceof InvalidAccess)
+      // The logged in user does not have access rights
+
     if (err instanceof UserNotFound)
-      // The user could be found
+      // The user could not be found
 
     // Handle any other errors
   })
+}
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "_id": "5c490cd192f0f21359f5e1ed",
-  "companyId": null,
-  "projectId": "5c59777b4ab7d323740cc071",
-  "username": "ba4f1d85",
-  "mail": null,
-  "firstname": "First Name",
-  "lastname": "Last Name",
-  "civility": "m",
-  "address": {
-    "street": "Street Address",
-    "city": "City",
-    "code": "31500"
-  },
-  "hiring": 31536000000,
-  "birth": {
-    "date": "1990-01-01T00:00:00.000Z",
-    "county": "County",
-    "place": "City/Town"
-  }
+  "_id": "5d5910a495aaab1e7c756e6e",
+  "firstname": "tina",
+  "lastname": "smith",
+  "username": "tina",
+  "mail": "tina.smith@mail.com",
+  "universityId": "5d59109a6c92671dd20aaaee",
+  "curriculumId": "5d5910919cb03b1d9cf6f849",
+  "year": 1,
+  "country": "FR",
+  "lang": "fr",
+  "theme": "Light",
+  "curriculum": "Accounting & Finance",
+  "university": "Griffith College"
 }
 ```
 
-This endpoint retrieves a specific user.
+This endpoint retrieves basic informations about a specific user.
+
+<aside class="notice">
+Users can only fetch informations about themselves.
+</aside>
 
 ### HTTP Route
 
-`GET users/<ID>/`
+`GET users/<ID>`
 
 ### URL Parameters
 
@@ -143,77 +106,60 @@ This endpoint retrieves a specific user.
 ## Update a user
 
 ```javascript
-import { UserNotFound, ValidationError } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-const id = '5c490cd192f0f21359f5e1ed'
+const id = '5d5910a495aaab1e7c756e6e'
 
 const data = {
-  mail: "new@mail.com",
-  firstname: 'New First Name',
-  lastname: 'New Last Name',
-  civility: 'mme',
-  address: {
-    street: "New Street Address",
-    city: "New City",
-    code: "35000"
-  },
-  hiring: 44444000000,
-  birth: {
-    date: '1991-03-02T17:17:17.000Z',
-    county: 'New County',
-    place: 'New City/Town'
-  }
+  firstname: 'new',
+  lastname: 'name'
 }
 
 request
   .put(`users/${id}`, data)
   .then(res => console.log(res.data))
-  .catch(APIErrorHandler)
   .catch(err => {
+    if (err instanceof InvalidAccess)
+      // The logged in user does not have access rights
+
     if (err instanceof UserNotFound)
-      // The user could be found
+      // The user could not be found
 
     if (err instanceof ValidationError)
-      // The user could not be updated
+      // Some fields have invalid value
 
     // Handle any other errors
   })
+}
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "_id": "5c490cd192f0f21359f5e1ed",
-  "companyId": null,
-  "projectId": "5c59777b4ab7d323740cc071",
-  "username": "ba4f1d85",
-  "mail": "new@mail.com",
-  "firstname": "New First Name",
-  "lastname": "New Last Name",
-  "civility": "mme",
-  "address": {
-    "street": "New Street Address",
-    "city": "New City",
-    "code": "35000"
-  },
-  "hiring": 44444000000,
-  "birth": {
-    "date": "1991-03-02T17:17:17.000Z",
-    "county": "New County",
-    "place": "New City/Town"
-  }
+  "_id": "5d5910a495aaab1e7c756e6e",
+  "firstname": "new",
+  "lastname": "name",
+  "username": "tina",
+  "mail": "tina.smith@mail.com",
+  "universityId": "5d59109a6c92671dd20aaaee",
+  "curriculumId": "5d5910919cb03b1d9cf6f849",
+  "year": 1,
+  "country": "FR",
+  "lang": "fr",
+  "theme": "Light",
+  "curriculum": "Accounting & Finance",
+  "university": "Griffith College"
 }
 ```
 
 This endpoint updates a specific user.
 
-Be sure to check how to handle [ValidationError](#validationerror).
+<aside class="notice">
+Users can only update informations about themselves.
+</aside>
 
 ### HTTP Route
 
-`PUT users/<ID>/`
+`PUT users/<ID>`
 
 ### URL Parameters
 
@@ -224,43 +170,89 @@ Be sure to check how to handle [ValidationError](#validationerror).
 ## Delete a user
 
 ```javascript
-import { UserNotFound } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-const id = '5c490cd192f0f21359f5e1ed'
+const id = '5d5910a495aaab1e7c756e6e'
 
 request
   .delete(`users/${id}`)
   .then(res => console.log(res.data))
-  .catch(APIErrorHandler)
   .catch(err => {
+    if (err instanceof InvalidAccess)
+      // The logged in user does not have access rights
+
     if (err instanceof UserNotFound)
-      // The user could be found
+      // The user could not be found
 
     // Handle any other errors
   })
+}
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "success": true
-}
+{ "success": true }
 ```
 
 This endpoint deletes a specific user.
 
 <aside class="notice">
-Depending on accesses, deleting a user will remove any reference of the user in any model. 
+Users can only delete their own account.
+</aside>
+
+<aside class="notice">
+This will also delete their couchdb instance.
 </aside>
 
 ### HTTP Route
 
-`DELETE users/<ID>/`
+`DELETE users/<ID>`
 
 ### URL Parameters
 
 | Parameter | Description                  |
 | --------- | ---------------------------- |
 | ID        | The ID of the user to delete |
+
+## Compact a user's cloud
+
+```javascript
+const id = '5d5910a495aaab1e7c756e6e'
+
+request
+  .post(`users/${id}/compact`)
+  .then(res => console.log(res.data))
+  .catch(err => {
+    if (err instanceof InvalidAccess)
+      // The logged in user does not have access rights
+
+    if (err instanceof UserNotFound)
+      // The user could not be found
+
+    // Handle any other errors
+  })
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "success": true }
+```
+
+This endpoint compacts a specific user's couchdb instance.
+
+This process will delete all the cached data and the temporary trash (within the couchdb instance).
+
+<aside class="notice">
+Users can only compact their own couchdb instance.
+</aside>
+
+### HTTP Route
+
+`POST users/<ID>/compact`
+
+### URL Parameters
+
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| ID        | The ID of the user linked to the couchdb instance to compact |

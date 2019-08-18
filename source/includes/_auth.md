@@ -3,21 +3,14 @@
 ## Verify a user
 
 ```javascript
-import { UserNotFound, InvalidAccess } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-const username = '762a14a6'
+const data = { mail: 'tina.smith@mail.com' }
 
 request
-  .get(`users/${username}/verify`)
+  .post(`auth/verify`, data)
   .then(res => console.log(res.data))
-  .catch(APIErrorHandler)
   .catch(err => {
-    if (err instanceof InvalidAccess)
-      // The user is not an elector
-
     if (err instanceof UserNotFound)
-      // The user could be found
+      // The user could not be found
 
     // Handle any other errors
   })
@@ -26,92 +19,72 @@ request
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "name": "SpaceX",
-  "logo": "https://i.imgur.com/kl6PnDj.png",
-  "round": 1,
-  "dates": {
-    "locked": "2019-02-06T11:28:23.904Z",
-    "start": "2019-02-15T11:28:23.904Z",
-    "end": "2019-02-16T11:28:23.904Z"
-  }
+{ "exists": true }
+```
+
+This endpoint checks if a specific user exists.
+
+### HTTP Route
+
+`POST auth/verify`
+
+## Validate a user
+
+```javascript
+const data = { mail: 'tina.smith@mail.com' }
+
+request
+  .post(`auth/validation`, data)
+  .then(res => console.log(res.data))
+  .catch(err => {
+    // Handle any errors
+  })
 }
 ```
 
-This endpoint retrieves basic informations about a specific user.
+> The above command returns JSON structured like this:
+
+```json
+{ "success": true }
+```
+
+This endpoint creates a temporary validator for a specific user.
 
 <aside class="notice">
-Only electors can be verified.
+The validator will expire after 10min.
+</aside>
+
+<aside class="notice">
+This will send a validation mail to the user.
 </aside>
 
 ### HTTP Route
 
-`GET auth/<USERNAME>/verify`
-
-### URL Parameters
-
-| Parameter | Description                                                      |
-| --------- | ---------------------------------------------------------------- |
-| USERNAME  | The USERNAME of the user from which the information is retrieved |
+`POST auth/validation`
 
 ## Authenticate a user
 
 ```javascript
-import { withCookies } from 'react-cookie'
-import { InvalidCredentials } from './src/common/errors'
-import { APIErrorHandler } from './src/common/utils'
-
-class LogInComponent extends Component {
-
-  // ... component definition
-
-  componentDidMount() {
-    // Clear any previous token reference
-    // This is mandatory to ensure a smooth redirection flow
-    cookies.remove('jwt', { path: '/' })
-  }
-
-  logIn() {
-    const { cookies } = this.props
-
-    const data = {
-      username: 'name',
-      password: 'pwd',
-    }
-
-    request
-      .post(`auth/login`, data)
-      .then(res => {
-        // This is mandatory to allow the client to get route that need authorization
-        cookies.set('jwt', res.data.token, { path: '/', expires: new Date(Date.now() + 864e5 * 5) })
-
-        // This will set the 'Authorization' headers in the axios requested instance
-        request.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
-
-        console.log(res.data)
-
-        // The 'hasAccess' function/condition need to be implemented
-        // It should map the different home page to each allowed accesses in the request url
-        if (hasAccess(res.data.accesses))
-          // Redirect to appropriate home page
-        else {
-          // Redirect to other LogInComponent
-        }
-      })
-      .catch(APIErrorHandler)
-      .catch(err => {
-        if (err instanceof InvalidCredentials)
-          // Invalid username/password couple
-
-        // Handle any other errors
-      })
-
-  }
-
-  // ... component definition
+const data = {
+  code: 'FF3371',
+  mail: 'tina.smith@mail.com'
 }
 
-export default withCookies(LogInComponent)
+request
+  .post(`auth/login`, data)
+  .then(res => {
+    // This will set the 'Authorization' headers in the axios requested instance
+    request.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
+
+    console.log(res.data)
+  })
+  .catch(err => {
+    if (err instanceof InvalidCode)
+      // Invalid validator code is invalid
+
+    // Handle any other errors
+  })
+}
 ```
 
 > The above command returns JSON structured like this:
@@ -119,75 +92,64 @@ export default withCookies(LogInComponent)
 ```json
 {
   "user": {
-    "_id": "5c491a65afca66204e281fdd",
-    "companyId": null,
-    "projectId": null,
-    "username": "admin",
-    "mail": null,
-    "fullname": "Admin",
-    "civility": "m",
-    "address": "none",
-    "hiring": 0,
-    "birth": {
-      "date": "1970-01-01T00:00:00.000Z",
-      "county": "none",
-      "place": "none"
-    }
+    "_id": "5d5910a495aaab1e7c756e6e",
+    "firstname": "tina",
+    "lastname": "smith",
+    "username": "tina",
+    "mail": "tina.smith@mail.com",
+    "universityId": "5d59109a6c92671dd20aaaee",
+    "curriculumId": "5d5910919cb03b1d9cf6f849",
+    "year": 1,
+    "country": "FR",
+    "lang": "fr",
+    "theme": "Light",
+    "curriculum": "Accounting & Finance",
+    "university": "Griffith College"
   },
-  "accesses": ["admin"],
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"
 }
 ```
 
 This endpoint authenticates a specifics user.
 
-<aside class="notice">
-The expire date of the cookie must be 5 days to ensure better refresh performance.
-</aside>
-
 ### HTTP Route
 
 `POST auth/login`
 
-## Authorize a user
+## Register a user
 
 ```javascript
-import { withCookies } from 'react-cookie'
-
-class TopLevelComponent extends Component {
-
-  // ... component definition
-
-  // It can be in componentWillMount as well
-  componentDidMount() {
-    const { cookies } = this.props
-
-    const token = cookies.get('jwt')
-
-    if (!token)
-      // Redirect to login page matching the requested url
-    else
-      request
-        .get(`auth/login/${token}`)
-        .then(res => {
-          // This will set the 'Authorization' headers in the axios request instance
-          request.defaults.headers.common['Authorization'] = `JWT ${token}`
-
-          console.log(res.data)
-        })
-        .catch(APIErrorHandler)
-        .catch(err => {
-          if (err instanceof InvalidCredentials)
-            // The token is invalid or has expired
-
-          // Handle any other errors
-        })
-  }
-
-  // ... component definition
+const data = {
+  key: '73a5927e',
+  firstname: "tina",
+  lastname: "smith",
+  username: "tina",
+  mail: 'tina.smith@mail.com',
+  year: 1,
+  country: "FR",
+  lang: "fr",
+  curriculum: "Accounting & Finance",
+  university: "Griffith College",
 }
 
-export default withCookies(TopLevelComponent)
+request
+  .post(`auth/login`, data)
+  .then(res => {
+    // This will set the 'Authorization' headers in the axios requested instance
+    request.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
+
+    console.log(res.data)
+  })
+  .catch(err => {
+    if (err instanceof BetaKeyNotFound)
+      // The beta key provided does not exists
+
+    if (err instanceof ValidationError)
+      // The register form has invalid/missing fields
+
+    // Handle any other errors
+  })
+}
 ```
 
 > The above command returns JSON structured like this:
@@ -195,37 +157,34 @@ export default withCookies(TopLevelComponent)
 ```json
 {
   "user": {
-    "_id": "5c491a65afca66204e281fdd",
-    "companyId": null,
-    "projectId": null,
-    "username": "admin",
-    "mail": null,
-    "fullname": "Admin",
-    "civility": "m",
-    "address": "none",
-    "hiring": 0,
-    "birth": {
-      "date": "1970-01-01T00:00:00.000Z",
-      "county": "none",
-      "place": "none"
-    }
+    "_id": "5d5910a495aaab1e7c756e6e",
+    "firstname": "tina",
+    "lastname": "smith",
+    "username": "tina",
+    "mail": "tina.smith@mail.com",
+    "universityId": "5d59109a6c92671dd20aaaee",
+    "curriculumId": "5d5910919cb03b1d9cf6f849",
+    "year": 1,
+    "country": "FR",
+    "lang": "fr",
+    "theme": "Light",
+    "curriculum": "Accounting & Finance",
+    "university": "Griffith College"
   },
-  "accesses": ["admin"]
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDkxYTY1YWZjYTY2MjA0ZTI4MWZkZCIsImlhdCI6MTU0ODMzMDg1MywiZXhwIjoxNTQ4OTM1NjUzfQ.3sH4OTWk9STic95FaoCtOP13f2qge3GRnGy79j2Fle4"
 }
 ```
 
-This endpoint authorizes a specifics user.
+This endpoint registers a specifics user.
 
 <aside class="notice">
-The client must identify that a verification has already been made for the session in order to avoid a verification on each redirection.
+The beta key will delete if the register process is completed.
+</aside>
+
+<aside class="notice">
+A couchdb instance (used as cloud) is automatically created for the newly created user
 </aside>
 
 ### HTTP Route
 
-`GET auth/login/<TOKEN>`
-
-### URL Parameters
-
-| Parameter | Description                        |
-| --------- | ---------------------------------- |
-| TOKEN     | The TOKEN of the user to authorize |
+`POST auth/login`

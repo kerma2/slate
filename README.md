@@ -1,4 +1,4 @@
-# GSVote
+# NATE - Documentation
 
 ## Prerequisite
 

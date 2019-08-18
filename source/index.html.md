@@ -1,5 +1,5 @@
 ---
-title: GSVote API Reference
+title: NATE API Reference
 
 language_tabs:
   - javascript
@@ -9,19 +9,12 @@ toc_footers:
 
 includes:
   - auth
+  - admins
   - users
-  - companies
-  - projects
-  - tasks
-  - documents
-  - establishments
-  - colleges
-  - electors
-  - rounds
-  - lists
-  - candidates
-  - errors
-
+  - universities
+  - curriculums
+  - library
+  
 search: true
 ---
 
@@ -31,16 +24,15 @@ search: true
 
 ```javascript
 import axios from 'axios'
+import config from 'config'
 
-const endpoint = `${window.location.protocol}//${window.location.host}`
+const { host, port } = config.server
+
+const endpoint = `http//${host}:${port}`
 const request = axios.create({ baseURL: `${endpoint}/api` })
 ```
 
 The request object is used to handle communications with the API.
-
-<aside class="notice">
-It should be stored in the Redux Store.
-</aside>
 
 ## Authorization
 
@@ -60,21 +52,18 @@ The request object must have a valid 'Authorization' header to communicate with 
 ## Chain requests
 
 ```javascript
-import { APIErrorHandler } from './src/common/utils'
-
 request
   .get('url1')
   .then(res => /* response of request on url1 */)
   .then(() => request.get('url2'))
   .then(res => /* response of request on url2 */)
-  .catch(APIErrorHandler)
   .catch(err => /* error for url1 or url2*/)
 ```
 
 ## Batch requests
 
 ```javascript
-import { APIErrorHandler, sync } from './src/common/utils'
+import { sync } from './database/utils'
 
 const array = [
   '5c328f1a1d430b3d610a0833',
@@ -83,9 +72,8 @@ const array = [
 
 const task = function (id, index, callback) {
   request
-    .get(`companies/${id}`)
+    .get(`users/${id}`)
     .then(res => callback(null, res.data)) // This will store the response in the results
-    .catch(APIErrorHandler)
     .catch(err => {
       callback(null, err) // This will store the error in the results
 
