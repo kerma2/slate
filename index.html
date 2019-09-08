@@ -318,7 +318,10 @@
             <a href="#library" class="toc-h1 toc-link" data-title="Library">Library</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-a-list-of-courses" class="toc-h2 toc-link" data-title="Get a list of courses">Get a list of courses</a>
+                    <a href="#get-all-courses" class="toc-h2 toc-link" data-title="Get all courses">Get all courses</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-course-with-content" class="toc-h2 toc-link" data-title="Get a course with content">Get a course with content</a>
                   </li>
               </ul>
           </li>
@@ -1100,7 +1103,7 @@ The limit of curriculums fetched at once based on the query is: 10.
 <td>The QUERY entered by the user</td>
 </tr>
 </tbody></table>
-<h1 id='library'>Library</h1><h2 id='get-a-list-of-courses'>Get a list of courses</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">request</span>
+<h1 id='library'>Library</h1><h2 id='get-all-courses'>Get all courses</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">request</span>
   <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">`library`</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -1113,37 +1116,109 @@ The limit of curriculums fetched at once based on the query is: 10.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"docs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3e178bec1f764777e9a4"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-55e4c91073f288da6a30c529807a4616"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transactions"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30a9465d2a62763ebc5e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-7a7391a3097119419e75e950324e4d2a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Editor"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"textContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566125914852</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566125914852</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958480433</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958480433</span><span class="p">,</span><span class="w">
       </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"course"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d592f311603597b8cce2e27"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quentin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kermaidic"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kerma"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537f565781f51b38fb78b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tina"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tina"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"university"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Griffith College"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"universityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d01251918a2247dc44d6a84"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"curriculum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer Science"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"curriculumId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d0124fa40614e7da37f643b"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"universityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537e3bc3daf515517e07e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"curriculum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting &amp; Finance"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"curriculumId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537d17332d251361755a7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22e15d4a76d4afa3e562"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-0a07ac560d01259988020456734681d2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NounEconomics615480"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958469850</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958469850</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subject"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of courses across all users&#39; clouds.</p>
 
 <aside class="notice">
-The user object defined the owner of the course.
+The user object defines the owner of the course.
 </aside>
 <h3 id='http-route'>HTTP Route</h3>
 <p><code>GET library</code></p>
+<h2 id='get-a-course-with-content'>Get a course with content</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">courseId</span><span class="p">:</span> <span class="s1">'30a9465d2a62763ebc5e'</span><span class="p">,</span>
+  <span class="na">userId</span><span class="p">:</span> <span class="s1">'5d7537f565781f51b38fb78b'</span>
+<span class="p">}</span>
+
+<span class="nx">request</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`library/course`</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Handle any errors</span>
+  <span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30a9465d2a62763ebc5e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-7a7391a3097119419e75e950324e4d2a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Editor"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"textContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958480433</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958480433</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"course"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value.json"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"revpos"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"digest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md5-z/cvJ0kUEKPd/OC31po4gw=="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">296</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"stub"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22e15d4a76d4afa3e562"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-0a07ac560d01259988020456734681d2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finance"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NounEconomics615480"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958469850</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1567958469850</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subject"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537f565781f51b38fb78b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tina"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tina"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"university"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Griffith College"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"universityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537e3bc3daf515517e07e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"curriculum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting &amp; Finance"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"curriculumId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7537d17332d251361755a7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific course with it&#39;s content.</p>
+
+<aside class="notice">
+The user object defines the owner of the course.
+</aside>
+<h3 id='http-route-2'>HTTP Route</h3>
+<p><code>POST library/course</code></p>
 
       </div>
       <div class="dark-box">
