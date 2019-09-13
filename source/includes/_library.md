@@ -74,7 +74,7 @@ The user object defines the owner of the course.
 </aside>
 
 <aside class="notice">
-If a `userId` is passed to the request body, it will append a `hasLiked` boolean to each course. This boolean specify whether or not the user already liked the course.
+If a "userId" is passed to the request body, it will append a "hasLiked" boolean to each course. This boolean specify whether or not the user already liked the course.
 </aside>
 
 ### HTTP Route
@@ -144,10 +144,6 @@ request
 
 This endpoint retrieves a specific course with it's content (attachment).
 
-<aside class="notice">
-The user object defines the owner of the course.
-</aside>
-
 ### HTTP Route
 
 `POST library/course`
@@ -214,10 +210,6 @@ request
 ```
 
 This endpoint adds a like to a specific course.
-
-<aside class="notice">
-The user object defines the owner of the course.
-</aside>
 
 ### HTTP Route
 
@@ -291,10 +283,6 @@ request
 ```
 
 This endpoint adds a comment to a specific course.
-
-<aside class="notice">
-The user object defines the owner of the course.
-</aside>
 
 ### HTTP Route
 
